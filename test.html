@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+	<body>
+		<script src="https://unpkg.com/@isomorphic-git/lightning-fs"></script>
+		<script src="https://unpkg.com/isomorphic-git"></script>
+		<script type="module">
+
+			import http from 'https://unpkg.com/isomorphic-git@beta/http/web/index.js';
+			
+            window.fs = new LightningFS('fs');
+			window.pfs = window.fs.promises;
+			window.dir = '/tutorial';
+
+			// Async.
+			(async() => {
+
+				console.log(dir);
+				//await pfs.mkdir(dir);
+				// Behold - it is empty!
+				await pfs.readdir(dir);
+
+				await git.clone({
+				  fs,
+				  http,
+				  dir,
+				  corsProxy: 'https://cors.isomorphic-git.org',
+				  url: 'https://github.com/isomorphic-git/isomorphic-git',
+				  ref: 'master',
+				  singleBranch: true,
+				  depth: 10
+				}).then(console.log);
+
+				// Now it should not be empty...
+				await pfs.readdir(dir).then(console.log);
+            
+			// Async.
+			})();
+		</script>
+</body	>
+</html>
