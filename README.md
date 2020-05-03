@@ -13,3 +13,15 @@
 После этого открывайте ГитБюджет, вводите учётные данные и начинайте пользоваться!
 
 # EN
+
+GitBudget is a simple application to track your spendings and keep them in Git. The application is available at: http://kornerr.ru/git-budget
+
+Source code is located inside the application and is available at: http://kornerr.ru/git-budget/gb.html?0
+
+To start using GitBudget, you first have to:
+
+1. create a private Git repository at any service (you can use GitHub);
+1. create as many branches as many devices you plan to use;
+1. create an empty `gb.log` file inside each branch.
+
+Once this is done, open GitBudget, enter credentials and start using the application!
