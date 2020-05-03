@@ -1,4 +1,4 @@
-# RU
+# Русский
 
 ГитБюджет является простым приложением учёта трат, которое хранит их в Git. Приложение расположено по адресу: http://kornerr.ru/git-budget
 
@@ -16,7 +16,7 @@
 
 [Подробная статья про то, почему я сделал ГитБюджет][статья-ру].
 
-# EN
+# English
 
 GitBudget is a simple application to track your spendings and keep them in Git. The application is available at: http://kornerr.ru/git-budget
 
