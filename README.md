@@ -12,6 +12,8 @@
 
 После этого открывайте ГитБюджет, вводите учётные данные и начинайте пользоваться!
 
+[Подробная статья про то, почему я сделал ГитБюджет][статья-ру].
+
 # EN
 
 GitBudget is a simple application to track your spendings and keep them in Git. The application is available at: http://kornerr.ru/git-budget
@@ -25,3 +27,8 @@ To start using GitBudget, you first have to:
 1. create an empty `gb.log` file inside each branch.
 
 Once this is done, open GitBudget, enter credentials and start using the application!
+
+[Details why I created GitBudget][статья-ан].
+
+[статья-ру]: http://opengamestudio.org/ru/news/git-budget.html
+[статья-ан]: http://opengamestudio.org/en/news/git-budget.html
