@@ -34,7 +34,6 @@ object PlayComponent {
         val vm = VM
         val oneliners = arrayOf(
             "isPlaygroundVisible", { c: PC -> vm.playgroundIsVisible.value = c.isPlaygroundVisible },
-            "url", { c: PC -> vm.webView?.loadUrl(c.url) },
         )
         registerOneliners(ctrl, oneliners)
     }
