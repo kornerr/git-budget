@@ -42,7 +42,7 @@ class MainActivity: ComponentActivity() {
         setContent {
             MyApplicationTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Playground(
+                    Budget(
                         vm = VM,
                         modifier = Modifier.padding(innerPadding),
                     )
@@ -52,10 +52,10 @@ class MainActivity: ComponentActivity() {
     }
 }
 
-//<!-- Playground -->
+//<!-- Budget -->
 
 @Composable
-fun Playground(
+fun Budget(
     modifier: Modifier = Modifier,
     vm: VM,
 ) {
@@ -63,23 +63,28 @@ fun Playground(
       enter = fadeIn(),
       exit = fadeOut(),
       modifier = modifier,
-      visible = vm.playgroundIsVisible.value,
+      visible = vm.budgetIsVisible.value,
     ) {
         Column(
             modifier = Modifier.fillMaxSize(),
-            verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Card(
-                elevation = CardDefaults.cardElevation(defaultElevation = 6.dp),
-                modifier = Modifier.padding(24.dp)
-            ) {
-                Text(
-                    modifier = Modifier.padding(24.dp),
-                    text = vm.playgroundTitle.value,
-                    style = MaterialTheme.typography.headlineMedium
-                )
-            }
+            TextField(
+                keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
+                label = {
+                    Text(
+                        style = MaterialTheme.typography.labelLarge,
+                        text = vm.inputSpentDesc.value,
+                    )
+                },
+                modifier = Modifier.padding(horizontal = 24.dp),
+                onValueChange = {
+                    vm.inputSpent.value = it 
+                    budgetCtrl().set("inputSpent", it)
+                },
+                placeholder = { Text(vm.inputSpentPlaceholder.value) },
+                value = vm.inputSpent.value,
+            )
         }
     }
 }

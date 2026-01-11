@@ -1,0 +1,18 @@
+version: 1
+
+kotlin: package org.opengamestudio
+
+BudgetContext:
+    type: context
+    fields:
+        copyResult: Bool
+        didLaunch: Bool
+        inputDate: String
+        inputMorningBalance: String
+        inputSpent: String
+        pasteMorningBalance: Bool
+        pasteSpent: Bool
+        reportedDate: String
+        reportedWeekday: Int
+        result: String
+        todayWeekday: Int
