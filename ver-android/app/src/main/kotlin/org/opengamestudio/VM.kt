@@ -5,9 +5,16 @@ import androidx.compose.runtime.mutableStateOf
 
 object VM {
     var androidContext: Context? = null
+
+    val inputMorningBalance = mutableStateOf("")
+    val inputMorningBalanceLabel = mutableStateOf("Morning balance")
+    val inputMorningBalancePlaceholder = mutableStateOf("TODO-Morning-balance")
+
     val inputSpent = mutableStateOf("")
     val inputSpentLabel = mutableStateOf("Spent")
-    val inputSpentPlaceholder = mutableStateOf("TODO-Placeholder")
+    val inputSpentPlaceholder = mutableStateOf("TODO-Spent")
+
+    val result = mutableStateOf("TODO-Result")
 
     init {
         budgetCtrl().set("didLaunch", true)

@@ -61,7 +61,7 @@ fun Budget(
 ) {
     Column(
         modifier = Modifier.fillMaxSize().padding(24.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
+        //horizontalAlignment = Alignment.CenterHorizontally
     ) {
         TextField(
             keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
@@ -71,13 +71,33 @@ fun Budget(
                     text = vm.inputSpentLabel.value,
                 )
             },
-            //modifier = Modifier.padding(horizontal = 24.dp),
             onValueChange = {
                 vm.inputSpent.value = it 
                 budgetCtrl().set("inputSpent", it)
             },
             placeholder = { Text(vm.inputSpentPlaceholder.value) },
             value = vm.inputSpent.value,
+        )
+        TextField(
+            keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done),
+            label = {
+                Text(
+                    style = MaterialTheme.typography.labelLarge,
+                    text = vm.inputMorningBalanceLabel.value,
+                )
+            },
+            modifier = Modifier.padding(top = 12.dp),
+            onValueChange = {
+                vm.inputMorningBalance.value = it 
+                budgetCtrl().set("inputMorningBalance", it)
+            },
+            placeholder = { Text(vm.inputMorningBalancePlaceholder.value) },
+            value = vm.inputMorningBalance.value,
+        )
+        Text(
+            modifier = Modifier.padding(top = 12.dp),
+            style = MaterialTheme.typography.bodyMedium,
+            text = vm.result.value,
         )
     }
 }
