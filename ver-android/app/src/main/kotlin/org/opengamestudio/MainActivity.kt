@@ -60,7 +60,7 @@ fun Budget(
     vm: VM,
 ) {
     Column(
-        modifier = Modifier.fillMaxSize().padding(24.dp),
+        modifier = modifier.fillMaxSize().padding(24.dp),
         //horizontalAlignment = Alignment.CenterHorizontally
     ) {
         TextField(
