@@ -27,8 +27,7 @@ object BudgetComponent {
 
         // Default values
         ctrl.set("reportedDate", budgetReportedDate())
-        //ctrl.set("reportedWeekday", budgetReportedWeekday())
-        //ctrl.set("todayWeekday", budgetTodayWeekday())
+        ctrl.set("reportedWeekday", budgetReportedWeekday())
 
         setupEffects()
         setupShoulds()
@@ -59,7 +58,7 @@ object BudgetComponent {
  
 //<!-- Other functions -->
 
-// Calculate the date to report
+// Date of the report (yesterday)
 fun budgetReportedDate(): String {
     var cal = Calendar.getInstance()
     cal.add(Calendar.DATE, -1)
@@ -68,4 +67,14 @@ fun budgetReportedDate(): String {
     val sday = day.toString().padStart(2, '0')
     val smon = mon.toString().padStart(2, '0')
     return "$sday.$smon"
+}
+
+// Reported week day
+// 1 == Monday, ..., 7 == Sunday
+fun budgetReportedWeekday(): Int {
+    var cal = Calendar.getInstance()
+    println("ИГР now dayOW: '${cal.get(Calendar.DAY_OF_WEEK)}'")
+    cal.add(Calendar.DATE, -1)
+    println("ИГР yesterday dayOW: '${cal.get(Calendar.DAY_OF_WEEK)}'")
+    return cal.get(Calendar.DAY_OF_WEEK)
 }
