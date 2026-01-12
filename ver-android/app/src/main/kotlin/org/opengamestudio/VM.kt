@@ -5,11 +5,12 @@ import androidx.compose.runtime.mutableStateOf
 
 object VM {
     var androidContext: Context? = null
-    val playgroundIsVisible = mutableStateOf(false)
-    val playgroundTitle = mutableStateOf("TODO-Title")
+    val inputSpent = mutableStateOf("")
+    val inputSpentLabel = mutableStateOf("Spent")
+    val inputSpentPlaceholder = mutableStateOf("TODO-Placeholder")
 
     init {
-        playCtrl().set("didLaunch", true)
+        budgetCtrl().set("didLaunch", true)
         // Launch main component differently since it has no ctrl.
         MainComponent.setupEffects()
     }

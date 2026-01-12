@@ -59,32 +59,25 @@ fun Budget(
     modifier: Modifier = Modifier,
     vm: VM,
 ) {
-    AnimatedVisibility(
-      enter = fadeIn(),
-      exit = fadeOut(),
-      modifier = modifier,
-      visible = vm.budgetIsVisible.value,
+    Column(
+        modifier = Modifier.fillMaxSize().padding(24.dp),
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Column(
-            modifier = Modifier.fillMaxSize(),
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            TextField(
-                keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
-                label = {
-                    Text(
-                        style = MaterialTheme.typography.labelLarge,
-                        text = vm.inputSpentDesc.value,
-                    )
-                },
-                modifier = Modifier.padding(horizontal = 24.dp),
-                onValueChange = {
-                    vm.inputSpent.value = it 
-                    budgetCtrl().set("inputSpent", it)
-                },
-                placeholder = { Text(vm.inputSpentPlaceholder.value) },
-                value = vm.inputSpent.value,
-            )
-        }
+        TextField(
+            keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
+            label = {
+                Text(
+                    style = MaterialTheme.typography.labelLarge,
+                    text = vm.inputSpentLabel.value,
+                )
+            },
+            //modifier = Modifier.padding(horizontal = 24.dp),
+            onValueChange = {
+                vm.inputSpent.value = it 
+                budgetCtrl().set("inputSpent", it)
+            },
+            placeholder = { Text(vm.inputSpentPlaceholder.value) },
+            value = vm.inputSpent.value,
+        )
     }
 }

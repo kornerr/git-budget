@@ -76,3 +76,18 @@ data class BudgetContext(
         }
     }
 }
+
+
+
+data class NetRequest(
+    var body: String = "",
+    var method: String = "",
+    var url: String = "",
+) {}
+
+
+
+data class NetResponse(
+    var contents: String = "",
+    var req: NetRequest = NetRequest(),
+) {}
