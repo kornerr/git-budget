@@ -1,6 +1,8 @@
 package org.opengamestudio
-import java.util.Calendar
-import java.text.SimpleDateFormat
+
+import java.time.LocalDate
+import java.time.temporal.ChronoField
+/**/import java.util.Calendar
 
 //<!-- API -->
 
@@ -72,9 +74,7 @@ fun budgetReportedDate(): String {
 // Reported week day
 // 1 == Monday, ..., 7 == Sunday
 fun budgetReportedWeekday(): Int {
-    var cal = Calendar.getInstance()
-    println("ИГР now dayOW: '${cal.get(Calendar.DAY_OF_WEEK)}'")
-    cal.add(Calendar.DATE, -1)
-    println("ИГР yesterday dayOW: '${cal.get(Calendar.DAY_OF_WEEK)}'")
-    return cal.get(Calendar.DAY_OF_WEEK)
+    val now = LocalDate.now()
+    val yesterday = now.minusDays(1)
+    return yesterday.get(ChronoField.DAY_OF_WEEK)
 }
