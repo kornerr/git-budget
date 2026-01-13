@@ -1,0 +1,5 @@
+#!/bin/bash -e
+SDIR=$(cd "$(dirname "$0")" ; pwd -P)
+
+cd $SDIR/../ver-android/app/src/main/kotlin/org/opengamestudio
+tmux new-window -n and

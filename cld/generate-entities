@@ -1,0 +1,6 @@
+#!/bin/bash -e
+SDIR=$(cd "$(dirname "$0")" ; pwd -P)
+
+# Path to Cross-language dialect's translator
+TR=$SDIR/../../cross-language-dialect/translator
+$TR/run/run-java --file=$SDIR/entities.yml --out=$SDIR/../ver-android/app/src/main/kotlin/org/opengamestudio/entities.kt
