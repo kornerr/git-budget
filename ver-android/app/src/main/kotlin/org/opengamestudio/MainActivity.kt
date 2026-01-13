@@ -63,21 +63,33 @@ fun Budget(
         modifier = modifier.fillMaxSize().padding(24.dp),
         //horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        TextField(
-            keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
-            label = {
-                Text(
-                    style = MaterialTheme.typography.labelLarge,
-                    text = vm.inputSpentLabel.value,
-                )
-            },
-            onValueChange = {
-                vm.inputSpent.value = it 
-                budgetCtrl().set("inputSpent", it)
-            },
-            placeholder = { Text(vm.inputSpentPlaceholder.value) },
-            value = vm.inputSpent.value,
-        )
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.spacedBy(8.dp),
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
+            TextField(
+                modifier = Modifier.weight(1f),
+                keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
+                label = {
+                    Text(
+                        style = MaterialTheme.typography.labelLarge,
+                        text = vm.inputSpentLabel.value,
+                    )
+                },
+                onValueChange = {
+                    vm.inputSpent.value = it 
+                    budgetCtrl().set("inputSpent", it)
+                },
+                placeholder = { Text(vm.inputSpentPlaceholder.value) },
+                value = vm.inputSpent.value,
+            )
+            ElevatedButton(
+                onClick = { budgetCtrl().set("pasteSpent", true) }
+            ) {
+                Text("Paste")
+            }
+        }
         TextField(
             keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done),
             label = {
