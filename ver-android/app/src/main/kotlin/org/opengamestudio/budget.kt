@@ -35,22 +35,18 @@ object BudgetComponent {
 
     fun setupEffects() {
         val vm = VM
-        /*
         val oneliners = arrayOf(
-            "isPlaygroundVisible", { c: BC -> vm.playgroundIsVisible.value = c.isPlaygroundVisible },
+            "result", { c: BC -> vm.result.value = c.result },
         )
         registerOneliners(ctrl, oneliners)
-        */
     }
 
     fun setupShoulds() {
-        /*
         arrayOf(
-          ::playShouldResetPlaygroundVisibility,
+          ::budgetShouldResetResult,
         ).forEach { f ->
           ctrl.registerFunction { c -> f(c as BudgetContext) }
         }
-        */
     }
 }
 
