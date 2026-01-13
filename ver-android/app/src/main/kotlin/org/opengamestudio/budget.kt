@@ -1,8 +1,6 @@
 package org.opengamestudio
-
 import java.time.LocalDate
 import java.time.temporal.ChronoField
-/**/import java.util.Calendar
 
 //<!-- API -->
 
@@ -62,10 +60,10 @@ object BudgetComponent {
 
 // Date of the report (yesterday)
 fun budgetReportedDate(): String {
-    var cal = Calendar.getInstance()
-    cal.add(Calendar.DATE, -1)
-    val day = cal.get(Calendar.DAY_OF_MONTH)
-    val mon = cal.get(Calendar.MONTH) + 1
+    val now = LocalDate.now()
+    val yesterday = now.minusDays(1)
+    val day = yesterday.get(ChronoField.DAY_OF_MONTH)
+    val mon = yesterday.get(ChronoField.MONTH_OF_YEAR)
     val sday = day.toString().padStart(2, '0')
     val smon = mon.toString().padStart(2, '0')
     return "$sday.$smon"
