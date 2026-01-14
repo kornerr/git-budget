@@ -47,6 +47,7 @@ object BudgetComponent {
     fun setupShoulds() {
         arrayOf(
           ::budgetShouldResetResult,
+          ::budgetShouldResetSpent,
         ).forEach { f ->
           ctrl.registerFunction { c -> f(c as BudgetContext) }
         }
@@ -58,7 +59,7 @@ object BudgetComponent {
 fun budgetPasteSpent(ctx: Context) {
     val clip = ctx.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
     val txt = clip.getPrimaryClip()?.getItemAt(0)?.getText().toString() ?: "N/A"
-    println("ИГР budgetPS txt: '$txt'")
+    budgetCtrl().set("pastedSpent", txt)
 }
  
 //<!-- Other functions -->
