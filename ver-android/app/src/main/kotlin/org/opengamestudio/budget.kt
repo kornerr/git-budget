@@ -60,7 +60,7 @@ fun budgetPasteSpent(vm: VM) {
     val clipData = clipboardManager.primaryClip
     if (clipData != null && clipData.itemCount > 0) {
         val clipboardText = clipData.getItemAt(0).text.toString()
-        budgetCtrl().set("inputSpent", clipboardText)
+        budgetCtrl().set("pastedSpent", clipboardText)
     }
 }
  

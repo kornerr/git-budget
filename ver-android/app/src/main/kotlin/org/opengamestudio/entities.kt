@@ -10,6 +10,7 @@ data class BudgetContext(
     var inputSpent: String = "",
     var pasteMorningBalance: Boolean = false,
     var pasteSpent: Boolean = false,
+    var pastedSpent: String = "",
     var reportedDate: String = "",
     var reportedWeekday: Int = 0,
     var result: String = "",
@@ -30,6 +31,8 @@ data class BudgetContext(
             return pasteMorningBalance as T
         } else if (name == "pasteSpent") {
             return pasteSpent as T
+        } else if (name == "pastedSpent") {
+            return pastedSpent as T
         } else if (name == "reportedDate") {
             return reportedDate as T
         } else if (name == "reportedWeekday") {
@@ -62,6 +65,8 @@ data class BudgetContext(
             pasteMorningBalance = value as Boolean
         } else if (name == "pasteSpent") {
             pasteSpent = value as Boolean
+        } else if (name == "pastedSpent") {
+            pastedSpent = value as String
         } else if (name == "reportedDate") {
             reportedDate = value as String
         } else if (name == "reportedWeekday") {

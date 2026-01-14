@@ -78,7 +78,7 @@ fun Budget(
                     )
                 },
                 onValueChange = {
-                    vm.inputSpent.value = it 
+                    vm.inputSpent.value = it
                     budgetCtrl().set("inputSpent", it)
                 },
                 placeholder = { Text(vm.inputSpentPlaceholder.value) },
@@ -100,7 +100,7 @@ fun Budget(
             },
             modifier = Modifier.padding(top = 12.dp),
             onValueChange = {
-                vm.inputMorningBalance.value = it 
+                vm.inputMorningBalance.value = it
                 budgetCtrl().set("inputMorningBalance", it)
             },
             placeholder = { Text(vm.inputMorningBalancePlaceholder.value) },

@@ -12,6 +12,7 @@ BudgetContext:
         inputSpent: String
         pasteMorningBalance: Bool
         pasteSpent: Bool
+        pastedSpent: String
         reportedDate: String
         reportedWeekday: Int
         result: String

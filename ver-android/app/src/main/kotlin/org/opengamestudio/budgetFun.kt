@@ -27,6 +27,12 @@ val BUDGET_WORKDAY_SUM = 6000f
  * 1. Did launch or specified spent/balance
  */
 fun budgetShouldResetResult(c: BudgetContext): BudgetContext {
+    if (c.recentField == "pastedSpent") {
+        budgetCtrl().set("inputSpent", c.pastedSpent)
+        c.recentField = "none"
+        return c
+    }
+
     if (
         c.recentField == "didLaunch" ||
         c.recentField == "inputMorningBalance" ||
