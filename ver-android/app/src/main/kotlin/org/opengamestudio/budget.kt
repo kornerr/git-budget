@@ -39,6 +39,7 @@ object BudgetComponent {
         val vm = VM
         val oneliners = arrayOf(
             "pasteSpent", { c: BC -> budgetPasteSpent(vm) },
+            "inputSpent", { c: BC -> vm.inputSpent.value = c.inputSpent },
             "result", { c: BC -> vm.result.value = c.result },
         )
         registerOneliners(ctrl, oneliners)
@@ -47,6 +48,7 @@ object BudgetComponent {
     fun setupShoulds() {
         arrayOf(
           ::budgetShouldResetResult,
+          ::budgetShouldResetSpent,
         ).forEach { f ->
           ctrl.registerFunction { c -> f(c as BudgetContext) }
         }

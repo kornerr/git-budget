@@ -16,6 +16,7 @@ BudgetContext:
         reportedDate: String
         reportedWeekday: Int
         result: String
+        spent: String
 
 NetRequest:
     type: struct

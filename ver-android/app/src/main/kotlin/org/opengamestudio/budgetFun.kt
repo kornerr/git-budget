@@ -27,19 +27,13 @@ val BUDGET_WORKDAY_SUM = 6000f
  * 1. Did launch or specified spent/balance
  */
 fun budgetShouldResetResult(c: BudgetContext): BudgetContext {
-    if (c.recentField == "pastedSpent") {
-        budgetCtrl().set("inputSpent", c.pastedSpent)
-        c.recentField = "none"
-        return c
-    }
-
     if (
         c.recentField == "didLaunch" ||
         c.recentField == "inputMorningBalance" ||
-        c.recentField == "inputSpent"
+        c.recentField == "spent"
     ) {
         val mbalance = budgetNumber(budgetStringOnlyNumerical(c.inputMorningBalance))
-        val spent = budgetNumber(budgetStringOnlyNumerical(c.inputSpent))
+        val spent = budgetNumber(budgetStringOnlyNumerical(c.spent))
         var lines = arrayOf<String>()
         lines += budgetResultDate(c.reportedDate)
         lines += budgetResultSpent(mbalance, c.reportedWeekday, spent)
@@ -47,6 +41,29 @@ fun budgetShouldResetResult(c: BudgetContext): BudgetContext {
         lines += budgetResultLeft(mbalance, c.reportedWeekday, spent)
         c.result = lines.joinToString("\n")
         c.recentField = "result"
+        return c
+    }
+
+    c.recentField = "none"
+    return c
+}
+
+/* Reset spent value
+ *
+ * Conditions:
+ * 1. User did enter spent value himself
+ * 2. User pasted spent value from the clipboard
+ */
+fun budgetShouldResetSpent(c: BudgetContext): BudgetContext {
+    /* 1 */ if (c.recentField == "inputSpent") {
+        c.spent = c.inputSpent
+        c.recentField = "spent"
+        return c
+    }
+
+    /* 2 */ if (c.recentField == "pastedSpent") {
+        c.spent = c.pastedSpent
+        c.recentField = "spent"
         return c
     }
 

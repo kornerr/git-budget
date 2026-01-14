@@ -14,6 +14,7 @@ data class BudgetContext(
     var reportedDate: String = "",
     var reportedWeekday: Int = 0,
     var result: String = "",
+    var spent: String = "",
     override var recentField: String = "",
 ): CLDContext {
     override fun <T> field(name: String): T {
@@ -39,6 +40,8 @@ data class BudgetContext(
             return reportedWeekday as T
         } else if (name == "result") {
             return result as T
+        } else if (name == "spent") {
+            return spent as T
         }
         return "unknown-field-name" as T
     }
@@ -73,6 +76,8 @@ data class BudgetContext(
             reportedWeekday = value as Int
         } else if (name == "result") {
             result = value as String
+        } else if (name == "spent") {
+            spent = value as String
         }
     }
 }
