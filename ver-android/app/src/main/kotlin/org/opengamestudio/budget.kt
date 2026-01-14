@@ -39,7 +39,7 @@ object BudgetComponent {
         val vm = VM
         val oneliners = arrayOf(
             "didClickPaste", { c: BC -> budgetPasteSpent(vm.androidContext!!) },
-            "pastedSpent", { c: BC -> budgetDisplayPastedSpent(vm, c.pastedSpent) },
+            "pastedSpent", { c: BC -> vm.inputSpent.value = c.pastedSpent },
             "result", { c: BC -> vm.result.value = c.result },
         )
         registerOneliners(ctrl, oneliners)
@@ -57,13 +57,6 @@ object BudgetComponent {
 
 //<!-- Effects -->
 
-fun budgetDisplayPastedSpent(
-    vm: VM,
-    value: String
-) {
-    vm.inputSpent.value = value
-}
- 
 fun budgetPasteSpent(ctx: Context) {
     val clip = ctx.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
     val txt = clip.getPrimaryClip()?.getItemAt(0)?.getText().toString() ?: "N/A"
