@@ -1,4 +1,6 @@
 package org.opengamestudio
+import android.content.ClipboardManager
+import android.content.Context
 import java.time.LocalDate
 import java.time.temporal.ChronoField
 
@@ -36,6 +38,8 @@ object BudgetComponent {
     fun setupEffects() {
         val vm = VM
         val oneliners = arrayOf(
+            "pasteSpent", { c: BC -> budgetPasteSpent(vm) },
+            "spent", { c: BC -> budgetDisplayPastedSpent(vm, c.spent) },
             "result", { c: BC -> vm.result.value = c.result },
         )
         registerOneliners(ctrl, oneliners)
@@ -44,6 +48,7 @@ object BudgetComponent {
     fun setupShoulds() {
         arrayOf(
           ::budgetShouldResetResult,
+          ::budgetShouldResetSpent,
         ).forEach { f ->
           ctrl.registerFunction { c -> f(c as BudgetContext) }
         }
@@ -51,6 +56,21 @@ object BudgetComponent {
 }
 
 //<!-- Effects -->
+
+fun budgetDisplayPastedSpent(vm: VM, spent: String) {
+    if (vm.inputSpent.value != spent) {
+        vm.inputSpent.value = spent
+    }
+}
+
+fun budgetPasteSpent(vm: VM) {
+    val clipboardManager = VM.androidContext!!.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+    val clipData = clipboardManager.primaryClip
+    if (clipData != null && clipData.itemCount > 0) {
+        val clipboardText = clipData.getItemAt(0).text.toString()
+        budgetCtrl().set("pastedSpent", clipboardText)
+    }
+}
  
 //<!-- Other functions -->
 
