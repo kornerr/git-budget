@@ -12,6 +12,7 @@ object VM {
 
     val inputSpent = mutableStateOf("")
     val inputSpentLabel = mutableStateOf("Spent")
+    val inputSpentPasteDesc = mutableStateOf("Paste")
     val inputSpentPlaceholder = mutableStateOf("TODO-Spent")
 
     val result = mutableStateOf("TODO-Result")
