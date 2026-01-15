@@ -84,7 +84,7 @@ fun Budget(
                 modifier = Modifier.weight(1f),
                 onClick = { budgetCtrl().set("didClickPaste", true) },
             ) {
-                Text(vm.inputSpentPasteDesc.value)
+                Text(vm.inputSpentPasteTitle.value)
             }
         }
         TextField(
@@ -108,5 +108,11 @@ fun Budget(
             style = MaterialTheme.typography.bodyMedium,
             text = vm.result.value,
         )
+        ElevatedButton(
+            modifier = Modifier.padding(top = 8.dp),
+            onClick = { budgetCtrl().set("didClickCopy", true) },
+        ) {
+            Text(vm.resultCopyTitle.value)
+        }
     }
 }
