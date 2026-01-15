@@ -6,6 +6,7 @@ BudgetContext:
     type: context
     fields:
         copyResult: Bool
+        didClickCopy: Bool
         didClickPaste: Bool
         didLaunch: Bool
         inputDate: String

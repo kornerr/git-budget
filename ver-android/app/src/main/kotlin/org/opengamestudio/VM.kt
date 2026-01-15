@@ -12,10 +12,11 @@ object VM {
 
     val inputSpent = mutableStateOf("")
     val inputSpentLabel = mutableStateOf("Spent")
-    val inputSpentPasteDesc = mutableStateOf("Paste")
+    val inputSpentPasteTitle = mutableStateOf("Paste")
     val inputSpentPlaceholder = mutableStateOf("TODO-Spent")
 
     val result = mutableStateOf("TODO-Result")
+    val resultCopyTitle = mutableStateOf("Copy")
 
     init {
         budgetCtrl().set("didLaunch", true)
