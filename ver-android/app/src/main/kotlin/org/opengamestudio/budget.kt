@@ -1,4 +1,5 @@
 package org.opengamestudio
+import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
 import java.time.LocalDate
@@ -38,6 +39,7 @@ object BudgetComponent {
     fun setupEffects() {
         val vm = VM
         val oneliners = arrayOf(
+            "didClickCopy", { c: BC -> budgetCopyResult(vm.androidContext!!, c.result) },
             "didClickPaste", { c: BC -> budgetPasteSpent(vm.androidContext!!) },
             "pastedSpent", { c: BC -> vm.inputSpent.value = c.pastedSpent },
             "result", { c: BC -> vm.result.value = c.result },
@@ -56,6 +58,15 @@ object BudgetComponent {
 }
 
 //<!-- Effects -->
+
+fun budgetCopyResult(
+    ctx: Context,
+    text: String,
+) {
+    val clip = ClipData.newPlainText("GitBudget result", text)
+    val clipboardManager = ctx.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+    clipboardManager.setPrimaryClip(clip)
+}
 
 fun budgetPasteSpent(ctx: Context) {
     val clip = ctx.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager

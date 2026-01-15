@@ -108,5 +108,11 @@ fun Budget(
             style = MaterialTheme.typography.bodyMedium,
             text = vm.result.value,
         )
+        ElevatedButton(
+            modifier = Modifier.padding(top = 12.dp),
+            onClick = { budgetCtrl().set("didClickCopy", true) },
+        ) {
+            Text("Copy")
+        }
     }
 }
