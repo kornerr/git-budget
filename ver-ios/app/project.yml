@@ -5,7 +5,6 @@ targets:
     gitbudget:
         type: application
         platform: iOS
-        dependencies:
         deploymentTarget: "15.0"
         sources:
             - path: "../src"
