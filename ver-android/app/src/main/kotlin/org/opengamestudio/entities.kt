@@ -3,7 +3,6 @@ package org.opengamestudio
 
 
 data class BudgetContext(
-    var copyResult: Boolean = false,
     var didClickCopy: Boolean = false,
     var didClickPaste: Boolean = false,
     var didLaunch: Boolean = false,
@@ -19,9 +18,7 @@ data class BudgetContext(
     override var recentField: String = "",
 ): CLDContext {
     override fun <T> field(name: String): T {
-        if (name == "copyResult") {
-            return copyResult as T
-        } else if (name == "didClickCopy") {
+        if (name == "didClickCopy") {
             return didClickCopy as T
         } else if (name == "didClickPaste") {
             return didClickPaste as T
@@ -57,9 +54,7 @@ data class BudgetContext(
         name: String,
         value: Any?
     ) {
-        if (name == "copyResult") {
-            copyResult = value as Boolean
-        } else if (name == "didClickCopy") {
+        if (name == "didClickCopy") {
             didClickCopy = value as Boolean
         } else if (name == "didClickPaste") {
             didClickPaste = value as Boolean
