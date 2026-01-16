@@ -1,0 +1,15 @@
+name: GitBudget
+options:
+    bundleIdPrefix: org.opengamestudio
+targets:
+    gitbudget:
+        type: application
+        platform: iOS
+        dependencies:
+        deploymentTarget: "15.0"
+        sources:
+            - path: "../src"
+        settings:
+            base:
+                DEVELOPMENT_TEAM: S3NW8F382K
+                INFOPLIST_FILE: Info.plist
