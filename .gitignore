@@ -1,5 +1,6 @@
-build
 .DS_Store
 .gradle
 .idea
+build
+GitBudget.xcodeproj
 local.properties
