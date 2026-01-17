@@ -27,11 +27,28 @@ struct BudgetView: View {
                 prompt: Text(vm.inputSpentPlaceholder)
             )
                 .textFieldStyle(.roundedBorder)
-            Button(action: { print("ИГР todo btn")}) {
+            Button(action: { print("ИГР todo paste")}) {
                 Text(vm.inputSpentPasteTitle)
             }
         }
             .padding(24)
+        TextField(
+            vm.inputMorningBalanceLabel,
+            text: $vm.inputMorningBalance,
+            prompt: Text(vm.inputMorningBalancePlaceholder)
+        )
+            .textFieldStyle(.roundedBorder)
+            .padding([.leading, .bottom, .trailing], 24)
+        HStack {
+            HStack {
+                Text(vm.result)
+                Spacer()
+            }
+            Button(action: { print("ИГР todo copy")}) {
+                Text(vm.resultCopyTitle)
+            }
+        }
+            .padding([.leading, .trailing], 24)
         Spacer()
     }
 }
