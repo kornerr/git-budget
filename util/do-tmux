@@ -6,3 +6,6 @@ tmux new-window -n and
 
 cd $SDIR/../ver-ios/src
 tmux new-window -n ios
+
+cd $SDIR/../ver-sdkios
+tmux new-window -n sdkios
