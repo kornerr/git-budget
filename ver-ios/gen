@@ -1,5 +1,0 @@
-#!/bin/bash -e
-SDIR=$(cd "$(dirname "$0")" ; pwd -P)
-
-cd $SDIR/app
-xcodegen

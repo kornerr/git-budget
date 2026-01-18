@@ -5,8 +5,12 @@ BUILD_DIR=$SDIR/../sdk-ios/gb/build/XCFrameworks/release
 
 #./cld/generate-entities
 
+# Собираем и архивируем библиотеку
 cd $SDIR/../sdk-ios
 ./gradlew assembleGbReleaseXCFramework
-
 cd $BUILD_DIR
 zip -r gb.xcframework.zip gb.xcframework
+
+# Генерируем проект iOS
+cd $SDIR/../ver-ios/app
+xcodegen

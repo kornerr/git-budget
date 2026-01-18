@@ -1,4 +1,7 @@
 name: GitBudget
+packages:
+    gb:
+        path: local/gb
 options:
     bundleIdPrefix: org.opengamestudio
 targets:
@@ -6,6 +9,8 @@ targets:
         type: application
         platform: iOS
         deploymentTarget: "15.0"
+        dependencies:
+           - package: gb
         sources:
             - path: "../src"
         settings:
