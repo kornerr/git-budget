@@ -73,6 +73,11 @@ fun budgetShouldResetSpent(c: BudgetContext): BudgetContext {
 
 //<!-- Other functions -->
 
+// Create new BudgetContext instance (for SDK clients)
+fun budgetContext(): BudgetContext {
+    return BudgetContext()
+}
+
 // Остаток виден не во все дни. Не виден в:
 // 1. пятницу
 // 2. воскресенье
