@@ -2,6 +2,7 @@
 .gradle
 .idea
 .kotlin
+.swiftpm
 build
 GitBudget.xcodeproj
 local.properties
