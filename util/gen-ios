@@ -8,6 +8,5 @@ BUILD_DIR=$SDIR/../sdk-ios/gb/build/XCFrameworks/release
 cd $SDIR/../sdk-ios
 ./gradlew assembleGbReleaseXCFramework
 
-#cd $BUILD_DIR
-#zip -r ivac.xcframework.zip ivac.xcframework
-#cp $BUILD_DIR/ivac.xcframework.zip $CONNECT_DIR/Utilities/ucim-spm/local
+cd $BUILD_DIR
+zip -r gb.xcframework.zip gb.xcframework
