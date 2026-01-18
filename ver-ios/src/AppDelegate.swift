@@ -1,4 +1,3 @@
-import gb
 import UIKit
 
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -8,7 +7,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         _: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil
     ) -> Bool {
-        FunKt.simplyPrint(txt: "qwe")
         return true
     }
 }
