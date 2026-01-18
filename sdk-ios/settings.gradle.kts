@@ -19,5 +19,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "ver-sdkios"
-include("lib")
+rootProject.name = "sdk-ios"
+include("gb")

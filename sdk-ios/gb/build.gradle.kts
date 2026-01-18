@@ -31,7 +31,6 @@ kotlin {
         iosX64(),
     ).forEach {
         it.binaries.framework {
-            baseName = "sdkios"
             xcf.add(this)
             isStatic = false
         }
