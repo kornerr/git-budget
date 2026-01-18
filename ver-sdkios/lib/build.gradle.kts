@@ -14,6 +14,16 @@ kotlin {
 }
 
 kotlin {
+    androidTarget {
+    }
+}
+
+android {
+    namespace = "org.opengamestudio"
+    compileSdk = 35
+}
+
+kotlin {
     val xcf = XCFramework()
     arrayOf(
         iosArm64(),
