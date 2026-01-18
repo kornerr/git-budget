@@ -1,0 +1,13 @@
+#!/bin/bash -e
+SDIR=$(cd "$(dirname "$0")" ; pwd -P)
+
+BUILD_DIR=$SDIR/../sdk-ios/gb/build/XCFrameworks/release
+
+#./cld/generate-entities
+
+cd $SDIR/../sdk-ios
+./gradlew assembleGbReleaseXCFramework
+
+#cd $BUILD_DIR
+#zip -r ivac.xcframework.zip ivac.xcframework
+#cp $BUILD_DIR/ivac.xcframework.zip $CONNECT_DIR/Utilities/ucim-spm/local
