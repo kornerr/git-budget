@@ -21,9 +21,13 @@ class BudgetComponent {
 
         // Debug
         ctrl.registerCallback { (c) in 
-          let value = c.field(name: c.recentField)
-          print("ИГР BudgetC.init ctrl k/v: '\(c.recentField)'/'\(value)'")
+            let value = c.field(name: c.recentField)
+            print("ИГР BudgetC.init ctrl k/v: '\(c.recentField)'/'\(value)'")
         }
+
+        // Default values
+        ctrl.set(fieldName: "reportedDate", value: budgetReportedDate())
+        //ctrl.set(fieldName: "reportedWeekday", value: budgetReportedWeekday())
 
         setupEffects()
         setupShoulds()
@@ -39,3 +43,13 @@ class BudgetComponent {
 //<!-- Effects -->
 
 //<!-- Other functions -->
+
+// Date of the report (yesterday)
+func budgetReportedDate() -> String {
+    let cal = Calendar.current
+    let yesterday = cal.date(byAdding: .day, value: -1, to: Date())
+    let parts = cal.dateComponents([.day, .month], from: yesterday!)
+    let sday = String(format: "%02d", parts.day!)
+    let smon = String(format: "%02d", parts.month!)
+    return "\(sday).\(smon)"
+}
