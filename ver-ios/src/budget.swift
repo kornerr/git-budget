@@ -19,7 +19,11 @@ class BudgetComponent {
         ctrl = CLDController(context: KT.budgetContext())
         Self.singleton = self
 
-        // TODO
+        // Debug
+        ctrl.registerCallback { (c) in 
+          let value = c.field(name: c.recentField)
+          print("ИГР BudgetC.init ctrl k/v: '\(c.recentField)'/'\(value)'")
+        }
 
         setupEffects()
         setupShoulds()

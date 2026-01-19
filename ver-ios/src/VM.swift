@@ -12,4 +12,10 @@ class VM: ObservableObject {
 
     @Published var result = "TODO-Result"
     @Published var resultCopyTitle = "Copy"
+
+    private let budgetCmp = BudgetComponent()
+
+    init() {
+        budgetCtrl().set(fieldName: "didLaunch", value: true)
+    }
 }
