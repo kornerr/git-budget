@@ -27,7 +27,7 @@ class BudgetComponent {
 
         // Default values
         ctrl.set(fieldName: "reportedDate", value: budgetReportedDate())
-        //ctrl.set(fieldName: "reportedWeekday", value: budgetReportedWeekday())
+        ctrl.set(fieldName: "reportedWeekday", value: budgetReportedWeekday())
 
         setupEffects()
         setupShoulds()
@@ -52,4 +52,15 @@ func budgetReportedDate() -> String {
     let sday = String(format: "%02d", parts.day!)
     let smon = String(format: "%02d", parts.month!)
     return "\(sday).\(smon)"
+}
+
+// Reported week day
+// 1 == Monday, ..., 7 == Sunday
+func budgetReportedWeekday() -> Int32 {
+    var cal = Calendar(identifier: .gregorian)
+    // Use Monday as the first day of a week
+    cal.firstWeekday = 2
+    let yesterday = cal.date(byAdding: .day, value: -1, to: Date())
+    let weekday = cal.component(.weekday, from: yesterday!)
+    return Int32(weekday)
 }
