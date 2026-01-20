@@ -57,10 +57,6 @@ func budgetReportedDate() -> String {
 // Reported week day
 // 1 == Monday, ..., 7 == Sunday
 func budgetReportedWeekday() -> Int32 {
-    // Use Monday as the first day of a week
-    //var cal = Calendar(identifier: .gregorian)
-    //cal.firstWeekday = 2
-
     let cal = Calendar.current
     let yesterday = cal.date(byAdding: .day, value: -1, to: Date())
     let weekdayApple = cal.component(.weekday, from: yesterday!)
