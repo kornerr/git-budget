@@ -63,6 +63,7 @@ func budgetReportedWeekday() -> Int32 {
 
     let cal = Calendar.current
     let yesterday = cal.date(byAdding: .day, value: -1, to: Date())
-    let weekday = cal.component(.weekday, from: yesterday!)
-    return Int32(weekday)
+    let weekdayApple = cal.component(.weekday, from: yesterday!)
+    let weekdayJava = mondayBasedWeekday(weekdayApple)
+    return Int32(weekdayJava)
 }
