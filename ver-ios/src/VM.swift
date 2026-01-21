@@ -17,8 +17,12 @@ class VM: ObservableObject {
     private var subscriptions = [AnyCancellable]()
 
     init() {
+        $inputMorningBalance
+            .sink { it in budgetCtrl().set("inputMorningBalance", it) }
+            .store(in: &subscriptions)
+
         $inputSpent
-            .sink { v in budgetCtrl().set("inputSpent", v) }
+            .sink { it in budgetCtrl().set("inputSpent", it) }
             .store(in: &subscriptions)
     }
 }
