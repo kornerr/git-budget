@@ -13,10 +13,12 @@ class VM: ObservableObject {
     @Published var result = "TODO-Result"
     @Published var resultCopyTitle = "Copy"
 
-    private let budgetCmp = BudgetComponent()
+    static private(set) weak var singleton: VM?
     private var subscriptions = [AnyCancellable]()
 
     init() {
+        Self.singleton = self
+
         $inputMorningBalance
             .sink { it in budgetCtrl().set("inputMorningBalance", it) }
             .store(in: &subscriptions)

@@ -34,6 +34,11 @@ class BudgetComponent {
     }
 
     func setupEffects() {
+        var r: BC?
+        let effects: [Any] = [
+            "result", { (c: BC) in budgetDisplayResult(c.result) },
+        ]
+        r = registerOneliners(ctrl, effects)
     }
 
     func setupShoulds() {
@@ -47,6 +52,10 @@ class BudgetComponent {
 }
 
 //<!-- Effects -->
+
+func budgetDisplayResult(_ v: String) {
+    VM.singleton?.result = v
+}
 
 //<!-- Other functions -->
 

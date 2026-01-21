@@ -1,6 +1,7 @@
 import UIKit
 
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    let budgetCmp = BudgetComponent()
     let vm = VM()
 
     func application(
