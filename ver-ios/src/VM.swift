@@ -14,8 +14,11 @@ class VM: ObservableObject {
     @Published var resultCopyTitle = "Copy"
 
     private let budgetCmp = BudgetComponent()
+    private var subscriptions = [AnyCancellable]()
 
     init() {
-        budgetCtrl().set(fieldName: "didLaunch", value: true)
+        $inputSpent
+            .sink { v in budgetCtrl().set("inputSpent", v) }
+            .store(in: &subscriptions)
     }
 }

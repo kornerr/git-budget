@@ -7,6 +7,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         _: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil
     ) -> Bool {
+        budgetCtrl().set("didLaunch", true)
+
         return true
     }
 }

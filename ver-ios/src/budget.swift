@@ -26,8 +26,8 @@ class BudgetComponent {
         }
 
         // Default values
-        ctrl.set(fieldName: "reportedDate", value: budgetReportedDate())
-        ctrl.set(fieldName: "reportedWeekday", value: budgetReportedWeekday())
+        ctrl.set("reportedDate", budgetReportedDate())
+        ctrl.set("reportedWeekday", budgetReportedWeekday())
 
         setupEffects()
         setupShoulds()
