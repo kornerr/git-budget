@@ -37,6 +37,12 @@ class BudgetComponent {
     }
 
     func setupShoulds() {
+      [
+        KT.budgetShouldResetResult,
+        KT.budgetShouldResetSpent,
+      ].forEach { f in
+        ctrl.registerFunction { c in f(c as! BC) }
+      }
     }
 }
 
