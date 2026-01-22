@@ -27,7 +27,7 @@ struct BudgetView: View {
                 prompt: Text(vm.inputSpentPlaceholder)
             )
                 .textFieldStyle(.roundedBorder)
-            Button(action: { print("ИГР todo paste")}) {
+            Button(action: { budgetCtrl().set("didClickPaste", true) }) {
                 Text(vm.inputSpentPasteTitle)
             }
         }
@@ -44,7 +44,7 @@ struct BudgetView: View {
                 Text(vm.result)
                 Spacer()
             }
-            Button(action: { print("ИГР todo copy")}) {
+            Button(action: { budgetCtrl().set("didClickCopy", true) }) {
                 Text(vm.resultCopyTitle)
             }
         }

@@ -1,4 +1,5 @@
 import gb
+import UIKit
 
 //!<-- API -->
 
@@ -34,9 +35,13 @@ class BudgetComponent {
     }
 
     func setupEffects() {
+        var vm = { VM.singleton! }
+
         var r: BC?
         let effects: [Any] = [
-            "result", { (c: BC) in budgetDisplayResult(c.result) },
+            "didClickPaste", { (c: BC) in budgetPasteSpent(vm()) },
+            "pastedSpent", { (c: BC) in vm().inputSpent = c.pastedSpent },
+            "result", { (c: BC) in vm().result = c.result },
         ]
         r = registerOneliners(ctrl, effects)
     }
@@ -53,8 +58,9 @@ class BudgetComponent {
 
 //<!-- Effects -->
 
-func budgetDisplayResult(_ v: String) {
-    VM.singleton?.result = v
+func budgetPasteSpent(_ vm: VM) {
+    let txt = UIPasteboard.general.string ?? "N/A"
+    budgetCtrl().set("pastedSpent", txt)
 }
 
 //<!-- Other functions -->
