@@ -39,6 +39,7 @@ class BudgetComponent {
 
         var r: BC?
         let effects: [Any] = [
+            "didClickCopy", { (c: BC) in budgetCopyResult(c.result) },
             "didClickPaste", { (c: BC) in budgetPasteSpent(vm()) },
             "pastedSpent", { (c: BC) in vm().inputSpent = c.pastedSpent },
             "result", { (c: BC) in vm().result = c.result },
@@ -57,6 +58,10 @@ class BudgetComponent {
 }
 
 //<!-- Effects -->
+
+func budgetCopyResult(_ result: String) {
+    UIPasteboard.general.string = result
+}
 
 func budgetPasteSpent(_ vm: VM) {
     let txt = UIPasteboard.general.string ?? "N/A"
