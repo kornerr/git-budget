@@ -87,22 +87,30 @@ fun Budget(
                 Text(vm.inputSpentPasteTitle.value)
             }
         }
-        TextField(
-            keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done),
-            label = {
-                Text(
-                    style = MaterialTheme.typography.labelLarge,
-                    text = vm.inputMorningBalanceLabel.value,
-                )
-            },
-            modifier = Modifier.padding(top = 12.dp),
-            onValueChange = {
-                vm.inputMorningBalance.value = it 
-                budgetCtrl().set("inputMorningBalance", it)
-            },
-            placeholder = { Text(vm.inputMorningBalancePlaceholder.value) },
-            value = vm.inputMorningBalance.value,
-        )
+        Row {
+            TextField(
+                keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done),
+                label = {
+                    Text(
+                        style = MaterialTheme.typography.labelLarge,
+                        text = vm.inputMorningBalanceLabel.value,
+                    )
+                },
+                modifier = Modifier.padding(top = 12.dp).weight(2f),
+                onValueChange = {
+                    vm.inputMorningBalance.value = it 
+                    budgetCtrl().set("inputMorningBalance", it)
+                },
+                placeholder = { Text(vm.inputMorningBalancePlaceholder.value) },
+                value = vm.inputMorningBalance.value,
+            )
+            ElevatedButton(
+                modifier = Modifier.weight(1f),
+                onClick = { budgetCtrl().set("didClickPasteMorningBalance", true) },
+            ) {
+                Text(vm.inputMorningBalancePasteTitle.value)
+            }
+        }
         Text(
             modifier = Modifier.padding(top = 12.dp),
             style = MaterialTheme.typography.bodyMedium,

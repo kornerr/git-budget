@@ -21,6 +21,29 @@ val BUDGET_WORKDAY_SUM = 6000f
 
 //<!-- Shoulds -->
 
+/* Consolidate morning balance value
+ *
+ * Conditions:
+ * 1. User did input morning balance
+ * 2. User did paste morning balance
+ */
+fun budgetShouldResetMorningBalance(c: BudgetContext): BudgetContext {
+    /* 1 */ if (c.recentField == "inputMorningBalance") {
+        c.morningBalance = c.inputMorningBalance
+        c.recentField = "morningBalance"
+        return c
+    }
+
+    /* 2 */ if (c.recentField == "pastedMorningBalance") {
+        c.morningBalance = c.pastedMorningBalance
+        c.recentField = "morningBalance"
+        return c
+    }
+
+    c.recentField = "none"
+    return c
+}
+
 /* Construct result
  *
  * Conditions:
@@ -29,10 +52,10 @@ val BUDGET_WORKDAY_SUM = 6000f
 fun budgetShouldResetResult(c: BudgetContext): BudgetContext {
     if (
         c.recentField == "didLaunch" ||
-        c.recentField == "inputMorningBalance" ||
+        c.recentField == "morningBalance" ||
         c.recentField == "spent"
     ) {
-        val mbalance = budgetNumber(budgetStringOnlyNumerical(c.inputMorningBalance))
+        val mbalance = budgetNumber(budgetStringOnlyNumerical(c.morningBalance))
         val spent = budgetNumber(budgetStringOnlyNumerical(c.spent))
         var lines = arrayOf<String>()
         lines += budgetResultDate(c.reportedDate)

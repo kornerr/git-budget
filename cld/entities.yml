@@ -7,12 +7,14 @@ BudgetContext:
     fields:
         didClickCopy: Bool
         didClickPaste: Bool
+        didClickPasteMorningBalance: Bool
         didLaunch: Bool
         inputDate: String
         inputMorningBalance: String
         inputSpent: String
+        morningBalance: String
+        pastedMorningBalance: String
         pastedSpent: String
-        pasteMorningBalance: Bool
         reportedDate: String
         reportedWeekday: Int
         result: String

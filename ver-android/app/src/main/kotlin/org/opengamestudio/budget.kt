@@ -41,6 +41,8 @@ object BudgetComponent {
         val oneliners = arrayOf(
             "didClickCopy", { c: BC -> budgetCopyResult(vm.androidContext!!, c.result) },
             "didClickPaste", { c: BC -> budgetPasteSpent(vm.androidContext!!) },
+            "didClickPasteMorningBalance", { c: BC -> budgetPasteMorningBalance(vm.androidContext!!) },
+            "pastedMorningBalance", { c: BC -> vm.inputMorningBalance.value = c.pastedMorningBalance },
             "pastedSpent", { c: BC -> vm.inputSpent.value = c.pastedSpent },
             "result", { c: BC -> vm.result.value = c.result },
         )
@@ -49,6 +51,7 @@ object BudgetComponent {
 
     fun setupShoulds() {
         arrayOf(
+          ::budgetShouldResetMorningBalance,
           ::budgetShouldResetResult,
           ::budgetShouldResetSpent,
         ).forEach { f ->
@@ -68,9 +71,13 @@ fun budgetCopyResult(
     clip.setPrimaryClip(item)
 }
 
+fun budgetPasteMorningBalance(ctx: Context) {
+    val txt = clipboardText(ctx) ?: "N/A"
+    budgetCtrl().set("pastedMorningBalance", txt)
+}
+
 fun budgetPasteSpent(ctx: Context) {
-    val clip = ctx.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-    val txt = clip.getPrimaryClip()?.getItemAt(0)?.getText().toString() ?: "N/A"
+    val txt = clipboardText(ctx) ?: "N/A"
     budgetCtrl().set("pastedSpent", txt)
 }
 
