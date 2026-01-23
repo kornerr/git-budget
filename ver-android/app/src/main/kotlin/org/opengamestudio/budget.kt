@@ -25,7 +25,7 @@ object BudgetComponent {
         // Debug
         ctrl.registerCallback { c ->
             var value = "${c.field(c.recentField) as Any}"
-            println("ИГР BudgetC.init ctrl key/value: '${c.recentField}'/'$value'")
+            println("ИГР BudgetC.init ctrl k/v: '${c.recentField}'/'$value'")
         }
 
         // Default values
