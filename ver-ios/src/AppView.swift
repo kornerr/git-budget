@@ -32,12 +32,17 @@ struct BudgetView: View {
             }
         }
             .padding(24)
-        TextField(
-            vm.inputMorningBalanceLabel,
-            text: $vm.inputMorningBalance,
-            prompt: Text(vm.inputMorningBalancePlaceholder)
-        )
-            .textFieldStyle(.roundedBorder)
+        HStack {
+            TextField(
+                vm.inputMorningBalanceLabel,
+                text: $vm.inputMorningBalance,
+                prompt: Text(vm.inputMorningBalancePlaceholder)
+            )
+                .textFieldStyle(.roundedBorder)
+            Button(action: { budgetCtrl().set("didClickPasteMorningBalance", true) }) {
+                Text(vm.inputMorningBalancePasteTitle)
+            }
+        }
             .padding([.leading, .bottom, .trailing], 24)
         HStack {
             HStack {
