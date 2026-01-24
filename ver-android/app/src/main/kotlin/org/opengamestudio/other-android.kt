@@ -1,12 +1,19 @@
 package org.opengamestudio
 
 import android.app.AlertDialog
+import android.content.ClipboardManager
 import android.content.Context
 import java.io.*
 import java.net.*
 import kotlinx.coroutines.*
 
 val OTHER_FAILURE_OK = "OK"
+
+// Get clipboard text (of the first item)
+fun clipboardText(ctx: Context): String? {
+    val clip = ctx.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+    return clip.getPrimaryClip()?.getItemAt(0)?.getText().toString()
+}
 
 // Load data over HTTP(s)
 // https://johncodeos.com/post-get-put-delete-requests-with-httpurlconnection/
