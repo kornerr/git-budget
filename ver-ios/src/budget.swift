@@ -41,6 +41,8 @@ class BudgetComponent {
         let effects: [Any] = [
             "didClickCopy", { (c: BC) in budgetCopyResult(c.result) },
             "didClickPaste", { (c: BC) in budgetPasteSpent(vm()) },
+            "didClickPasteMorningBalance", { (c: BC) in budgetPasteMorningBalance(vm()) },
+            "pastedMorningBalance", { (c: BC) in vm().inputMorningBalance = c.pastedMorningBalance },
             "pastedSpent", { (c: BC) in vm().inputSpent = c.pastedSpent },
             "result", { (c: BC) in vm().result = c.result },
         ]
@@ -66,6 +68,11 @@ func budgetCopyResult(_ result: String) {
 func budgetPasteSpent(_ vm: VM) {
     let txt = UIPasteboard.general.string ?? "N/A"
     budgetCtrl().set("pastedSpent", txt)
+}
+
+func budgetPasteMorningBalance(_ vm: VM) {
+    let txt = UIPasteboard.general.string ?? "N/A"
+    budgetCtrl().set("pastedMorningBalance", txt)
 }
 
 //<!-- Other functions -->
