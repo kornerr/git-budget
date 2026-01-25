@@ -8,6 +8,7 @@ object VM {
 
     val inputMorningBalance = mutableStateOf("")
     val inputMorningBalanceLabel = mutableStateOf("Morning balance")
+    val inputMorningBalancePasteTitle = mutableStateOf("Paste")
     val inputMorningBalancePlaceholder = mutableStateOf("TODO-Morning-balance")
 
     val inputSpent = mutableStateOf("")
