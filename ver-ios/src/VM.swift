@@ -3,6 +3,7 @@ import Combine
 class VM: ObservableObject {
     @Published var inputMorningBalance = ""
     @Published var inputMorningBalanceLabel = "Morning balance"
+    @Published var inputMorningBalancePasteTitle = "Paste"
     @Published var inputMorningBalancePlaceholder = "TODO-Morning-balance"
 
     @Published var inputSpent = ""
