@@ -12,7 +12,7 @@ int main(int argc, char *argv[]) {
         &engine,
         &QQmlApplicationEngine::objectCreationFailed,
         &app,
-        []() { QCoreApplication::exit(-1) },
+        []() { QCoreApplication::exit(-1); },
         Qt::QueuedConnection
     );
     engine.rootContext()->setContextProperty("myapp", myapp);

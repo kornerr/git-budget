@@ -9,7 +9,7 @@ class VM: public QObject {
     Q_PROPERTY(QString inputMorningBalanceLabel READ inputMorningBalanceLabel WRITE setInputMorningBalanceLabel NOTIFY didChangeInputMorningBalanceLabel)
 
     public:
-        VM()
+        VM();
         virtual ~VM() { }
       
         QString inputMorningBalanceLabel() const;
@@ -22,6 +22,6 @@ class VM: public QObject {
 
     private:
         QString _inputMorningBalanceLabel;
-}
+};
 
 #endif // GB_VM_H

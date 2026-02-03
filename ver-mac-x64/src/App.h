@@ -16,6 +16,6 @@ class App: public QObject {
 
     private:
         VM *_vm;
-}
+};
 
 #endif // GB_APP_H

@@ -1,7 +1,7 @@
 #include "VM.h"
 
 VM::VM() {
-    _inputMorningBalanceLabel = "TODO-MorningBalanceLabel"
+    _inputMorningBalanceLabel = "TODO-MorningBalanceLabel";
 }
 
 QString VM::inputMorningBalanceLabel() const {
