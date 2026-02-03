@@ -10,6 +10,6 @@ qt_add_executable(gb ${SOURCES})
 qt_add_qml_module(
   gb
   URI gb
-  QML_FILES AppView.qml
+  QML_FILES src/AppView.qml
 )
 target_link_libraries(gb PRIVATE Qt6::Quick)
