@@ -1,0 +1,5 @@
+#!/bin/bash -e
+SDIR=$(cd "$(dirname "$0")" ; pwd -P)
+
+BUILD_DIR=$SDIR/../ver-mac-x64/build
+$BUILD_DIR/gbmac
