@@ -3,8 +3,6 @@ SDIR=$(cd "$(dirname "$0")" ; pwd -P)
 
 BUILD_DIR=$SDIR/../sdk-ios/gb/build/XCFrameworks/release
 
-#./cld/generate-entities
-
 # Собираем и архивируем библиотеку
 cd $SDIR/../sdk-ios
 ./gradlew assembleGbReleaseXCFramework
