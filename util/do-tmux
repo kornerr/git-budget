@@ -7,8 +7,11 @@ tmux new-window -n and
 cd $SDIR/../ver-ios/src
 #tmux new-window -n ios
 
-cd $SDIR/../sdk-ios
-#tmux new-window -n sdk-ios
+cd $SDIR/../sdk-ios/gb/src/commonMain/kotlin/org/opengamestudio
+tmux new-window -n sdk-ios
 
 cd $SDIR/../ver-mac-x64/src
 tmux new-window -n mac
+
+cd $SDIR/../sdk-mac-x64/gb/src/nativeMain/kotlin/org/opengamestudio
+tmux new-window -n sdk-mac

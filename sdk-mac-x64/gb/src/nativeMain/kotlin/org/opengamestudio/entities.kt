@@ -1,0 +1,1 @@
+../../../../../../../ver-android/app/src/main/kotlin/org/opengamestudio/entities.kt
