@@ -1,0 +1,14 @@
+#!/bin/bash -e
+SDIR=$(cd "$(dirname "$0")" ; pwd -P)
+
+#BUILD_DIR=$SDIR/../sdk-ios/gb/build/XCFrameworks/release
+
+# Собираем и архивируем библиотеку
+cd $SDIR/../sdk-mac-x64
+./gradlew linkReleaseSharedNative
+#cd $BUILD_DIR
+#zip -r gb.xcframework.zip gb.xcframework
+#
+## Генерируем проект iOS
+#cd $SDIR/../ver-ios/app
+#xcodegen
