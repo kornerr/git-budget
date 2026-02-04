@@ -3,6 +3,11 @@ SDIR=$(cd "$(dirname "$0")" ; pwd -P)
 
 BUILD_DIR=$SDIR/../ver-mac-x64/build
 
+# Собираем библиотеку
+cd $SDIR/../sdk-mac-x64
+./gradlew linkReleaseSharedNative
+
+# Собираем приложение
 mkdir -p $BUILD_DIR
 cd $BUILD_DIR
 cmake ..

@@ -12,4 +12,10 @@ qt_add_qml_module(
   URI gb
   QML_FILES src/AppView.qml
 )
-target_link_libraries(gbmac PRIVATE Qt6::Quick)
+
+# Подключаем SDK
+add_library(gb SHARED IMPORTED)
+set_target_properties(gb PROPERTIES IMPORTED_LOCATION ${CMAKE_SOURCE_DIR}/../sdk-mac-x64/gb/build/bin/native/releaseShared/libgb.dylib)
+
+target_include_directories(gbmac PRIVATE ${CMAKE_SOURCE_DIR}/../sdk-mac-x64/gb/build/bin/native/releaseShared)
+target_link_libraries(gbmac PRIVATE Qt6::Quick gb)

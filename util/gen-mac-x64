@@ -1,6 +1,0 @@
-#!/bin/bash -e
-SDIR=$(cd "$(dirname "$0")" ; pwd -P)
-
-# Собираем библиотеку
-cd $SDIR/../sdk-mac-x64
-./gradlew linkReleaseSharedNative
