@@ -24,7 +24,7 @@ class BudgetComponent: public QObject {
         BudgetComponent(BudgetComponent const&);
         void operator=(BudgetComponent const&);
 
-        //CLDController *_ctrl;
+        //KT.CLDController *_ctrl;
 };
 
 #endif // GB_BUDGET_H
