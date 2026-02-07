@@ -5,6 +5,6 @@
 
 BudgetComponent::BudgetComponent() {
     libgb_ExportedSymbols *_lib = libgb_symbols();
-    _lib->kotlin.root.org.opengamestudio.CLDController.CLDController abc;
+    //_lib->kotlin.root.org.opengamestudio.CLDController.CLDController abc;
     /*_ctrl =*/// new K.CLDController(K.budgetContext());
 }
