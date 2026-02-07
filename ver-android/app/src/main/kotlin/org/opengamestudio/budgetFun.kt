@@ -1,6 +1,23 @@
 package org.opengamestudio
 import kotlin.math.abs
 
+
+
+///TMP
+//
+//
+//
+//
+data class Item(
+  val x: Int,
+  val y: Int,
+  val w: Int,
+  val h: Int,
+)
+//
+//
+//
+
 //<!-- Constants -->
 
 val BUDGET_INITIAL_SUM = 30000f

@@ -3,6 +3,7 @@
 
 #include <QObject>
 
+#include "budget.h"
 #include "VM.h"
 
 class App: public QObject {

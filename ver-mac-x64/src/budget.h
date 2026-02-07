@@ -19,6 +19,8 @@ class BudgetComponent: public QObject {
             return instance;
         }
 
+        void doTest();
+
     private:
         BudgetComponent();
         BudgetComponent(BudgetComponent const&);

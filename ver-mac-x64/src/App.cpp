@@ -2,6 +2,7 @@
 
 App::App() {
     _vm = new VM();
+    BudgetComponent::singleton().doTest();
 }
 
 App::~App() {
