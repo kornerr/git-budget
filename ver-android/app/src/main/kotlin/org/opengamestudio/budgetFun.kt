@@ -118,6 +118,11 @@ fun budgetContext(): BudgetContext {
     return BudgetContext()
 }
 
+// Create new CLDController with BudgetContext instance (for SDK clients)
+fun budgetController(): CLDController {
+    return CLDController(BudgetContext())
+}
+
 // Остаток виден не во все дни. Не виден в:
 // 1. пятницу
 // 2. воскресенье
