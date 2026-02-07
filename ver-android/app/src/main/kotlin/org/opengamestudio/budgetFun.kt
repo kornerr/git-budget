@@ -115,12 +115,18 @@ fun budgetShouldResetSpent(c: BudgetContext): BudgetContext {
 
 // Create new BudgetContext instance (for SDK clients)
 fun budgetContext(): BudgetContext {
+    // TODO DEPRECATE
     return BudgetContext()
 }
 
 // Create new CLDController with BudgetContext instance (for SDK clients)
 fun budgetController(): CLDController {
     return CLDController(BudgetContext())
+}
+
+//// TMP
+fun boolAsAny(item: Boolean): Any {
+    return item as Any
 }
 
 // Остаток виден не во все дни. Не виден в:
