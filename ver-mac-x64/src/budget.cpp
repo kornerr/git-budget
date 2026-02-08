@@ -5,7 +5,7 @@
 #define KT_ANY = libgb_kref_kotlin_Any
 
 void onDebugPrint() {
-    printf("ИГР onDP TODO\n");
+    printf("ИГР onDP field/value: '%s'/'%s'\n");
 }
 
 void printCB() {
