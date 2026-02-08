@@ -4,8 +4,15 @@
 
 #define KT_ANY = libgb_kref_kotlin_Any
 
+/*
 void onDidLaunch(const libgb_kref_org_opengamestudio_CLDContext &c) {
     printf("ИГР onDL got did launch\n");
+}
+*/
+
+int printCB() {
+    printf("ИГР printCB\n");
+    return 4;
 }
 
 BudgetComponent::BudgetComponent() {
@@ -13,15 +20,20 @@ BudgetComponent::BudgetComponent() {
     printf("ИГР x = '%d'\n", KT.Item.get_x(item));
     auto ctrl = KT.budgetController();
 
+    /*
     KT.CLDController.registerFieldCallback(
         ctrl,
         "didLaunch",
         onDidLaunch
         //[]() { printf("ИГР BudgetC.ctrl got did launch\n"); }
     );
+    */
 
     
     KT.CLDController.set(ctrl, "didLaunch", KT.boolAsAny(true));
+
+
+    KT.callCallbackC((void *)&printCB);
 }
 
 void BudgetComponent::doTest() {

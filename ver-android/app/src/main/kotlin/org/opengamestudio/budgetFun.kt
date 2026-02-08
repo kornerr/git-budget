@@ -1,11 +1,22 @@
 package org.opengamestudio
 import kotlin.math.abs
 
+/**/import kotlinx.cinterop.*
 
 
 ///TMP
 //
 //
+fun callCallback(cb: () -> Unit) {
+    cb()
+}
+
+@OptIn(kotlinx.cinterop.ExperimentalForeignApi::class)
+fun callCallbackC(cb: CPointer<CFunction<() -> Int>>) {
+    cb()
+}
+
+
 //
 //
 data class Item(
