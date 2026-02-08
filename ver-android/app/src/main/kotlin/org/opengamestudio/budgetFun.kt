@@ -130,9 +130,14 @@ fun budgetContext(): BudgetContext {
     return BudgetContext()
 }
 
+object BudgetControllerHolder {
+    val ctrl = CLDController(BudgetContext())
+}
+
 // Create new CLDController with BudgetContext instance (for SDK clients)
 fun budgetController(): CLDController {
-    return CLDController(BudgetContext())
+    //return CLDController(BudgetContext())
+    return BudgetControllerHolder.ctrl
 }
 
 //// TMP

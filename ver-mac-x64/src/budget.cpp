@@ -5,7 +5,11 @@
 #define KT_ANY = libgb_kref_kotlin_Any
 
 void onDebugPrint() {
-    printf("ИГР onDP field/value: '%s'/'%s'\n");
+    printf("ИГР onDP-1\n");
+    auto ctrl = KT.budgetController();
+    printf("ИГР onDP-2\n");
+    auto ctx = KT.CLDController.currentContext(ctrl);
+    printf("ИГР onDP-3 field/value: '%s'/'%s'\n");
 }
 
 void printCB() {
