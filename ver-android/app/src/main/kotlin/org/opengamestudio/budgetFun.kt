@@ -12,7 +12,7 @@ fun callCallback(cb: () -> Unit) {
 }
 
 @OptIn(kotlinx.cinterop.ExperimentalForeignApi::class)
-fun callCallbackC(cb: CPointer<CFunction<() -> Int>>) {
+fun callCallbackC(cb: CPointer<CFunction<() -> Unit>>) {
     cb()
 }
 

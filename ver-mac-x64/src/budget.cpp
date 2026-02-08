@@ -10,9 +10,8 @@ void onDidLaunch(const libgb_kref_org_opengamestudio_CLDContext &c) {
 }
 */
 
-int printCB() {
+void printCB() {
     printf("ИГР printCB\n");
-    return 4;
 }
 
 BudgetComponent::BudgetComponent() {
@@ -31,7 +30,6 @@ BudgetComponent::BudgetComponent() {
 
     
     KT.CLDController.set(ctrl, "didLaunch", KT.boolAsAny(true));
-
 
     KT.callCallbackC((void *)&printCB);
 }
