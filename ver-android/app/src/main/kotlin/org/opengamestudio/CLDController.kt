@@ -2,10 +2,11 @@
  * This file is a part of Cross-language dialect:
  *     https://github.com/OGStudio/cross-language-dialect
  * License: CC0
- * Version: 1.2.0
+ * Version: 1.x.0
  */
 
 package org.opengamestudio
+import kotlinx.cinterop.*
 
 class CLDController(
     var context: CLDContext
@@ -14,6 +15,10 @@ class CLDController(
     internal var functions = mutableListOf<(c: CLDContext) -> CLDContext>()
     var isProcessingQueue = false
     internal var queue = mutableListOf<CLDContext>()
+
+    fun currentContext(): CLDContext {
+        return context
+    }
  
     fun executeFunctions() {
         val c = queue.removeAt(0)
@@ -56,6 +61,18 @@ class CLDController(
         callbacks.add({ c ->
             if (c.recentField == fieldName) {
                 cb(c)
+            }
+        })
+    }
+
+    @OptIn(kotlinx.cinterop.ExperimentalForeignApi::class)
+    fun registerFieldCallbackC(
+        fieldName: String,
+        cb: CPointer<CFunction<() -> Unit>>
+    ) {
+        callbacks.add({ c ->
+            if (c.recentField == fieldName) {
+                cb()
             }
         })
     }
