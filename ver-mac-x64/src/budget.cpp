@@ -17,15 +17,15 @@ BudgetComponent::BudgetComponent() {
     printf("ИГР x = '%d'\n", KT.Item.get_x(item));
     auto ctrl = KT.budgetController();
 
-    KT.CLDController.registerFieldCallbackC(
+    KT.CLDController.registerCallbackC(
         ctrl,
-        "didLaunch",
         (void *)&onDebugPrint
     );
 
     
     KT.CLDController.set(ctrl, "didLaunch", KT.boolAsAny(true));
     KT.CLDController.set(ctrl, "didLaunch", KT.boolAsAny(false));
+    KT.CLDController.set(ctrl, "inputDate", KT.strAsAny("123-00-00"));
 }
 
 void BudgetComponent::doTest() {

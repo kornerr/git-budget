@@ -53,6 +53,11 @@ class CLDController(
     fun registerCallback(cb: (c: CLDContext) -> Unit) {
         callbacks.add(cb)
     }
+
+    @OptIn(kotlinx.cinterop.ExperimentalForeignApi::class)
+    fun registerCallbackC(cb: CPointer<CFunction<() -> Unit>>) {
+        callbacks.add({ c -> cb() })
+    }
  
     fun registerFieldCallback(
         fieldName: String,

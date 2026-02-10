@@ -161,6 +161,10 @@ fun anyToString(item: Any): String {
     return "$item"
 }
 
+fun strAsAny(str: String): Any {
+    return str as Any
+}
+
 // Остаток виден не во все дни. Не виден в:
 // 1. пятницу
 // 2. воскресенье
