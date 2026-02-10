@@ -157,6 +157,10 @@ fun anyToBool(item: Any): Boolean {
     return item as Boolean
 }
 
+fun anyToString(item: Any): String {
+    return "$item"
+}
+
 // Остаток виден не во все дни. Не виден в:
 // 1. пятницу
 // 2. воскресенье
