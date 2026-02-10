@@ -19,10 +19,6 @@ void onDebugPrint() {
     //printf("ИГР onDP-3 field/value: '%s'/'%s'\n");
 }
 
-void printCB() {
-    printf("ИГР printCB\n");
-}
-
 BudgetComponent::BudgetComponent() {
     auto item = KT.Item.Item(9, 8, 7, 6);
     printf("ИГР x = '%d'\n", KT.Item.get_x(item));
@@ -37,8 +33,7 @@ BudgetComponent::BudgetComponent() {
 
     
     KT.CLDController.set(ctrl, "didLaunch", KT.boolAsAny(true));
-
-    KT.callCallbackC((void *)&printCB);
+    KT.CLDController.set(ctrl, "didLaunch", KT.boolAsAny(false));
 }
 
 void BudgetComponent::doTest() {
