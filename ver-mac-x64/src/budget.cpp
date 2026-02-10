@@ -4,12 +4,12 @@
 
 void onDebugPrint() {
     auto ctx = KT.budgetControllerContext();
-    auto fieldName = KT.CLDContext.get_recentField(ctx);
-    auto value = KT.CLDContext.fieldAny(ctx, "didLaunch");
-    auto str = KT.anyToString(value);
-    printf("ИГР ctx.didLaunch: '%s'\n", str);
-    KT_LIB->DisposeString(fieldName);
-    KT_LIB->DisposeString(str);
+    auto key = KT.CLDContext.get_recentField(ctx);
+    auto value = KT.CLDContext.fieldAny(ctx, key);
+    auto strvalue = KT.anyToString(value);
+    printf("ИГР BudgetC.ctrl k/v: '%s'/'%s'\n", key, strvalue);
+    KT_LIB->DisposeString(key);
+    KT_LIB->DisposeString(strvalue);
 }
 
 BudgetComponent::BudgetComponent() {
