@@ -3,5 +3,6 @@
 
 #include "libgb_api.h"
 #define KT libgb_symbols()->kotlin.root.org.opengamestudio
+#define KT_LIB libgb_symbols()
 
 #endif // GB_KT_H
