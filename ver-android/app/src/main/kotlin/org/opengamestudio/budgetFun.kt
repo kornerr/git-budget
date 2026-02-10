@@ -130,19 +130,31 @@ fun budgetContext(): BudgetContext {
     return BudgetContext()
 }
 
+fun budgetContextToCLD(bc: BudgetContext): CLDContext {
+    return bc
+}
+
 object BudgetControllerHolder {
     val ctrl = CLDController(BudgetContext())
 }
 
-// Create new CLDController with BudgetContext instance (for SDK clients)
+// Return instance of CLDController instance with BudgetContext instance (for SDK clients)
 fun budgetController(): CLDController {
-    //return CLDController(BudgetContext())
     return BudgetControllerHolder.ctrl
 }
+
+fun budgetControllerContext(): CLDContext {
+    return BudgetControllerHolder.ctrl.context
+}
+
 
 //// TMP
 fun boolAsAny(item: Boolean): Any {
     return item as Any
+}
+
+fun anyToBool(item: Any): Boolean {
+    return item as Boolean
 }
 
 // Остаток виден не во все дни. Не виден в:

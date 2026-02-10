@@ -1,15 +1,22 @@
 #include <any>
 #include <cstdio>
+#include <iostream>
 #include "budget.h"
 
 #define KT_ANY = libgb_kref_kotlin_Any
 
 void onDebugPrint() {
     printf("ИГР onDP-1\n");
-    auto ctrl = KT.budgetController();
+    //auto ctrl = KT.budgetController();
     printf("ИГР onDP-2\n");
-    auto ctx = KT.CLDController.currentContext(ctrl);
-    printf("ИГР onDP-3 field/value: '%s'/'%s'\n");
+    //auto bctx = KT.budgetContext();
+    //auto ctx = KT.budgetContextToCLD(bctx);
+    auto ctx = KT.budgetControllerContext();
+    auto value = KT.CLDContext.fieldAny(ctx, "didLaunch");
+    std::cout << "ИГР onDP-3 ctx.didLaunch: '" << KT.anyToBool(value) << "'\n";
+
+    //auto ctx = KT.CLDController.currentContext(ctrl);
+    //printf("ИГР onDP-3 field/value: '%s'/'%s'\n");
 }
 
 void printCB() {
