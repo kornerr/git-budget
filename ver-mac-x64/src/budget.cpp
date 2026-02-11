@@ -12,6 +12,16 @@ void onDebugPrint() {
     KT_LIB->DisposeString(strvalue);
 }
 
+void onDidLaunch() {
+    auto ctx = KT.budgetControllerContext();
+    auto key = KT.CLDContext.get_recentField(ctx);
+    auto value = KT.CLDContext.fieldAny(ctx, key);
+    auto strvalue = KT.anyToString(value);
+    printf("ИГР BudgetC.ctrl onDL: '%s'/'%s'\n", key, strvalue);
+    KT_LIB->DisposeString(key);
+    KT_LIB->DisposeString(strvalue);
+}
+
 BudgetComponent::BudgetComponent() {
     auto item = KT.Item.Item(9, 8, 7, 6);
     printf("ИГР x = '%d'\n", KT.Item.get_x(item));
@@ -20,6 +30,12 @@ BudgetComponent::BudgetComponent() {
     KT.CLDController.registerCallbackC(
         ctrl,
         (void *)&onDebugPrint
+    );
+
+    KT.CLDController.registerFieldCallbackC(
+        ctrl,
+        "didLaunch",
+        (void *)&onDidLaunch
     );
 
     
