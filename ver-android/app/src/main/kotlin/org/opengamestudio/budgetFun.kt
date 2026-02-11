@@ -31,6 +31,11 @@ data class Item(
 
 //<!-- Constants -->
 
+val BUDGET_ACTIVE_SHOULDS = arrayOf(
+    ::budgetShouldResetMorningBalance,
+    ::budgetShouldResetResult,
+    ::budgetShouldResetSpent,
+)
 val BUDGET_INITIAL_SUM = 30000f
 val BUDGET_RESTDAY_SUM = 15000f
 val BUDGET_RESULT_DATE_T = "%DATE%"
@@ -136,9 +141,22 @@ fun budgetContextToCLD(bc: BudgetContext): CLDContext {
 
 object BudgetControllerHolder {
     val ctrl = CLDController(BudgetContext())
+
+    init {
+        // Register active shoulds
+        BUDGET_ACTIVE_SHOULDS.forEach { f ->
+            ctrl.registerFunction { c -> f(c as BudgetContext) }
+        }
+
+        // Register debug output
+        ctrl.registerCallback { c ->
+            var value = "${c.field(c.recentField) as Any}"
+            println("ИГР BudgetCH.init ctrl k/v: '${c.recentField}'/'$value'")
+        }
+    }
 }
 
-// Return instance of CLDController instance with BudgetContext instance (for SDK clients)
+// Return prepared instance of CLDController with BudgetContext installed and active shoulds registered
 fun budgetController(): CLDController {
     return BudgetControllerHolder.ctrl
 }

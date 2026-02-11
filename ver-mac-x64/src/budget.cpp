@@ -27,17 +27,18 @@ BudgetComponent::BudgetComponent() {
     printf("ИГР x = '%d'\n", KT.Item.get_x(item));
     auto ctrl = KT.budgetController();
 
+    // Debug effect to print every change
     KT.CLDController.registerCallbackC(
         ctrl,
         (void *)&onDebugPrint
     );
 
+    // Debug effect to print specific field changes
     KT.CLDController.registerFieldCallbackC(
         ctrl,
         "didLaunch",
         (void *)&onDidLaunch
     );
-
     
     KT.CLDController.set(ctrl, "didLaunch", KT.boolAsAny(true));
     KT.CLDController.set(ctrl, "didLaunch", KT.boolAsAny(false));

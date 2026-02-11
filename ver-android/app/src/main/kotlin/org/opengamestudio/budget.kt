@@ -18,25 +18,14 @@ fun budgetCtrl(): CLDController {
 private typealias BC = BudgetContext
 
 object BudgetComponent {
-    val ctrl: CLDController
+    val ctrl = budgetSingletonController()
 
     init {
-        ctrl = CLDController(BudgetContext())
-        // Debug
-        ctrl.registerCallback { c ->
-            var value = "${c.field(c.recentField) as Any}"
-            println("ИГР BudgetC.init ctrl k/v: '${c.recentField}'/'$value'")
-        }
-
-        // Default values
+        // Defaults.
         ctrl.set("reportedDate", budgetReportedDate())
         ctrl.set("reportedWeekday", budgetReportedWeekday())
 
-        setupEffects()
-        setupShoulds()
-    }
-
-    fun setupEffects() {
+        // Effects.
         val vm = VM
         val oneliners = arrayOf(
             "didClickCopy", { c: BC -> budgetCopyResult(vm.androidContext!!, c.result) },
@@ -47,16 +36,6 @@ object BudgetComponent {
             "result", { c: BC -> vm.result.value = c.result },
         )
         registerOneliners(ctrl, oneliners)
-    }
-
-    fun setupShoulds() {
-        arrayOf(
-          ::budgetShouldResetMorningBalance,
-          ::budgetShouldResetResult,
-          ::budgetShouldResetSpent,
-        ).forEach { f ->
-          ctrl.registerFunction { c -> f(c as BudgetContext) }
-        }
     }
 }
 

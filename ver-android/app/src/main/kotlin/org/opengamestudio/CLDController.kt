@@ -85,6 +85,11 @@ class CLDController(
     fun registerFunction(f: (CLDContext) -> CLDContext) {
         functions.add(f)
     }
+
+    @OptIn(kotlinx.cinterop.ExperimentalForeignApi::class)
+    fun registerFunctionC(f: (CLDContext) -> CLDContext) {
+        functions.add(f)
+    }
  
     fun reportContext() {
         for (cb in callbacks) {
