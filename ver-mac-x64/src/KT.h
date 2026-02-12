@@ -13,4 +13,15 @@ void budgetCtrlSet(
     T value
 );
 
+class BudgetContext {
+
+    public:
+        BudgetContext(libgb_kref_org_opengamestudio_BudgetContext ctx);
+
+        bool didLaunch() const;
+
+    private:
+        libgb_kref_org_opengamestudio_BudgetContext ctx;
+};
+
 #endif // GB_KT_H

@@ -17,3 +17,12 @@ void budgetCtrlSet(
     auto ctrl = KT.budgetController();
     KT.CLDController.set(ctrl, key.c_str(), KT.strAsAny(value));
 }
+
+BudgetContext::BudgetContext(
+    libgb_kref_org_opengamestudio_BudgetContext ctx
+):
+  ctx(ctx) { }
+
+bool BudgetContext::didLaunch() const {
+    return KT.BudgetContext.get_didLaunch(ctx);
+}

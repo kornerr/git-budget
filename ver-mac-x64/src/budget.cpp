@@ -14,14 +14,10 @@ void onDebugPrint() {
 }
 
 void onDidLaunch() {
-    auto ctx = KT.budgetControllerContext();
-    auto value = KT.BudgetContext.get_didLaunch(ctx);
-    //auto value = KT.CLDContext.fieldAny(ctx, key);
-    auto strvalue = KT.boolToString(value);
+    auto ctx = BudgetContext(KT.budgetControllerContext());
+    auto value = ctx.didLaunch();
     auto key = "didLaunch";
-    printf("ИГР BudgetC.ctrl onDL: '%s'/'%s'\n", key, strvalue);
-    //KT_LIB->DisposeString(key);
-    KT_LIB->DisposeString(strvalue);
+    printf("ИГР BudgetC.ctrl onDL: '%s'/'%d'\n", key, value);
 }
 
 BudgetComponent::BudgetComponent() {
