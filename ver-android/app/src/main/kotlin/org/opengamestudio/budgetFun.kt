@@ -161,14 +161,18 @@ fun budgetController(): CLDController {
     return BudgetControllerHolder.ctrl
 }
 
-fun budgetControllerContext(): CLDContext {
-    return BudgetControllerHolder.ctrl.context
+fun budgetControllerContext(): BudgetContext {
+    return BudgetControllerHolder.ctrl.context as BudgetContext
 }
 
 
 //// TMP
-fun boolAsAny(item: Boolean): Any {
+fun boolToAny(item: Boolean): Any {
     return item as Any
+}
+
+fun boolToString(item: Boolean): String {
+    return "$item"
 }
 
 fun anyToBool(item: Any): Boolean {

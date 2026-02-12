@@ -6,7 +6,7 @@ void budgetCtrlSet(
     bool value
 ) {
     auto ctrl = KT.budgetController();
-    KT.CLDController.set(ctrl, key.c_str(), KT.boolAsAny(value));
+    KT.CLDController.set(ctrl, key.c_str(), KT.boolToAny(value));
 }
 
 template<>

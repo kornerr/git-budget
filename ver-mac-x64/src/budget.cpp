@@ -3,7 +3,8 @@
 #include "budget.h"
 
 void onDebugPrint() {
-    auto ctx = KT.budgetControllerContext();
+    auto bctx = KT.budgetControllerContext();
+    auto ctx = KT.budgetContextToCLD(bctx);
     auto key = KT.CLDContext.get_recentField(ctx);
     auto value = KT.CLDContext.fieldAny(ctx, key);
     auto strvalue = KT.anyToString(value);
@@ -14,11 +15,12 @@ void onDebugPrint() {
 
 void onDidLaunch() {
     auto ctx = KT.budgetControllerContext();
-    auto key = KT.CLDContext.get_recentField(ctx);
-    auto value = KT.CLDContext.fieldAny(ctx, key);
-    auto strvalue = KT.anyToString(value);
+    auto value = KT.BudgetContext.get_didLaunch(ctx);
+    //auto value = KT.CLDContext.fieldAny(ctx, key);
+    auto strvalue = KT.boolToString(value);
+    auto key = "didLaunch";
     printf("ИГР BudgetC.ctrl onDL: '%s'/'%s'\n", key, strvalue);
-    KT_LIB->DisposeString(key);
+    //KT_LIB->DisposeString(key);
     KT_LIB->DisposeString(strvalue);
 }
 
