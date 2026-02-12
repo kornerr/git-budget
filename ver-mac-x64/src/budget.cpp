@@ -40,8 +40,10 @@ BudgetComponent::BudgetComponent() {
         (void *)&onDidLaunch
     );
     
-    KT.CLDController.set(ctrl, "didLaunch", KT.boolAsAny(true));
-    KT.CLDController.set(ctrl, "didLaunch", KT.boolAsAny(false));
+    budgetCtrlSet("didLaunch", true);
+    budgetCtrlSet("didLaunch", false);
+    //KT.CLDController.set(ctrl, "didLaunch", KT.boolAsAny(true));
+    //KT.CLDController.set(ctrl, "didLaunch", KT.boolAsAny(false));
     KT.CLDController.set(ctrl, "inputDate", KT.strAsAny("123-00-00"));
 }
 
