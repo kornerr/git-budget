@@ -42,9 +42,7 @@ BudgetComponent::BudgetComponent() {
     
     budgetCtrlSet("didLaunch", true);
     budgetCtrlSet("didLaunch", false);
-    //KT.CLDController.set(ctrl, "didLaunch", KT.boolAsAny(true));
-    //KT.CLDController.set(ctrl, "didLaunch", KT.boolAsAny(false));
-    KT.CLDController.set(ctrl, "inputDate", KT.strAsAny("123-00-00"));
+    budgetCtrlSet("inputDate", "123-00-00");
 }
 
 void BudgetComponent::doTest() {
