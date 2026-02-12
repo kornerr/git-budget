@@ -25,13 +25,16 @@ void onDidLaunch() {
 BudgetComponent::BudgetComponent() {
     auto item = KT.Item.Item(9, 8, 7, 6);
     printf("ИГР x = '%d'\n", KT.Item.get_x(item));
-    auto ctrl = KT.budgetController();
+    //auto ctrl = KT.budgetController();
+    libgb_kref_org_opengamestudio_CLDController ctrl = KT.budgetController();
 
     // Debug effect to print every change
     KT.CLDController.registerCallbackC(
         ctrl,
         (void *)&onDebugPrint
     );
+
+    /**/printf("ИГР ctrl type: '%s'\n", typeid(ctrl).name());
 
     // Debug effect to print specific field changes
     KT.CLDController.registerFieldCallbackC(
