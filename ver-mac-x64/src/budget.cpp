@@ -1,5 +1,6 @@
 #include <any>
 #include <cstdio>
+#include <vector>
 #include "budget.h"
 
 void onDebugPrint() {
@@ -40,6 +41,15 @@ BudgetComponent::BudgetComponent() {
         "didLaunch",
         (void *)&onDidLaunch
     );
+
+    std::vector<std::any> oneliners = {
+        "didLaunch", std::make_any<std::function<void(void)>>([&]() { printf("ИГР lambda didL\n"); }),
+        "inputDate", std::make_any<std::function<void(void)>>([&]() { printf("ИГР lambda inputD\n"); }),
+    };
+
+    auto funptr = std::any_cast<std::function<void(void)>>(oneliners[1]);
+    funptr();
+
     
     budgetCtrlSet("didLaunch", true);
     budgetCtrlSet("didLaunch", false);
