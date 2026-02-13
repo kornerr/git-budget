@@ -3,6 +3,26 @@
 #include <vector>
 #include "budget.h"
 
+std::vector<std::any> oneliners;
+
+
+void processOneliners() {
+    auto bctx = KT.budgetControllerContext();
+    auto ctx = KT.budgetContextToCLD(bctx);
+    auto key = KT.CLDContext.get_recentField(ctx);
+
+    int halfCount = oneliners.size() / 2;
+    for (int i = 0; i < halfCount; ++i) {
+        auto field = std::any_cast<const char *>(oneliners[i * 2]);
+        if (strcmp(field, key) == 0) {
+            printf("ИГР processO field: '%s'\n", field);
+            auto callback = std::any_cast<std::function<void(BudgetContext)>>(oneliners[i * 2 + 1]);
+            auto c = BudgetContext(bctx);
+            callback(c);
+        }
+    }
+}
+
 void onDebugPrint() {
     auto bctx = KT.budgetControllerContext();
     auto ctx = KT.budgetContextToCLD(bctx);
@@ -42,13 +62,19 @@ BudgetComponent::BudgetComponent() {
         (void *)&onDidLaunch
     );
 
-    std::vector<std::any> oneliners = {
-        "didLaunch", std::make_any<std::function<void(void)>>([&]() { printf("ИГР lambda didL\n"); }),
-        "inputDate", std::make_any<std::function<void(void)>>([&]() { printf("ИГР lambda inputD\n"); }),
+    oneliners = {
+        "didLaunch", std::make_any<std::function<void(BudgetContext)>>([&](BudgetContext c) { printf("ИГР lambda didL: '%d'\n", c.didLaunch()); }),
+        "inputDate", std::make_any<std::function<void(BudgetContext)>>([&](BudgetContext c) { printf("ИГР lambda inputD\n"); }),
     };
 
-    auto funptr = std::any_cast<std::function<void(void)>>(oneliners[1]);
-    funptr();
+    //auto funptr = std::any_cast<std::function<void(void)>>(oneliners[1]);
+    //funptr();
+
+    // Process oneliners.
+    KT.CLDController.registerCallbackC(
+        ctrl,
+        (void *)&processOneliners
+    );
 
     
     budgetCtrlSet("didLaunch", true);
