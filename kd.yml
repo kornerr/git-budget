@@ -1,0 +1,40 @@
+version: 3
+
+output:
+    ver-android/app/src/main/kotlin/org/opengamestudio/kd.kt:
+        type: kotlin
+    ver-ios/src/kd.swift:
+        type: swift
+
+kotlin: package org.opengamestudio
+
+BudgetContext:
+    type: context
+    fields:
+        didClickCopy: Bool
+        didClickPaste: Bool
+        didClickPasteMorningBalance: Bool
+        didLaunch: Bool
+        inputDate: String
+        inputMorningBalance: String
+        inputSpent: String
+        morningBalance: String
+        pastedMorningBalance: String
+        pastedSpent: String
+        reportedDate: String
+        reportedWeekday: Int
+        result: String
+        spent: String
+
+NetRequest:
+    type: struct
+    fields:
+        body: String
+        method: String
+        url: String
+
+NetResponse:
+    type: struct
+    fields:
+        contents: String
+        req: NetRequest
