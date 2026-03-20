@@ -1,0 +1,9 @@
+#!/bin/bash
+# Auxialiary things for scripts
+
+# Working directory
+HOME_DIR=$(echo ~)
+DEPS_DIR=$HOME_DIR/ogs-deps
+# Kotlin Dialect location
+KD_DIR=$DEPS_DIR/kd
+KD_URL="https://github.com/OGStudio/kotlin-dialect"

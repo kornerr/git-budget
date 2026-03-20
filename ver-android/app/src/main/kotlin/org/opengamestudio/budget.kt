@@ -7,7 +7,7 @@ import java.time.temporal.ChronoField
 
 //<!-- API -->
 
-fun budgetCtrl(): CLDController {
+fun budgetCtrl(): KDController {
     return BudgetComponent.ctrl
 }
 
@@ -18,10 +18,10 @@ fun budgetCtrl(): CLDController {
 private typealias BC = BudgetContext
 
 object BudgetComponent {
-    val ctrl: CLDController
+    val ctrl: KDController
 
     init {
-        ctrl = CLDController(BudgetContext())
+        ctrl = KDController(BudgetContext())
         // Debug
         ctrl.registerCallback { c ->
             var value = "${c.field(c.recentField) as Any}"
