@@ -7,4 +7,4 @@ if [ ! -d "$KD_DIR" ]; then
 fi
 cd $KD_DIR
 git fetch
-git checkout -f 3.0
+git checkout -f 3.1
