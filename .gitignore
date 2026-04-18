@@ -1,8 +1,9 @@
+build
 .DS_Store
+GitBudget.xcodeproj
 .gradle
 .idea
 .kotlin
-.swiftpm
-build
-GitBudget.xcodeproj
+ignore.*
 local.properties
+.swiftpm
