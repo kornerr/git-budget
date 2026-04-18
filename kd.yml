@@ -1,9 +1,11 @@
 version: 3
 
 output:
-    ver-android/app/src/main/kotlin/org/opengamestudio/kd.kt:
+    ver-android/app/src/main/kotlin/org/opengamestudio/ignore.kd.kt:
         type: kotlin
-    ver-ios/src/kd.swift:
+    sdk-ios/gb/src/commonMain/kotlin/org/opengamestudio/ignore.kd.kt:
+        type: kotlin
+    ver-ios/src/ignore.kd.swift:
         type: swift
 
 kotlin: package org.opengamestudio
