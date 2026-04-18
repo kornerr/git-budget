@@ -7,14 +7,12 @@ object VM {
     var androidContext: Context? = null
 
     val inputMorningBalance = mutableStateOf("")
-    val inputMorningBalanceLabel = mutableStateOf("Morning balance")
     val inputMorningBalancePasteTitle = mutableStateOf("Paste")
-    val inputMorningBalancePlaceholder = mutableStateOf("TODO-Morning-balance")
+    val inputMorningBalancePlaceholder = mutableStateOf("Morning balance")
 
     val inputSpent = mutableStateOf("")
-    val inputSpentLabel = mutableStateOf("Spent")
     val inputSpentPasteTitle = mutableStateOf("Paste")
-    val inputSpentPlaceholder = mutableStateOf("TODO-Spent")
+    val inputSpentPlaceholder = mutableStateOf("Spent")
 
     val result = mutableStateOf("TODO-Result")
     val resultCopyTitle = mutableStateOf("Copy")

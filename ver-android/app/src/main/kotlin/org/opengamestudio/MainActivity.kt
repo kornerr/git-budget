@@ -66,12 +66,6 @@ fun Budget(
         Row {
             TextField(
                 keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
-                label = {
-                    Text(
-                        style = MaterialTheme.typography.labelLarge,
-                        text = vm.inputSpentLabel.value,
-                    )
-                },
                 modifier = Modifier.weight(2f),
                 onValueChange = {
                     vm.inputSpent.value = it 
@@ -90,12 +84,6 @@ fun Budget(
         Row {
             TextField(
                 keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done),
-                label = {
-                    Text(
-                        style = MaterialTheme.typography.labelLarge,
-                        text = vm.inputMorningBalanceLabel.value,
-                    )
-                },
                 modifier = Modifier.padding(top = 12.dp).weight(2f),
                 onValueChange = {
                     vm.inputMorningBalance.value = it 

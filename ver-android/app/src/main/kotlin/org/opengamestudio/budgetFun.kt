@@ -59,6 +59,7 @@ fun budgetShouldResetResult(c: BudgetContext): BudgetContext {
         val spent = budgetNumber(budgetStringOnlyNumerical(c.spent))
         var lines = arrayOf<String>()
         lines += budgetResultDate(c.reportedDate)
+        lines += ""
         lines += budgetResultSpent(mbalance, c.reportedWeekday, spent)
         lines += budgetResultOverrun(mbalance, c.reportedWeekday, spent)
         lines += budgetResultLeft(mbalance, c.reportedWeekday, spent)
