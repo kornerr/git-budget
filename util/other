@@ -3,7 +3,7 @@
 
 # Working directory
 HOME_DIR=$(echo ~)
-DEPS_DIR=$HOME_DIR/ogs-deps
+CACHE_DIR=$HOME_DIR/dev-cache
 # Kotlin Dialect location
-KD_DIR=$DEPS_DIR/kd
+KD_DIR=$CACHE_DIR/kd
 KD_URL="https://github.com/OGStudio/kotlin-dialect"
