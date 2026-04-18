@@ -60,7 +60,7 @@ fun Budget(
     vm: VM,
 ) {
     Column(
-        modifier = modifier.fillMaxSize().padding(24.dp),
+        modifier = modifier.fillMaxSize().padding(horizontal = 24.dp),
         //horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Row {
