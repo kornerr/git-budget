@@ -28,7 +28,7 @@ fun BudgetView(
                 value = vm.spent.value,
             )
             Spacer(Modifier.width(8.dp))
-            ElevatedButton(
+            FilledTonalButton(
                 modifier = Modifier.weight(1f),
                 onClick = { budgetSet(F.didClickPasteSpent, true) },
             ) {
@@ -45,7 +45,7 @@ fun BudgetView(
                 value = vm.morningBalance.value,
             )
             Spacer(Modifier.width(8.dp))
-            ElevatedButton(
+            FilledTonalButton(
                 modifier = Modifier.weight(1f),
                 onClick = { budgetSet(F.didClickPasteMorningBalance, true) },
             ) {
@@ -59,7 +59,7 @@ fun BudgetView(
             text = vm.result.value,
         )
         Spacer(Modifier.height(8.dp))
-        ElevatedButton(
+        FilledTonalButton(
             onClick = { budgetSet(F.didClickCopy, true) },
         ) {
             Text(vm.resultCopyTitle.value)

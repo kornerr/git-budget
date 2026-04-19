@@ -18,8 +18,7 @@ class MainActivity: ComponentActivity() {
         setContent {
             MyApplicationTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    //BudgetView(
-                    BudgetScreen(
+                    BudgetView(
                         Modifier.padding(innerPadding),
                         VM
                     )
