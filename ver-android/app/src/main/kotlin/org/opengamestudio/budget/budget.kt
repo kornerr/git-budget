@@ -14,10 +14,10 @@ object BudgetComponent {
         val vm = VM
         val oneliners = arrayOf(
             F.didClickCopy, { c: BC -> budgetCopyResult(vm.androidContext!!, c.result) },
-            F.didClickPaste, { c: BC -> budgetPasteSpent(vm.androidContext!!) },
             F.didClickPasteMorningBalance, { c: BC -> budgetPasteMorningBalance(vm.androidContext!!) },
+            F.didClickPasteSpent, { c: BC -> budgetPasteSpent(vm.androidContext!!) },
             F.pastedMorningBalance, { c: BC -> vm.inputMorningBalance.value = c.pastedMorningBalance },
-            F.pastedSpent, { c: BC -> vm.inputSpent.value = c.pastedSpent },
+            F.spent, { c: BC -> vm.spent.value = c.spent },
             F.result, { c: BC -> vm.result.value = c.result },
         )
         registerOneliners(budgetCtrl(), oneliners)

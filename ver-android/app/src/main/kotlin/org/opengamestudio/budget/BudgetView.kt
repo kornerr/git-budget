@@ -9,29 +9,29 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun Budget(
+fun BudgetView(
     modifier: Modifier = Modifier,
     vm: VM,
 ) {
     Column(
-        modifier = modifier.fillMaxSize().padding(horizontal = 24.dp)
+        modifier = modifier
+            .fillMaxSize()
+            .padding(horizontal = 24.dp)
     ) {
         Row {
             TextField(
                 keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
                 modifier = Modifier.weight(2f),
-                onValueChange = {
-                    vm.inputSpent.value = it 
-                    budgetCtrl().set("inputSpent", it)
-                },
-                placeholder = { Text(vm.inputSpentPlaceholder.value) },
-                value = vm.inputSpent.value,
+                onValueChange = { budgetSet(F.inputSpent, it) },
+                placeholder = { Text(vm.spentPlaceholder.value) },
+                value = vm.spent.value,
             )
+            Spacer(Modifier.width(8.dp))
             ElevatedButton(
                 modifier = Modifier.weight(1f),
-                onClick = { budgetCtrl().set("didClickPaste", true) },
+                onClick = { budgetSet(F.didClickPasteSpent, true) },
             ) {
-                Text(vm.inputSpentPasteTitle.value)
+                Text(vm.spentPasteTitle.value)
             }
         }
         Row {

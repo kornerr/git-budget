@@ -10,12 +10,12 @@ object VM {
     val inputMorningBalancePasteTitle = mutableStateOf("Paste")
     val inputMorningBalancePlaceholder = mutableStateOf("Morning balance")
 
-    val inputSpent = mutableStateOf("")
-    val inputSpentPasteTitle = mutableStateOf("Paste")
-    val inputSpentPlaceholder = mutableStateOf("Spent")
-
     val result = mutableStateOf("TODO-Result")
     val resultCopyTitle = mutableStateOf("Copy")
+
+    val spent = mutableStateOf("")
+    val spentPasteTitle = mutableStateOf("Paste")
+    val spentPlaceholder = mutableStateOf("Spent")
 
     fun reportFailure(
         title: String,

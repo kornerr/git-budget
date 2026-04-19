@@ -14,8 +14,8 @@ BudgetContext:
     type: context
     fields:
         didClickCopy: Bool
-        didClickPaste: Bool
         didClickPasteMorningBalance: Bool
+        didClickPasteSpent: Bool
         didLaunch: Bool
         didSetup: Bool
         inputDate: String
