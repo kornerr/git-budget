@@ -11,8 +11,6 @@ fun budgetCtrl(): KDController {
     return BudgetComponent.ctrl
 }
 
-//<!-- Constants -->
-
 //<!-- Component -->
 
 private typealias BC = BudgetContext
