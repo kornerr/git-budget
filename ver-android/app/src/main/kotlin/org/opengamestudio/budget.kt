@@ -20,7 +20,7 @@ object BudgetComponent {
 
     init {
         ctrl = KDController(BudgetContext())
-        setupComonentDebugging(ctrl, "Budget")
+        setupComponentDebugging(ctrl, "Budget")
 
         // Default values
         ctrl.set(F.reportedDate, budgetReportedDate())
