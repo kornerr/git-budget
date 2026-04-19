@@ -20,15 +20,11 @@ object BudgetComponent {
 
     init {
         ctrl = KDController(BudgetContext())
-        // Debug
-        ctrl.registerCallback { c ->
-            var value = "${c.field(c.recentField) as Any}"
-            println("ИГР BudgetC.init ctrl k/v: '${c.recentField}'/'$value'")
-        }
+        setupComonentDebugging(ctrl, "Budget")
 
         // Default values
-        ctrl.set("reportedDate", budgetReportedDate())
-        ctrl.set("reportedWeekday", budgetReportedWeekday())
+        ctrl.set(F.reportedDate, budgetReportedDate())
+        ctrl.set(F.reportedWeekday, budgetReportedWeekday())
 
         setupEffects()
         setupShoulds()

@@ -102,6 +102,12 @@ fun budgetContext(): BudgetContext {
     return BudgetContext()
 }
 
+/*
+fun budgetSet(k: String, v: Any) {
+    BudgetProto.ctrl.set(k, v)
+}
+*/
+
 // Остаток виден не во все дни. Не виден в:
 // 1. пятницу
 // 2. воскресенье
