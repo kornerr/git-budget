@@ -21,6 +21,26 @@ val BUDGET_WORKDAY_SUM = 6000f
 
 //<!-- Shoulds -->
 
+// Launch only once
+//
+// Purpose: Work around Android's activity restart
+//
+// Conditions:
+// 1. UI has been created the first time
+fun budgetShouldLaunch(c: BudgetContext): BudgetContext {
+    if (
+        c.recentField == F.didSetup &&
+        !c.didLaunch
+    ) {
+        c.didLaunch = true
+        c.recentField = F.didLaunch
+        return c
+    }
+
+    c.recentField = F.none
+    return c
+}
+
 /* Consolidate morning balance value
  *
  * Conditions:
@@ -101,20 +121,13 @@ fun budgetCtrl(): KDController {
     return BudgetProto.ctrl
 }
 
-fun budgetCtrlCtx(): MainContext {
-    return BudgetProto.ctrl.context as MainContext
+fun budgetCtrlCtx(): BudgetContext {
+    return BudgetProto.ctrl.context as BudgetContext
 }
 
-fun mainCtrlCtxField(): String {
-    return MainProto.ctrl.context.recentField
+fun budgetCtrlCtxField(): String {
+    return BudgetProto.ctrl.context.recentField
 }
-
-fun mainSet(k: String, v: Any) {
-    MainProto.ctrl.set(k, v)
-}
-
-
-
 
 // Остаток виден не во все дни. Не виден в:
 // 1. пятницу
@@ -136,7 +149,6 @@ fun budgetIsLeftVisible(reportedWeekday: Int): Boolean {
     return false
 }
 
-
 // Выходной ли в отчётный день?
 fun budgetIsWeekend(reportedWeekday: Int): Boolean {
     return reportedWeekday == BUDGET_WEEKDAY_SAT ||
@@ -150,6 +162,10 @@ fun budgetNumber(s: String): Float {
     // Переводим в число
     val almost = dotted.toFloatOrNull()
     return almost ?: 0f
+}
+
+fun budgetSet(k: String, v: Any) {
+    BudgetProto.ctrl.set(k, v)
 }
 
 // Ограничить двумя цифрами после запятой

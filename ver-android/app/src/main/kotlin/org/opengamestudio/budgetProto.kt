@@ -7,6 +7,7 @@ object BudgetProto {
         ctrl = KDController(BudgetContext())
         setupComponentDebugging(ctrl, "Budget")
         arrayOf(
+            ::budgetShouldLaunch,
             ::budgetShouldResetMorningBalance,
             ::budgetShouldResetResult,
             ::budgetShouldResetSpent,

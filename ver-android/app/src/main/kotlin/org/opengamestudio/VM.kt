@@ -17,12 +17,6 @@ object VM {
     val result = mutableStateOf("TODO-Result")
     val resultCopyTitle = mutableStateOf("Copy")
 
-    init {
-        budgetCtrl().set("didLaunch", true)
-        // Launch main component differently since it has no ctrl.
-        MainComponent.setupEffects()
-    }
-
     fun reportFailure(
         title: String,
         message: String

@@ -17,6 +17,7 @@ BudgetContext:
         didClickPaste: Bool
         didClickPasteMorningBalance: Bool
         didLaunch: Bool
+        didSetup: Bool
         inputDate: String
         inputMorningBalance: String
         inputSpent: String
