@@ -11,7 +11,6 @@ object BudgetProto {
             ::budgetShouldResetMorningBalance,
             ::budgetShouldResetResult,
             ::budgetShouldResetSpent,
-            ::budgetShouldResetSpentCombined,
         ).forEach { f ->
             ctrl.registerFunction { c -> f(c as BudgetContext) }
         }
