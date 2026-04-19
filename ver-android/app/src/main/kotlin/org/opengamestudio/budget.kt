@@ -5,52 +5,30 @@ import android.content.Context
 import java.time.LocalDate
 import java.time.temporal.ChronoField
 
-//<!-- API -->
-
-fun budgetCtrl(): KDController {
-    return BudgetComponent.ctrl
-}
-
 //<!-- Component -->
 
 private typealias BC = BudgetContext
 
 object BudgetComponent {
-    val ctrl: KDController
-
     init {
-        ctrl = KDController(BudgetContext())
-        setupComponentDebugging(ctrl, "Budget")
-
-        // Default values
-        ctrl.set(F.reportedDate, budgetReportedDate())
-        ctrl.set(F.reportedWeekday, budgetReportedWeekday())
-
-        setupEffects()
-        setupShoulds()
-    }
-
-    fun setupEffects() {
         val vm = VM
         val oneliners = arrayOf(
-            "didClickCopy", { c: BC -> budgetCopyResult(vm.androidContext!!, c.result) },
-            "didClickPaste", { c: BC -> budgetPasteSpent(vm.androidContext!!) },
-            "didClickPasteMorningBalance", { c: BC -> budgetPasteMorningBalance(vm.androidContext!!) },
-            "pastedMorningBalance", { c: BC -> vm.inputMorningBalance.value = c.pastedMorningBalance },
-            "pastedSpent", { c: BC -> vm.inputSpent.value = c.pastedSpent },
-            "result", { c: BC -> vm.result.value = c.result },
+            F.didClickCopy, { c: BC -> budgetCopyResult(vm.androidContext!!, c.result) },
+            F.didClickPaste, { c: BC -> budgetPasteSpent(vm.androidContext!!) },
+            F.didClickPasteMorningBalance, { c: BC -> budgetPasteMorningBalance(vm.androidContext!!) },
+            F.pastedMorningBalance, { c: BC -> vm.inputMorningBalance.value = c.pastedMorningBalance },
+            F.pastedSpent, { c: BC -> vm.inputSpent.value = c.pastedSpent },
+            F.result, { c: BC -> vm.result.value = c.result },
         )
-        registerOneliners(ctrl, oneliners)
+        registerOneliners(budgetCtrl(), oneliners)
+
+        // Defaults
+        budgetSet(F.reportedDate, budgetReportedDate())
+        budgetSet(F.reportedWeekday, budgetReportedWeekday())
     }
 
-    fun setupShoulds() {
-        arrayOf(
-          ::budgetShouldResetMorningBalance,
-          ::budgetShouldResetResult,
-          ::budgetShouldResetSpent,
-        ).forEach { f ->
-          ctrl.registerFunction { c -> f(c as BudgetContext) }
-        }
+    fun setup() {
+        budgetSet(F.didSetup, true)
     }
 }
 
@@ -67,12 +45,12 @@ fun budgetCopyResult(
 
 fun budgetPasteMorningBalance(ctx: Context) {
     val txt = clipboardText(ctx) ?: "N/A"
-    budgetCtrl().set("pastedMorningBalance", txt)
+    budgetSet(F.pastedMorningBalance, txt)
 }
 
 fun budgetPasteSpent(ctx: Context) {
     val txt = clipboardText(ctx) ?: "N/A"
-    budgetCtrl().set("pastedSpent", txt)
+    budgetSet(F.pastedSpent, txt)
 }
 
 //<!-- Other functions -->

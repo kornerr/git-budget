@@ -97,16 +97,24 @@ fun budgetShouldResetSpent(c: BudgetContext): BudgetContext {
 
 //<!-- Other functions -->
 
-// Create new BudgetContext instance (for SDK clients)
-fun budgetContext(): BudgetContext {
-    return BudgetContext()
+fun budgetCtrl(): KDController {
+    return BudgetProto.ctrl
 }
 
-/*
-fun budgetSet(k: String, v: Any) {
-    BudgetProto.ctrl.set(k, v)
+fun budgetCtrlCtx(): MainContext {
+    return BudgetProto.ctrl.context as MainContext
 }
-*/
+
+fun mainCtrlCtxField(): String {
+    return MainProto.ctrl.context.recentField
+}
+
+fun mainSet(k: String, v: Any) {
+    MainProto.ctrl.set(k, v)
+}
+
+
+
 
 // Остаток виден не во все дни. Не виден в:
 // 1. пятницу
