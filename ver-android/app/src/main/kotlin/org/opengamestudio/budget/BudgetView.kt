@@ -16,6 +16,7 @@ fun BudgetView(
     Column(
         modifier = modifier
             .fillMaxSize()
+            .padding(top = 8.dp)
             .padding(horizontal = 24.dp)
     ) {
         Row {
@@ -34,32 +35,32 @@ fun BudgetView(
                 Text(vm.spentPasteTitle.value)
             }
         }
+        Spacer(Modifier.height(8.dp))
         Row {
             TextField(
                 keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done),
-                modifier = Modifier.padding(top = 12.dp).weight(2f),
-                onValueChange = {
-                    vm.inputMorningBalance.value = it 
-                    budgetCtrl().set("inputMorningBalance", it)
-                },
-                placeholder = { Text(vm.inputMorningBalancePlaceholder.value) },
-                value = vm.inputMorningBalance.value,
+                modifier = Modifier.weight(2f),
+                onValueChange = { budgetSet(F.inputMorningBalance, it) },
+                placeholder = { Text(vm.morningBalancePlaceholder.value) },
+                value = vm.morningBalance.value,
             )
+            Spacer(Modifier.width(8.dp))
             ElevatedButton(
                 modifier = Modifier.weight(1f),
-                onClick = { budgetCtrl().set("didClickPasteMorningBalance", true) },
+                onClick = { budgetSet(F.didClickPasteMorningBalance, true) },
             ) {
-                Text(vm.inputMorningBalancePasteTitle.value)
+                Text(vm.morningBalancePasteTitle.value)
             }
         }
+        Spacer(Modifier.height(8.dp))
         Text(
             modifier = Modifier.padding(top = 12.dp),
             style = MaterialTheme.typography.bodyMedium,
             text = vm.result.value,
         )
+        Spacer(Modifier.height(8.dp))
         ElevatedButton(
-            modifier = Modifier.padding(top = 8.dp),
-            onClick = { budgetCtrl().set("didClickCopy", true) },
+            onClick = { budgetSet(F.didClickCopy, true) },
         ) {
             Text(vm.resultCopyTitle.value)
         }

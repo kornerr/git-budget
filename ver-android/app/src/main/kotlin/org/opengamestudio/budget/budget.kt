@@ -16,7 +16,7 @@ object BudgetComponent {
             F.didClickCopy, { c: BC -> budgetCopyResult(vm.androidContext!!, c.result) },
             F.didClickPasteMorningBalance, { c: BC -> budgetPasteMorningBalance(vm.androidContext!!) },
             F.didClickPasteSpent, { c: BC -> budgetPasteSpent(vm.androidContext!!) },
-            F.pastedMorningBalance, { c: BC -> vm.inputMorningBalance.value = c.pastedMorningBalance },
+            F.morningBalance, { c: BC -> vm.morningBalance.value = c.morningBalance },
             F.spent, { c: BC -> vm.spent.value = c.spent },
             F.result, { c: BC -> vm.result.value = c.result },
         )

@@ -6,9 +6,9 @@ import androidx.compose.runtime.mutableStateOf
 object VM {
     var androidContext: Context? = null
 
-    val inputMorningBalance = mutableStateOf("")
-    val inputMorningBalancePasteTitle = mutableStateOf("Paste")
-    val inputMorningBalancePlaceholder = mutableStateOf("Morning balance")
+    val morningBalance = mutableStateOf("")
+    val morningBalancePasteTitle = mutableStateOf("Paste")
+    val morningBalancePlaceholder = mutableStateOf("Morning balance")
 
     val result = mutableStateOf("TODO-Result")
     val resultCopyTitle = mutableStateOf("Copy")
