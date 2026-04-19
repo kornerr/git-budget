@@ -1,9 +1,13 @@
 package org.opengamestudio
 
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
@@ -53,16 +57,31 @@ fun BudgetView(
             }
         }
         Spacer(Modifier.height(8.dp))
-        Text(
-            modifier = Modifier.padding(top = 12.dp),
-            style = MaterialTheme.typography.bodyMedium,
-            text = vm.result.value,
-        )
-        Spacer(Modifier.height(8.dp))
-        FilledTonalButton(
-            onClick = { budgetSet(F.didClickCopy, true) },
+        Column(modifier = Modifier
+            .border(
+                color = Color.LightGray,
+                shape = RoundedCornerShape(8.dp),
+                width = 1.dp
+            )
+            .padding(8.dp)
+            .fillMaxWidth()
         ) {
-            Text(vm.resultCopyTitle.value)
+            Text(
+                modifier = Modifier.padding(top = 12.dp),
+                style = MaterialTheme.typography.bodyMedium,
+                text = vm.result.value,
+            )
+            Spacer(Modifier.height(8.dp))
+            Row(
+                horizontalArrangement = Arrangement.End,
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                FilledTonalButton(
+                    onClick = { budgetSet(F.didClickCopy, true) },
+                ) {
+                    Text(vm.resultCopyTitle.value)
+                }
+            }
         }
     }
 }
