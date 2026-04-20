@@ -1,5 +1,9 @@
 import gb
 
+func budgetCtrl() -> KDController {
+    BudgetProtoKt.budgetCtrl()
+}
+
 func budgetSet(_ k: String, _ v: Any) {
-    BudgetProtoKt.budgetSet(fieldName: k, value: v)
+    BudgetProtoKt.budgetSet(k: k, v: v)
 }
