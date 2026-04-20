@@ -8,46 +8,57 @@ struct BudgetView: View {
     }
 
     var body: some View {
-        HStack {
-            TextField(
-                "",
-                text: Binding(
-                    get: { vm.spent },
-                    set: { budgetSet(F.inputSpent, $0) }
-                ),
-                prompt: Text(vm.spentPlaceholder)
-            )
-                .textFieldStyle(.roundedBorder)
-            Button(action: { budgetSet(F.didClickPasteSpent, true) }) {
-                Text(vm.spentPasteTitle)
+        VStack(spacing: 8) {
+            HStack(spacing: 8) {
+                TextField(
+                    "",
+                    text: Binding(
+                        get: { vm.spent },
+                        set: { budgetSet(F.inputSpent, $0) }
+                    ),
+                    prompt: Text(vm.spentPlaceholder)
+                )
+                    .textFieldStyle(.roundedBorder)
+                Button(action: { budgetSet(F.didClickPasteSpent, true) }) {
+                    Text(vm.spentPasteTitle)
+                }
+                    .buttonStyle(.borderedProminent)
             }
+            HStack(spacing: 8) {
+                TextField(
+                    "",
+                    text: Binding(
+                        get: { vm.morningBalance },
+                        set: { budgetSet(F.inputMorningBalance, $0) }
+                    ),
+                    prompt: Text(vm.morningBalancePlaceholder)
+                )
+                    .textFieldStyle(.roundedBorder)
+                Button(action: { budgetSet(F.didClickPasteMorningBalance, true) }) {
+                    Text(vm.morningBalancePasteTitle)
+                }
+                    .buttonStyle(.borderedProminent)
+            }
+            VStack(spacing: 8) {
+                HStack {
+                    Text(vm.result)
+                    Spacer()
+                }
+                HStack {
+                    Spacer()
+                    Button(action: { budgetSet(F.didClickCopy, true) }) {
+                        Text(vm.resultCopyTitle)
+                    }
+                        .buttonStyle(.borderedProminent)
+                }
+            }
+                .padding()
+                .background(
+                    RoundedRectangle(cornerRadius: 8)
+                        .stroke(Color.gray.opacity(0.3), lineWidth: 1)
+                )
+            Spacer()
         }
-            .padding(24)
-        HStack {
-            TextField(
-                "",
-                text: Binding(
-                    get: { vm.morningBalance },
-                    set: { budgetSet(F.inputMorningBalance, $0) }
-                ),
-                prompt: Text(vm.morningBalancePlaceholder)
-            )
-                .textFieldStyle(.roundedBorder)
-            Button(action: { budgetSet(F.didClickPasteMorningBalance, true) }) {
-                Text(vm.morningBalancePasteTitle)
-            }
-        }
-            .padding([.leading, .bottom, .trailing], 24)
-        HStack {
-            HStack {
-                Text(vm.result)
-                Spacer()
-            }
-            Button(action: { budgetSet(F.didClickCopy, true) }) {
-                Text(vm.resultCopyTitle)
-            }
-        }
-            .padding([.leading, .trailing], 24)
-        Spacer()
+            .padding([.leading, .trailing])
     }
 }
