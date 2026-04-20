@@ -29,3 +29,6 @@ fun budgetCtrlCtxField(): String {
     return BudgetProto.ctrl.context.recentField
 }
 
+fun budgetSet(k: String, v: Any) {
+    BudgetProto.ctrl.set(k, v)
+}

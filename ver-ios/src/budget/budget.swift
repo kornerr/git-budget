@@ -18,7 +18,7 @@ class BudgetComponent {
             F.spent, { (c: BC) in vm().spent = c.spent },
             F.result, { (c: BC) in vm().result = c.result },
         ]
-        r = registerOneliners(ctrl, effects)
+        r = registerOneliners(budgetCtrl(), effects)
 
         // Defaults
         budgetSet(F.reportedDate, budgetReportedDate())
@@ -38,12 +38,12 @@ func budgetCopyResult(_ result: String) {
 
 func budgetPasteMorningBalance(_ vm: VM) {
     let txt = UIPasteboard.general.string ?? "N/A"
-    budgetCtrl().set("pastedMorningBalance", txt)
+    budgetSet(F.pastedMorningBalance, txt)
 }
 
 func budgetPasteSpent(_ vm: VM) {
     let txt = UIPasteboard.general.string ?? "N/A"
-    budgetCtrl().set("pastedSpent", txt)
+    budgetSet(F.pastedSpent, txt)
 }
 
 //<!-- Other functions -->

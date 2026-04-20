@@ -152,10 +152,6 @@ fun budgetNumber(s: String): Float {
     return almost ?: 0f
 }
 
-fun budgetSet(k: String, v: Any) {
-    BudgetProto.ctrl.set(k, v)
-}
-
 // Ограничить двумя цифрами после запятой
 fun budgetStringNumber(
     value: Float,
