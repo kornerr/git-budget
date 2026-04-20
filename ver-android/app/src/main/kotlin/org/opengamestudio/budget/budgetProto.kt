@@ -16,3 +16,16 @@ object BudgetProto {
         }
     }
 }
+
+fun budgetCtrl(): KDController {
+    return BudgetProto.ctrl
+}
+
+fun budgetCtrlCtx(): BudgetContext {
+    return BudgetProto.ctrl.context as BudgetContext
+}
+
+fun budgetCtrlCtxField(): String {
+    return BudgetProto.ctrl.context.recentField
+}
+

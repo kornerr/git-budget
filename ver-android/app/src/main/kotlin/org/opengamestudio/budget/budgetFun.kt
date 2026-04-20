@@ -117,18 +117,6 @@ fun budgetShouldResetSpent(c: BudgetContext): BudgetContext {
 
 //<!-- Other functions -->
 
-fun budgetCtrl(): KDController {
-    return BudgetProto.ctrl
-}
-
-fun budgetCtrlCtx(): BudgetContext {
-    return BudgetProto.ctrl.context as BudgetContext
-}
-
-fun budgetCtrlCtxField(): String {
-    return BudgetProto.ctrl.context.recentField
-}
-
 // Остаток виден не во все дни. Не виден в:
 // 1. пятницу
 // 2. воскресенье
