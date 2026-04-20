@@ -10,31 +10,31 @@ struct BudgetView: View {
     var body: some View {
         HStack {
             TextField(
-                vm.inputSpentLabel,
+                "",
                 text: Binding(
                     get: { vm.spent },
                     set: { budgetSet(F.inputSpent, $0) }
                 ),
-                prompt: Text(vm.inputSpentPlaceholder)
+                prompt: Text(vm.spentPlaceholder)
             )
                 .textFieldStyle(.roundedBorder)
             Button(action: { budgetSet(F.didClickPasteSpent, true) }) {
-                Text(vm.inputSpentPasteTitle)
+                Text(vm.spentPasteTitle)
             }
         }
             .padding(24)
         HStack {
             TextField(
-                vm.inputMorningBalanceLabel,
+                "",
                 text: Binding(
                     get: { vm.morningBalance },
                     set: { budgetSet(F.inputMorningBalance, $0) }
                 ),
-                prompt: Text(vm.inputMorningBalancePlaceholder)
+                prompt: Text(vm.morningBalancePlaceholder)
             )
                 .textFieldStyle(.roundedBorder)
             Button(action: { budgetSet(F.didClickPasteMorningBalance, true) }) {
-                Text(vm.inputMorningBalancePasteTitle)
+                Text(vm.morningBalancePasteTitle)
             }
         }
             .padding([.leading, .bottom, .trailing], 24)

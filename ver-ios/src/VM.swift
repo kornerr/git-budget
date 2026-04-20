@@ -2,14 +2,12 @@ import Combine
 
 class VM: ObservableObject {
     @Published var morningBalance = ""
-    @Published var inputMorningBalanceLabel = "Morning balance"
-    @Published var inputMorningBalancePasteTitle = "Paste"
-    @Published var inputMorningBalancePlaceholder = "TODO-Morning-balance"
+    @Published var morningBalancePasteTitle = "Paste"
+    @Published var morningBalancePlaceholder = "Morning balance"
 
     @Published var spent = ""
-    @Published var inputSpentLabel = "Spent"
-    @Published var inputSpentPasteTitle = "Paste"
-    @Published var inputSpentPlaceholder = "Spent"
+    @Published var spentPasteTitle = "Paste"
+    @Published var spentPlaceholder = "Spent"
 
     @Published var result = "TODO-Result"
     @Published var resultCopyTitle = "Copy"
