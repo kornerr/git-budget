@@ -7,6 +7,12 @@ output:
         type: kotlin
     ver-ios/src/ignore.kd.swift:
         type: swift
+    sdk-mac-x64/gb/src/nativeMain/kotlin/org/opengamestudio/ignore.kd.kt:
+        type: c++sdk
+    ver-mac-x64/src/ignore.kd.h:
+        type: c++hdr
+    ver-mac-x64/src/ignore.kd.cpp:
+        type: c++src
 
 kotlin: package org.opengamestudio
 swift: import gb
