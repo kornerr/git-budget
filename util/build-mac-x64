@@ -9,4 +9,4 @@ STEP=0
 source $T/cloneKD
 source $T/genKD
 source $T/buildDesktopSDK
-#source $T/buildDesktop
+source $T/buildDesktop

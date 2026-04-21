@@ -1,0 +1,11 @@
+#!/bin/bash
+
+STEP=$((STEP+1))
+echo -e "\n> > > > Step №$STEP. Build Desktop: $DESKTOP"
+
+BUILD_DIR=$SDIR/../ver-$DESKTOP/build
+
+mkdir -p $BUILD_DIR
+cd $BUILD_DIR
+cmake ..
+cmake --build .
