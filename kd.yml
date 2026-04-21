@@ -14,6 +14,8 @@ output:
     ver-mac-x64/src/ignore.kd.cpp:
         type: c++src
 
+c++sdk: package org.opengamestudio
+c++sdk: import kotlinx.cinterop.*
 kotlin: package org.opengamestudio
 swift: import gb
 
