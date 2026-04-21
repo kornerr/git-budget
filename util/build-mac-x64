@@ -1,0 +1,12 @@
+#!/bin/bash -e
+SDIR=$(cd "$(dirname "$0")" ; pwd -P)
+T=$SDIR/step
+source $SDIR/other
+
+DESKTOP=mac-x64
+
+STEP=0
+source $T/cloneKD
+source $T/genKD
+source $T/buildDesktopSDK
+#source $T/buildDesktop
