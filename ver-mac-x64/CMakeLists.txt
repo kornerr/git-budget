@@ -29,7 +29,7 @@ qt_add_qml_module(
 
 # SDK
 add_library(gb SHARED IMPORTED)
-set_target_properties(gb PROPERTIES IMPORTED_LOCATION ${CMAKE_SOURCE_DIR}/../sdk-mac-x64/hw/build/bin/native/releaseShared/libgb.dylib)
+set_target_properties(gb PROPERTIES IMPORTED_LOCATION ${CMAKE_SOURCE_DIR}/../sdk-mac-x64/gb/build/bin/native/releaseShared/libgb.dylib)
 target_include_directories(
     gbM64
     PRIVATE

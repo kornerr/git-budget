@@ -19,6 +19,6 @@ BudgetComponent::BudgetComponent() {
     */
 }
 
-void budgetComponent::setup() {
+void BudgetComponent::setup() {
     budgetSet(F.didSetup, true);
 }
