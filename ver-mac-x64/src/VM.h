@@ -7,20 +7,9 @@
 class VM: public QObject {
     Q_OBJECT
 
-    Q_PROPERTY(
-        bool mainIsVisible
-        READ mainIsVisible
-        WRITE mainSetIsVisible
-        NOTIFY mainDidChangeIsVisible
-    )
-    Q_PROPERTY(QString spent READ spent WRITE setSpent NOTIFY spentChanged)
-    Q_PROPERTY(
-        QString morningBalance
-        READ morningBalance
-        WRITE setMorningBalance
-        NOTIFY morningBalanceChanged
-    )
+    Q_PROPERTY(QString morningBalance READ morningBalance WRITE setMorningBalance NOTIFY morningBalanceChanged)
     Q_PROPERTY(QString result READ result WRITE setResult NOTIFY resultChanged)
+    Q_PROPERTY(QString spent READ spent WRITE setSpent NOTIFY spentChanged)
 
     private:
         VM();
@@ -35,28 +24,24 @@ class VM: public QObject {
         }
 
     public:
-        bool mainIsVisible() const;
-        QString spent() const;
         QString morningBalance() const;
         QString result() const;
+        QString spent() const;
 
     public slots:
-        void mainSetIsVisible(bool value);
-        void setSpent(const QString &value);
         void setMorningBalance(const QString &value);
         void setResult(const QString &value);
+        void setSpent(const QString &value);
 
     signals:
-        void mainDidChangeIsVisible(bool value);
-        void spentChanged();
         void morningBalanceChanged();
         void resultChanged();
+        void spentChanged();
 
     private:
-        bool _mainIsVisible;
-        QString _spent;
         QString _morningBalance;
         QString _result;
+        QString _spent;
 };
 
 #endif // GB_VM_H

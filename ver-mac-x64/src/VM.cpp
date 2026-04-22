@@ -1,16 +1,7 @@
 #include "VM.h"
 
 VM::VM() : QObject() {
-    _mainIsVisible = false;
     _result = QStringLiteral("TODO-Result");
-}
-
-bool VM::mainIsVisible() const {
-    return _mainIsVisible;
-}
-
-QString VM::spent() const {
-    return _spent;
 }
 
 QString VM::morningBalance() const {
@@ -21,17 +12,8 @@ QString VM::result() const {
     return _result;
 }
 
-void VM::mainSetIsVisible(bool value) {
-    _mainIsVisible = value;
-    emit mainDidChangeIsVisible(value);
-}
-
-void VM::setSpent(const QString &value) {
-    if (_spent == value) {
-        return;
-    }
-    _spent = value;
-    emit spentChanged();
+QString VM::spent() const {
+    return _spent;
 }
 
 void VM::setMorningBalance(const QString &value) {
@@ -48,4 +30,12 @@ void VM::setResult(const QString &value) {
     }
     _result = value;
     emit resultChanged();
+}
+
+void VM::setSpent(const QString &value) {
+    if (_spent == value) {
+        return;
+    }
+    _spent = value;
+    emit spentChanged();
 }

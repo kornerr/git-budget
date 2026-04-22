@@ -2,8 +2,8 @@
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
 
-#include "ignore.kd.h"
 #include "budget.h"
+#include "ignore.kd.h"
 #include "VM.h"
 
 int main(int argc, char *argv[]) {
