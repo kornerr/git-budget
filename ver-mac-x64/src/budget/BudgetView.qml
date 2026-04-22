@@ -22,11 +22,25 @@ Rectangle {
                     Layout.fillWidth: true
                     onTextChanged: api.budgetSet(F.inputSpent, text)
                     placeholderText: "Spent"
-                    //selectByMouse: true
                     text: vm.spent
                 }
                 Button {
                     onClicked: api.budgetSet(F.didClickPasteSpent, true)
+                    text: "Paste"
+                }
+            }
+            RowLayout {
+                Layout.fillWidth: true
+        
+                TextField {
+                    Layout.fillWidth: true
+
+                    onTextChanged: api.budgetSet(F.inputMorningBalance, text)
+                    placeholderText: "Morning balance"
+                    text: vm.morningBalance
+                }
+                Button {
+                    onClicked: api.budgetSet(F.didClickPasteMorningBalance, true)
                     text: "Paste"
                 }
             }
@@ -35,33 +49,6 @@ Rectangle {
 }
 
 /*
-    ColumnLayout {
-        anchors.fill: parent
-        anchors.leftMargin: 12
-        anchors.rightMargin: 12
-        spacing: 8
-
-
-        RowLayout {
-            Layout.fillWidth: true
-            spacing: 8
-
-            TextField {
-                id: morningField
-                Layout.fillWidth: true
-                placeholderText: qsTr("Morning balance")
-                selectByMouse: true
-                text: vm.morningBalance
-                onTextChanged: api.budgetSet(F.inputMorningBalance, text)
-            }
-
-            Button {
-                highlighted: true
-                text: qsTr("Paste")
-                onClicked: api.budgetSet(F.didClickPasteMorningBalance, true)
-            }
-        }
-
         Rectangle {
             Layout.fillWidth: true
             color: "transparent"
