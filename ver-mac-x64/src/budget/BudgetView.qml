@@ -1,17 +1,15 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import QtQuick.Window
 
 Rectangle {
-    id: budgetView
-    color: Window.window ? Window.window.color : palette.window
-
-    SystemPalette {
-        id: palette
-        colorGroup: SystemPalette.Active
+    anchors.fill: parent
+    Label {
+        text: "dbg"
     }
+}
 
+/*
     ColumnLayout {
         anchors.fill: parent
         anchors.leftMargin: 12
@@ -114,3 +112,4 @@ Rectangle {
         }
     }
 }
+*/
