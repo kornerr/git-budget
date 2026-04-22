@@ -9,9 +9,9 @@ qt_standard_project_setup(REQUIRES 6.8)
 set(
     SOURCES
     src/App.cpp
+    src/budget/budget.cpp
     src/ignore.kd.cpp
     src/VM.cpp
-    src/budget/budget.cpp
 )
 qt_wrap_cpp(
     SOURCES
@@ -23,8 +23,8 @@ qt_add_qml_module(
     gbM64
     URI gitbudget
     QML_FILES
-    src/AppView.qml
     src/budget/BudgetView.qml
+    src/AppView.qml
 )
 
 # SDK

@@ -8,3 +8,8 @@ cd $SDIR/../sdk-ios/gb/src/commonMain/kotlin/org/opengamestudio
 tmux new-window -n sdk-i
 cd $SDIR/../ver-ios/src
 tmux new-window -n i
+
+cd $SDIR/../sdk-mac-x64/gb/src/nativeMain/kotlin/org/opengamestudio
+tmux new-window -n sdk-m
+cd $SDIR/../ver-mac-x64/src
+tmux new-window -n m

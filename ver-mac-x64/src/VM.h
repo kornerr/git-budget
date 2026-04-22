@@ -2,6 +2,7 @@
 #define GB_VM_H
 
 #include <QObject>
+#include <QString>
 
 class VM: public QObject {
     Q_OBJECT
@@ -12,6 +13,14 @@ class VM: public QObject {
         WRITE mainSetIsVisible
         NOTIFY mainDidChangeIsVisible
     )
+    Q_PROPERTY(QString spent READ spent WRITE setSpent NOTIFY spentChanged)
+    Q_PROPERTY(
+        QString morningBalance
+        READ morningBalance
+        WRITE setMorningBalance
+        NOTIFY morningBalanceChanged
+    )
+    Q_PROPERTY(QString result READ result WRITE setResult NOTIFY resultChanged)
 
     private:
         VM();
@@ -27,15 +36,27 @@ class VM: public QObject {
 
     public:
         bool mainIsVisible() const;
+        QString spent() const;
+        QString morningBalance() const;
+        QString result() const;
 
     public slots:
         void mainSetIsVisible(bool value);
+        void setSpent(const QString &value);
+        void setMorningBalance(const QString &value);
+        void setResult(const QString &value);
 
     signals:
         void mainDidChangeIsVisible(bool value);
+        void spentChanged();
+        void morningBalanceChanged();
+        void resultChanged();
 
     private:
         bool _mainIsVisible;
+        QString _spent;
+        QString _morningBalance;
+        QString _result;
 };
 
 #endif // GB_VM_H

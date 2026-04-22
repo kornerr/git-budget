@@ -21,14 +21,13 @@ int main(int argc, char *argv[]) {
     API api;
     FObj fobj;
     // Create and launch components
-    BudgetComponent m;
-    m.setup();
+    BudgetComponent budget;
+    budget.setup();
 
     // Configure and load QML
     engine.rootContext()->setContextProperty("api", &api);
     engine.rootContext()->setContextProperty("F", &fobj);
     engine.rootContext()->setContextProperty("vm", &VM::singleton());
-    engine.loadFromModule("gitbudget", "BudgetView");
     engine.loadFromModule("gitbudget", "AppView");
 
     return app.exec();
