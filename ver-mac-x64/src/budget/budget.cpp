@@ -31,5 +31,3 @@ BudgetComponent::BudgetComponent() {
 void BudgetComponent::setup() {
     budgetSet(F.didSetup, true);
 }
-
-#undef VM
