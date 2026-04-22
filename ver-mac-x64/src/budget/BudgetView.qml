@@ -4,8 +4,33 @@ import QtQuick.Layouts
 
 Rectangle {
     anchors.fill: parent
-    Label {
-        text: "dbg"
+    Rectangle {
+        anchors.centerIn: parent
+        height: card.implicitHeight + 2 * padding
+        property int padding: 24
+        width: Math.min(320, Math.max(0, parent.width - 2 * padding))
+
+        ColumnLayout {
+            anchors.fill: parent
+            anchors.margins: parent.padding
+            id: card
+
+            RowLayout {
+                Layout.fillWidth: true
+        
+                TextField {
+                    Layout.fillWidth: true
+                    onTextChanged: api.budgetSet(F.inputSpent, text)
+                    placeholderText: "Spent"
+                    //selectByMouse: true
+                    text: vm.spent
+                }
+                Button {
+                    onClicked: api.budgetSet(F.didClickPasteSpent, true)
+                    text: "Paste"
+                }
+            }
+        }
     }
 }
 
@@ -16,25 +41,6 @@ Rectangle {
         anchors.rightMargin: 12
         spacing: 8
 
-        RowLayout {
-            Layout.fillWidth: true
-            spacing: 8
-
-            TextField {
-                id: spentField
-                Layout.fillWidth: true
-                placeholderText: qsTr("Spent")
-                selectByMouse: true
-                text: vm.spent
-                onTextChanged: api.budgetSet(F.inputSpent, text)
-            }
-
-            Button {
-                highlighted: true
-                text: qsTr("Paste")
-                onClicked: api.budgetSet(F.didClickPasteSpent, true)
-            }
-        }
 
         RowLayout {
             Layout.fillWidth: true
