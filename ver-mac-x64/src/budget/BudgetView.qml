@@ -59,6 +59,13 @@ Rectangle {
                     onClicked: api.budgetSet(F.didClickCopy, true)
                 }
             }
+            Rectangle {
+                border.color: "lightgray"
+                border.width: 1
+                height: 16
+                radius: 8
+                width: 16
+            }
         }
     }
 }
