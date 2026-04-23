@@ -44,9 +44,9 @@ Rectangle {
                     text: "Paste"
                 }
             }
-            Item {
+            Label {
                 Layout.fillWidth: true
-                //text: vm.result
+                text: vm.result
             }
             Rectangle {
                 border.color: "lightgray"
