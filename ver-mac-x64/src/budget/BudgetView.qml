@@ -47,19 +47,31 @@ Rectangle {
             Rectangle {
                 border.color: "lightgray"
                 border.width: 1
-                Layout.fillWidth: true
+                height: result.implicitHeight + 2 * padding
+                property int padding: 8
                 radius: 8
+                width: Math.min(310, Math.max(0, parent.width - 2 * padding))
         
                 ColumnLayout {
                     anchors.fill: parent
-                    anchors.margins: 8
+                    anchors.margins: parent.padding
+                    id: result
                     spacing: 8
         
                     Label {
                         Layout.fillWidth: true
                         text: vm.result
-                        wrapMode: Text.Wrap
                     }
+                    Item {
+                        Layout.fillWidth: true
+                        Button {
+                            anchors.right: parent.right
+                            text: "Copy"
+                        }
+                    }
+
+
+                    /*
         
                     RowLayout {
                         Layout.fillWidth: true
@@ -72,6 +84,7 @@ Rectangle {
                             onClicked: api.budgetSet(F.didClickCopy, true)
                         }
                     }
+                    */
                 }
             }
         }
