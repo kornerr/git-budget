@@ -44,10 +44,13 @@ Rectangle {
                     text: "Paste"
                 }
             }
-            RowLayout {
+            Item {
                 Layout.fillWidth: true
+                height: copy.implicitHeight
 
                 Button {
+                    anchors.right: parent.right
+                    id: copy
                     text: "Copy"
                     onClicked: api.budgetSet(F.didClickCopy, true)
                 }
