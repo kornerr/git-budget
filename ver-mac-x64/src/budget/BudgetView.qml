@@ -44,45 +44,41 @@ Rectangle {
                     text: "Paste"
                 }
             }
+            Rectangle {
+                border.color: "lightgray"
+                border.width: 1
+                Layout.fillWidth: true
+                radius: 8
+        
+                ColumnLayout {
+                    anchors.fill: parent
+                    anchors.margins: 8
+                    spacing: 8
+        
+                    Label {
+                        Layout.fillWidth: true
+                        text: vm.result
+                        wrapMode: Text.Wrap
+                    }
+        
+                    RowLayout {
+                        Layout.fillWidth: true
+        
+                        Item {
+                            Layout.fillWidth: true
+                        }
+                        Button {
+                            text: "Copy"
+                            onClicked: api.budgetSet(F.didClickCopy, true)
+                        }
+                    }
+                }
+            }
         }
     }
 }
 
 /*
-        Rectangle {
-            Layout.fillWidth: true
-            color: "transparent"
-            border.color: Qt.rgba(0.5, 0.5, 0.5, 0.3)
-            border.width: 1
-            radius: 8
-
-            ColumnLayout {
-                anchors.fill: parent
-                anchors.margins: 8
-                spacing: 8
-
-                Label {
-                    Layout.fillWidth: true
-                    wrapMode: Text.Wrap
-                    text: vm.result
-                }
-
-                RowLayout {
-                    Layout.fillWidth: true
-                    spacing: 0
-
-                    Item {
-                        Layout.fillWidth: true
-                    }
-
-                    Button {
-                        highlighted: true
-                        text: qsTr("Copy")
-                        onClicked: api.budgetSet(F.didClickCopy, true)
-                    }
-                }
-            }
-        }
 
         Item {
             Layout.fillHeight: true
