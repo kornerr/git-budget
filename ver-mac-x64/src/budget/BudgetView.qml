@@ -44,49 +44,64 @@ Rectangle {
                     text: "Paste"
                 }
             }
-            Rectangle {
-                border.color: "lightgray"
-                border.width: 1
-                height: result.implicitHeight + 2 * padding
-                property int padding: 8
-                radius: 8
-                width: Math.min(310, Math.max(0, parent.width - 2 * padding))
-        
-                ColumnLayout {
-                    anchors.fill: parent
-                    anchors.margins: parent.padding
-                    id: result
-                    spacing: 8
-        
-                    Label {
-                        Layout.fillWidth: true
-                        text: vm.result
-                    }
-                    Item {
-                        Layout.fillWidth: true
-                        Button {
-                            anchors.right: parent.right
-                            text: "Copy"
-                        }
-                    }
+            RowLayout {
+                Layout.fillWidth: true
 
-
-                    /*
-        
-                    RowLayout {
-                        Layout.fillWidth: true
-        
-                        Item {
-                            Layout.fillWidth: true
-                        }
-                        Button {
-                            text: "Copy"
-                            onClicked: api.budgetSet(F.didClickCopy, true)
-                        }
-                    }
-                    */
+                Button {
+                    text: "Copy"
+                    onClicked: api.budgetSet(F.didClickCopy, true)
                 }
             }
         }
     }
 }
+
+/*
+            Item {
+                id: resultPanel
+                height: result.implicitHeight + 2 * panelPadding
+                property int panelPadding: 8
+                width: Math.min(310, Math.max(0, parent.width - 2 * panelPadding))
+
+                Rectangle {
+                    anchors.fill: parent
+                    color: "#a0a0a0"
+                    radius: 8
+                }
+                Rectangle {
+                    anchors.fill: parent
+                    anchors.margins: 2
+                    color: "white"
+                    radius: 6
+
+                    ColumnLayout {
+                        id: result
+                        anchors.fill: parent
+                        anchors.margins: 6
+                        spacing: 8
+
+                        Label {
+                            Layout.fillWidth: true
+                            text: vm.result
+                        }
+                        Item {
+                            Layout.fillWidth: true
+                            Button {
+                                anchors.right: parent.right
+                                text: "Copy"
+                            }
+                        }
+
+                    RowLayout {
+                        Layout.fillWidth: true
+                        Item {
+                            Layout.fillWidth: true
+                        }
+                    }
+                    }
+                }
+            }
+        }
+    }
+}
+*/
