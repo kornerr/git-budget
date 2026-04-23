@@ -90,28 +90,3 @@ Rectangle {
         }
     }
 }
-
-/*
-
-        Item {
-            Layout.fillHeight: true
-        }
-    }
-
-    Connections {
-        target: vm
-
-        function onSpentChanged() {
-            if (!spentField.activeFocus) {
-                spentField.text = vm.spent
-            }
-        }
-
-        function onMorningBalanceChanged() {
-            if (!morningField.activeFocus) {
-                morningField.text = vm.morningBalance
-            }
-        }
-    }
-}
-*/
