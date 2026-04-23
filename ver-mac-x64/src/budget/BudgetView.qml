@@ -44,6 +44,10 @@ Rectangle {
                     text: "Paste"
                 }
             }
+            Label {
+                Layout.fillWidth: true
+                text: vm.result
+            }
             Item {
                 Layout.fillWidth: true
                 height: copy.implicitHeight
@@ -83,10 +87,6 @@ Rectangle {
                         anchors.margins: 6
                         spacing: 8
 
-                        Label {
-                            Layout.fillWidth: true
-                            text: vm.result
-                        }
                         Item {
                             Layout.fillWidth: true
                             Button {
