@@ -48,70 +48,35 @@ Rectangle {
                 Layout.fillWidth: true
                 text: vm.result
             }
-            Item {
-                Layout.fillWidth: true
-                height: copy.implicitHeight
-
-                Button {
-                    anchors.right: parent.right
-                    id: copy
-                    text: "Copy"
-                    onClicked: api.budgetSet(F.didClickCopy, true)
-                }
-            }
             Rectangle {
                 border.color: "lightgray"
                 border.width: 1
-                height: 16
+                height: res.implicitHeight + 1.5 * padding
+                property int padding: 8
                 radius: 8
-                width: 16
-            }
-        }
-    }
-}
+                width: parent.width
 
-/*
-            Item {
-                id: resultPanel
-                height: result.implicitHeight + 2 * panelPadding
-                property int panelPadding: 8
-                width: Math.min(310, Math.max(0, parent.width - 2 * panelPadding))
-
-                Rectangle {
+                ColumnLayout {
                     anchors.fill: parent
-                    color: "#a0a0a0"
-                    radius: 8
-                }
-                Rectangle {
-                    anchors.fill: parent
-                    anchors.margins: 2
-                    color: "white"
-                    radius: 6
+                    anchors.margins: parent.padding
+                    id: res
 
-                    ColumnLayout {
-                        id: result
-                        anchors.fill: parent
-                        anchors.margins: 6
-                        spacing: 8
-
-                        Item {
-                            Layout.fillWidth: true
-                            Button {
-                                anchors.right: parent.right
-                                text: "Copy"
-                            }
-                        }
-
-                    RowLayout {
+                    Label {
+                        text: vm.result
+                    }
+                    Item {
                         Layout.fillWidth: true
-                        Item {
-                            Layout.fillWidth: true
+                        height: copy.implicitHeight
+                   
+                        Button {
+                            anchors.right: parent.right
+                            id: copy
+                            text: "Copy"
+                            onClicked: api.budgetSet(F.didClickCopy, true)
                         }
-                    }
                     }
                 }
             }
         }
     }
 }
-*/
