@@ -2,6 +2,7 @@
 #include <vector>
 
 #include "budget.h"
+#include "budgetEffects.h"
 #include "ignore.kd.h"
 #include "VM.h"
 
@@ -10,8 +11,8 @@
 
 BudgetComponent::BudgetComponent() {
     std::vector<std::any> oneliners = {
-      /*
         F.didClickCopy, CB( budgetCopyResult(c.result()); ),
+      /*
         F.didClickPasteMorningBalance, CB( budgetPasteMorningBalance(); ),
         F.didClickPasteSpent, CB( budgetPasteSpent(); ),
       */

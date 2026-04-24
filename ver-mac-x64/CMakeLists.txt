@@ -10,6 +10,7 @@ set(
     SOURCES
     src/App.cpp
     src/budget/budget.cpp
+    src/budget/budgetEffects.cpp
     src/ignore.kd.cpp
     src/VM.cpp
 )
