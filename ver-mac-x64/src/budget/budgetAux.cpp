@@ -8,3 +8,9 @@ QString budgetReportedDate() {
         .arg(yesterday.day(), 2, 10, QChar(u'0'))
         .arg(yesterday.month(), 2, 10, QChar(u'0'));
 }
+
+int budgetReportedWeekday() {
+    QDate yesterday = QDate::currentDate().addDays(-1);
+    return yesterday.dayOfWeek();
+}
+

@@ -4,5 +4,6 @@
 #include <QString>
 
 QString budgetReportedDate();
+int budgetReportedWeekday();
 
 #endif // GB_BUDGET_AUX_H

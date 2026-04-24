@@ -25,7 +25,7 @@ BudgetComponent::BudgetComponent() {
 
     // Defaults
     budgetSet(F.reportedDate, budgetReportedDate());
-    //budgetSet(std::string(F.reportedWeekday), budgetReportedWeekday());
+    budgetSet(F.reportedWeekday, budgetReportedWeekday());
 }
 
 void BudgetComponent::setup() {
