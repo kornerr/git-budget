@@ -44,17 +44,13 @@ Rectangle {
                     text: "Paste"
                 }
             }
-            Label {
-                Layout.fillWidth: true
-                text: vm.result
-            }
             Rectangle {
                 border.color: "lightgray"
                 border.width: 1
                 height: res.implicitHeight + 1.5 * padding
+                Layout.fillWidth: true
                 property int padding: 8
                 radius: 8
-                width: parent.width
 
                 ColumnLayout {
                     anchors.fill: parent
