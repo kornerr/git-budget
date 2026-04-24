@@ -10,8 +10,10 @@ set(
     SOURCES
     src/App.cpp
     src/budget/budget.cpp
+    src/budget/budgetAux.cpp
     src/budget/budgetEffects.cpp
     src/ignore.kd.cpp
+    src/KT.cpp
     src/VM.cpp
 )
 qt_wrap_cpp(

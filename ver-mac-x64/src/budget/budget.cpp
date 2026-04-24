@@ -2,6 +2,7 @@
 #include <vector>
 
 #include "budget.h"
+#include "budgetAux.h"
 #include "budgetEffects.h"
 #include "ignore.kd.h"
 #include "VM.h"
@@ -22,11 +23,9 @@ BudgetComponent::BudgetComponent() {
     };
     BudgetEffectRegistry::registerOneliners(KT.budgetCtrl(), oneliners);
 
-    /*
-    std::string rd = budgetReportedDate().toStdString();
-    budgetSet(std::string(F.reportedDate), rd.c_str());
-    budgetSet(std::string(F.reportedWeekday), budgetReportedWeekday());
-    */
+    // Defaults
+    budgetSet(F.reportedDate, budgetReportedDate());
+    //budgetSet(std::string(F.reportedWeekday), budgetReportedWeekday());
 }
 
 void BudgetComponent::setup() {
