@@ -1,11 +1,23 @@
 #include "VM.h"
 
 VM::VM() : QObject() {
+    _morningBalancePasteTitle = QStringLiteral("Paste");
+    _morningBalancePlaceholder = QStringLiteral("Morning balance");
     _result = QStringLiteral("TODO-Result");
+    _spentPasteTitle = QStringLiteral("Paste");
+    _spentPlaceholder = QStringLiteral("Spent");
 }
 
 QString VM::morningBalance() const {
     return _morningBalance;
+}
+
+QString VM::morningBalancePasteTitle() const {
+    return _morningBalancePasteTitle;
+}
+
+QString VM::morningBalancePlaceholder() const {
+    return _morningBalancePlaceholder;
 }
 
 QString VM::result() const {
@@ -16,12 +28,36 @@ QString VM::spent() const {
     return _spent;
 }
 
+QString VM::spentPasteTitle() const {
+    return _spentPasteTitle;
+}
+
+QString VM::spentPlaceholder() const {
+    return _spentPlaceholder;
+}
+
 void VM::setMorningBalance(const QString &value) {
     if (_morningBalance == value) {
         return;
     }
     _morningBalance = value;
     emit morningBalanceChanged();
+}
+
+void VM::setMorningBalancePasteTitle(const QString &value) {
+    if (_morningBalancePasteTitle == value) {
+        return;
+    }
+    _morningBalancePasteTitle = value;
+    emit morningBalancePasteTitleChanged();
+}
+
+void VM::setMorningBalancePlaceholder(const QString &value) {
+    if (_morningBalancePlaceholder == value) {
+        return;
+    }
+    _morningBalancePlaceholder = value;
+    emit morningBalancePlaceholderChanged();
 }
 
 void VM::setResult(const QString &value) {
@@ -38,4 +74,20 @@ void VM::setSpent(const QString &value) {
     }
     _spent = value;
     emit spentChanged();
+}
+
+void VM::setSpentPasteTitle(const QString &value) {
+    if (_spentPasteTitle == value) {
+        return;
+    }
+    _spentPasteTitle = value;
+    emit spentPasteTitleChanged();
+}
+
+void VM::setSpentPlaceholder(const QString &value) {
+    if (_spentPlaceholder == value) {
+        return;
+    }
+    _spentPlaceholder = value;
+    emit spentPlaceholderChanged();
 }

@@ -21,12 +21,12 @@ Rectangle {
                 TextField {
                     Layout.fillWidth: true
                     onTextChanged: api.budgetSet(F.inputSpent, text)
-                    placeholderText: "Spent"
+                    placeholderText: vm.spentPlaceholder
                     text: vm.spent
                 }
                 Button {
                     onClicked: api.budgetSet(F.didClickPasteSpent, true)
-                    text: "Paste"
+                    text: vm.spentPasteTitle
                 }
             }
             RowLayout {
@@ -36,12 +36,12 @@ Rectangle {
                     Layout.fillWidth: true
 
                     onTextChanged: api.budgetSet(F.inputMorningBalance, text)
-                    placeholderText: "Morning balance"
+                    placeholderText: vm.morningBalancePlaceholder
                     text: vm.morningBalance
                 }
                 Button {
                     onClicked: api.budgetSet(F.didClickPasteMorningBalance, true)
-                    text: "Paste"
+                    text: vm.morningBalancePasteTitle
                 }
             }
             Rectangle {
