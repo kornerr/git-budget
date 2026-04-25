@@ -14,7 +14,7 @@ BudgetComponent::BudgetComponent() {
     std::vector<std::any> oneliners = {
         F.didClickCopy, CB( budgetCopyResult(c.result()); ),
         F.didClickPasteMorningBalance, CB( budgetPasteMorningBalance(); ),
-        //F.didClickPasteSpent, CB( budgetPasteSpent(); ),
+        F.didClickPasteSpent, CB( budgetPasteSpent(); ),
         F.morningBalance, CB( VM.setMorningBalance(c.morningBalance()); ),
         F.result, CB( VM.setResult(c.result()); ),
         F.spent, CB( VM.setSpent(c.spent()); ),

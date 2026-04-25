@@ -13,3 +13,7 @@ void budgetPasteMorningBalance() {
     budgetSet(F.pastedMorningBalance, txt.toStdString().c_str());
 }
 
+void budgetPasteSpent() {
+    QString txt = QGuiApplication::clipboard()->text();
+    budgetSet(F.pastedSpent, txt.toStdString().c_str());
+}
