@@ -14,11 +14,11 @@ fun budgetCopyResult(
 }
 
 fun budgetPasteMorningBalance(ctx: Context) {
-    val txt = budgetClipboardText(ctx) ?: ""
+    val txt = clipboardText(ctx)
     budgetSet(F.pastedMorningBalance, txt)
 }
 
 fun budgetPasteSpent(ctx: Context) {
-    val txt = budgetClipboardText(ctx) ?: ""
+    val txt = clipboardText(ctx)
     budgetSet(F.pastedSpent, txt)
 }
