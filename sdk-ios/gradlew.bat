@@ -1,1 +1,0 @@
-../ver-android/gradlew.bat
