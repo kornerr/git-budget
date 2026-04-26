@@ -1,7 +1,7 @@
 #!/bin/bash
 
 STEP=$((STEP+1))
-echo -e "\n> > > > Step №$STEP. Build Desktop without configuration: $DESKTOP"
+echo -e "\n> > > > Step №$STEP. Build Desktop without reconfiguration: $DESKTOP"
 
 BUILD_DIR=$SDIR/../ver-$DESKTOP/build
 
