@@ -1,7 +1,15 @@
 package org.opengamestudio
 
+import android.content.ClipboardManager
+import android.content.Context
 import java.time.LocalDate
 import java.time.temporal.ChronoField
+
+// Get clipboard text
+fun budgetClipboardText(ctx: Context): String? {
+    val clip = ctx.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+    return clip.getPrimaryClip()?.getItemAt(0)?.getText().toString()
+}
 
 // Date of the report (yesterday)
 fun budgetReportedDate(): String {

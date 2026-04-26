@@ -4,11 +4,6 @@ import android.content.ClipboardManager
 import android.content.ClipData
 import android.content.Context
 
-private fun clipboardText(ctx: Context): String? {
-    val clip = ctx.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-    return clip.getPrimaryClip()?.getItemAt(0)?.getText().toString()
-}
-
 fun budgetCopyResult(
     ctx: Context,
     result: String
@@ -19,11 +14,11 @@ fun budgetCopyResult(
 }
 
 fun budgetPasteMorningBalance(ctx: Context) {
-    val txt = clipboardText(ctx) ?: "N/A"
+    val txt = budgetClipboardText(ctx) ?: ""
     budgetSet(F.pastedMorningBalance, txt)
 }
 
 fun budgetPasteSpent(ctx: Context) {
-    val txt = clipboardText(ctx) ?: "N/A"
+    val txt = budgetClipboardText(ctx) ?: ""
     budgetSet(F.pastedSpent, txt)
 }
