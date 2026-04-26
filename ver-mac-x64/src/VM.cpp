@@ -4,6 +4,7 @@ VM::VM() : QObject() {
     _morningBalancePasteTitle = QStringLiteral("Paste");
     _morningBalancePlaceholder = QStringLiteral("Morning balance");
     _result = QStringLiteral("TODO-Result");
+    _resultCopyTitle = QStringLiteral("Copy");
     _spentPasteTitle = QStringLiteral("Paste");
     _spentPlaceholder = QStringLiteral("Spent");
 }
@@ -22,6 +23,10 @@ QString VM::morningBalancePlaceholder() const {
 
 QString VM::result() const {
     return _result;
+}
+
+QString VM::resultCopyTitle() const {
+    return _resultCopyTitle;
 }
 
 QString VM::spent() const {
@@ -66,6 +71,14 @@ void VM::setResult(const QString &value) {
     }
     _result = value;
     emit resultChanged();
+}
+
+void VM::setResultCopyTitle(const QString &value) {
+    if (_resultCopyTitle == value) {
+        return;
+    }
+    _resultCopyTitle = value;
+    emit resultCopyTitleChanged();
 }
 
 void VM::setSpent(const QString &value) {

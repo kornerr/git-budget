@@ -11,6 +11,7 @@ class VM: public QObject {
     Q_PROPERTY(QString morningBalancePasteTitle READ morningBalancePasteTitle WRITE setMorningBalancePasteTitle NOTIFY morningBalancePasteTitleChanged)
     Q_PROPERTY(QString morningBalancePlaceholder READ morningBalancePlaceholder WRITE setMorningBalancePlaceholder NOTIFY morningBalancePlaceholderChanged)
     Q_PROPERTY(QString result READ result WRITE setResult NOTIFY resultChanged)
+    Q_PROPERTY(QString resultCopyTitle READ resultCopyTitle WRITE setResultCopyTitle NOTIFY resultCopyTitleChanged)
     Q_PROPERTY(QString spent READ spent WRITE setSpent NOTIFY spentChanged)
     Q_PROPERTY(QString spentPasteTitle READ spentPasteTitle WRITE setSpentPasteTitle NOTIFY spentPasteTitleChanged)
     Q_PROPERTY(QString spentPlaceholder READ spentPlaceholder WRITE setSpentPlaceholder NOTIFY spentPlaceholderChanged)
@@ -32,6 +33,7 @@ class VM: public QObject {
         QString morningBalancePasteTitle() const;
         QString morningBalancePlaceholder() const;
         QString result() const;
+        QString resultCopyTitle() const;
         QString spent() const;
         QString spentPasteTitle() const;
         QString spentPlaceholder() const;
@@ -41,6 +43,7 @@ class VM: public QObject {
         void setMorningBalancePasteTitle(const QString &value);
         void setMorningBalancePlaceholder(const QString &value);
         void setResult(const QString &value);
+        void setResultCopyTitle(const QString &value);
         void setSpent(const QString &value);
         void setSpentPasteTitle(const QString &value);
         void setSpentPlaceholder(const QString &value);
@@ -50,6 +53,7 @@ class VM: public QObject {
         void morningBalancePasteTitleChanged();
         void morningBalancePlaceholderChanged();
         void resultChanged();
+        void resultCopyTitleChanged();
         void spentChanged();
         void spentPasteTitleChanged();
         void spentPlaceholderChanged();
@@ -59,6 +63,7 @@ class VM: public QObject {
         QString _morningBalancePasteTitle;
         QString _morningBalancePlaceholder;
         QString _result;
+        QString _resultCopyTitle;
         QString _spent;
         QString _spentPasteTitle;
         QString _spentPlaceholder;

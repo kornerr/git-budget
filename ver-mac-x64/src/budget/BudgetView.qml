@@ -67,7 +67,7 @@ Rectangle {
                         Button {
                             anchors.right: parent.right
                             id: copy
-                            text: "Copy"
+                            text: vm.resultCopyTitle
                             onClicked: api.budgetSet(F.didClickCopy, true)
                         }
                     }
