@@ -6,11 +6,11 @@ func budgetCopyResult(_ result: String) {
 }
 
 func budgetPasteMorningBalance() {
-    let txt = UIPasteboard.general.string ?? "N/A"
+    let txt = UIPasteboard.general.string ?? ""
     budgetSet(F.pastedMorningBalance, txt)
 }
 
 func budgetPasteSpent() {
-    let txt = UIPasteboard.general.string ?? "N/A"
+    let txt = UIPasteboard.general.string ?? ""
     budgetSet(F.pastedSpent, txt)
 }
