@@ -18,12 +18,3 @@ func budgetReportedWeekday() -> Int32 {
     let weekdayJava = mondayBasedWeekday(weekdayApple)
     return Int32(weekdayJava)
 }
-
-// Convert Apple weekday (1 = Sunday, 2 = Monday, …) to Monday-based (1 = Monday, …, 7 = Sunday)
-func mondayBasedWeekday(_ dayIn: Int) -> Int {
-    var dayOut = dayIn - 1
-    if dayOut == 0 {
-        dayOut = 7
-    }
-    return dayOut
-}
