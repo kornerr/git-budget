@@ -1,7 +1,5 @@
 import gb
 
-//!<-- Component -->
-
 private typealias BC = BudgetContext
 
 class BudgetComponent {
