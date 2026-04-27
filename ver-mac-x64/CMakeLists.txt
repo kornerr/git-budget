@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.16)
 project(gitbudget)
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
-find_package(Qt6 REQUIRED COMPONENTS Quick)
+find_package(Qt6 REQUIRED COMPONENTS Quick Widgets)
 qt_standard_project_setup(REQUIRES 6.8)
 
 # App
@@ -42,4 +42,4 @@ target_include_directories(
 )
 
 # Link
-target_link_libraries(gbM64 PRIVATE gb Qt6::Quick)
+target_link_libraries(gbM64 PRIVATE gb Qt6::Quick Qt6::Widgets)
