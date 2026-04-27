@@ -16,11 +16,4 @@ object VM {
     val spent = mutableStateOf("")
     val spentPasteTitle = mutableStateOf("Paste")
     val spentPlaceholder = mutableStateOf("Spent")
-
-    fun reportFailure(
-        title: String,
-        message: String
-    ) {
-        reportFailure(androidContext!!, title, message)
-    }
 }
