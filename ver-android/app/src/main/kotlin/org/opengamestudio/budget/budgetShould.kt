@@ -27,19 +27,19 @@ fun budgetShouldLaunch(c: BudgetContext): BudgetContext {
  * 2. User did paste morning balance
  */
 fun budgetShouldResetMorningBalance(c: BudgetContext): BudgetContext {
-    /* 1 */ if (c.recentField == "inputMorningBalance") {
+    /* 1 */ if (c.recentField == F.inputMorningBalance) {
         c.morningBalance = c.inputMorningBalance
-        c.recentField = "morningBalance"
+        c.recentField = F.morningBalance
         return c
     }
 
-    /* 2 */ if (c.recentField == "pastedMorningBalance") {
+    /* 2 */ if (c.recentField == F.pastedMorningBalance) {
         c.morningBalance = c.pastedMorningBalance
-        c.recentField = "morningBalance"
+        c.recentField = F.morningBalance
         return c
     }
 
-    c.recentField = "none"
+    c.recentField = F.none
     return c
 }
 
@@ -50,9 +50,9 @@ fun budgetShouldResetMorningBalance(c: BudgetContext): BudgetContext {
  */
 fun budgetShouldResetResult(c: BudgetContext): BudgetContext {
     if (
-        c.recentField == "didLaunch" ||
-        c.recentField == "morningBalance" ||
-        c.recentField == "spent"
+        c.recentField == F.didLaunch ||
+        c.recentField == F.morningBalance ||
+        c.recentField == F.spent
     ) {
         val mbalance = budgetNumber(budgetStringOnlyNumerical(c.morningBalance))
         val spent = budgetNumber(budgetStringOnlyNumerical(c.spent))
@@ -63,11 +63,11 @@ fun budgetShouldResetResult(c: BudgetContext): BudgetContext {
         lines += budgetResultOverrun(mbalance, c.reportedWeekday, spent)
         lines += budgetResultLeft(mbalance, c.reportedWeekday, spent)
         c.result = lines.joinToString("\n")
-        c.recentField = "result"
+        c.recentField = F.result
         return c
     }
 
-    c.recentField = "none"
+    c.recentField = F.none
     return c
 }
 
@@ -78,18 +78,18 @@ fun budgetShouldResetResult(c: BudgetContext): BudgetContext {
  * 2. User did paste spent value
  */
 fun budgetShouldResetSpent(c: BudgetContext): BudgetContext {
-    /* 1 */ if (c.recentField == "inputSpent") {
+    /* 1 */ if (c.recentField == F.inputSpent) {
         c.spent = c.inputSpent
-        c.recentField = "spent"
+        c.recentField = F.spent
         return c
     }
 
-    /* 2 */ if (c.recentField == "pastedSpent") {
+    /* 2 */ if (c.recentField == F.pastedSpent) {
         c.spent = c.pastedSpent
-        c.recentField = "spent"
+        c.recentField = F.spent
         return c
     }
 
-    c.recentField = "none"
+    c.recentField = F.none
     return c
 }
