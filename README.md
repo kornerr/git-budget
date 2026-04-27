@@ -17,13 +17,13 @@ Multi-platform budget app: **Android** (Jetpack Compose), **iOS** (SwiftUI with 
 
 ## Statistics
 
-**Saved Kotlin LOC** is the Kotlin in `sdk-ios/gb` or `sdk-mac-x64/gb` that you would otherwise reimplement in the host stack (Swift, C++/QML). The Android app has no separate `gb` module here—the canonical shared Kotlin under `ver-android/.../kotlin` is the app—so that row is **0** for saved lines. **Total LOC** is the per-platform hand-written sources for that app plus the paired SDK: Android (`*.kt` under `ver-android/app/src/.../kotlin`); iOS + SDK (`ver-ios/src` Swift and storyboard, plus all `*.kt` under `sdk-ios/gb/src`); macOS + SDK (`ver-mac-x64/src` `*.cpp` / `*.h` / `*.qml`, plus all `*.kt` under `sdk-mac-x64/gb/src`). **Saved (%)** is `saved / total * 100`. Counts with `wc -l` (2026-04-27); symlinks in SDK trees resolve to the same `budget` sources as in `ver-android`.
+**Saved Kotlin LOC** is the Kotlin in `sdk-ios/gb` or `sdk-mac-x64/gb` that you would otherwise reimplement in the host stack (Swift, C++/QML). The Android app has no separate `gb` module here—the canonical shared Kotlin under `ver-android/.../kotlin` is the app—so that row is **0** for saved lines. **Total LOC** is the per-platform sources for that app plus the paired SDK: Android, `ver-android/app/src/.../kotlin` `*.kt` except `ignore.kd.kt`; iOS + SDK, `ver-ios/src` Swift and storyboard except `ignore.kd.swift`, and `sdk-ios/gb/src` `*.kt` except `ignore.kd.kt`; macOS + SDK, `ver-mac-x64/src` `*.cpp` / `*.h` / `*.qml` except `ignore.kd.cpp` and `ignore.kd.h`, and `sdk-mac-x64/gb/src` `*.kt` except `ignore.kd.kt`. **Saved (%)** is `saved / total * 100`. Counts with `wc -l` (2026-04-27); symlinks in SDK trees resolve to the same `budget` sources as in `ver-android`. KD `ignore` outputs (listed above) are **not** counted, so the table reflects only non-`ignore` code.
 
 | App (incl. `gb` SDK) | Saved Kotlin LOC | Saved (of total) | Total LOC |
 |------------------------|-----------------:|-----------------:|----------:|
-| `ver-android` | 0 | 0% | 925 |
-| `ver-ios` + `sdk-ios` | 606 | 67.7% | 895 |
-| `ver-mac-x64` + `sdk-mac-x64` | 631 | 47.0% | 1343 |
+| `ver-android` | 0 | 0% | 652 |
+| `ver-ios` + `sdk-ios` | 333 | 58.5% | 569 |
+| `ver-mac-x64` + `sdk-mac-x64` | 340 | 44.7% | 761 |
 
 Generated KD outputs are listed in `kd.yml` and typically match `ignore.kd.*` (see `.gitignore`). You must run code generation before a full build (see below).
 
