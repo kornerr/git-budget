@@ -14,13 +14,12 @@ object BudgetComponent {
             F.result, { c: BC -> vm.result.value = c.result },
         )
         registerOneliners(budgetCtrl(), oneliners)
-
-        // Defaults
-        budgetSet(F.reportedDate, budgetReportedDate())
-        budgetSet(F.reportedWeekday, budgetReportedWeekday())
     }
 
     fun setup() {
+        // Defaults
+        budgetSet(F.reportedDate, budgetReportedDate())
+        budgetSet(F.reportedWeekday, budgetReportedWeekday())
         budgetSet(F.didSetup, true)
     }
 }

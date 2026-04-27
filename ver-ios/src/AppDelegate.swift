@@ -8,7 +8,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         _: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil
     ) -> Bool {
-        budgetSet(F.didSetup, true)
+        budgetCmp.setup()
 
         return true
     }

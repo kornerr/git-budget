@@ -15,13 +15,12 @@ class BudgetComponent {
             F.result, { (c: BC) in vm().result = c.result },
         ]
         var r: BC? = registerOneliners(budgetCtrl(), effects)
-
-        // Defaults
-        budgetSet(F.reportedDate, budgetReportedDate())
-        budgetSet(F.reportedWeekday, budgetReportedWeekday())
     }
 
     func setup() {
+        // Defaults
+        budgetSet(F.reportedDate, budgetReportedDate())
+        budgetSet(F.reportedWeekday, budgetReportedWeekday())
         budgetSet(F.didSetup, true)
     }
 }

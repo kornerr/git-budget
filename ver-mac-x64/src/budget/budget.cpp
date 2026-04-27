@@ -20,12 +20,11 @@ BudgetComponent::BudgetComponent() {
         F.spent, CB( VM.setSpent(c.spent()); ),
     };
     BudgetEffectRegistry::registerOneliners(KT.budgetCtrl(), oneliners);
-
-    // Defaults
-    budgetSet(F.reportedDate, budgetReportedDate());
-    budgetSet(F.reportedWeekday, budgetReportedWeekday());
 }
 
 void BudgetComponent::setup() {
+    // Defaults
+    budgetSet(F.reportedDate, budgetReportedDate());
+    budgetSet(F.reportedWeekday, budgetReportedWeekday());
     budgetSet(F.didSetup, true);
 }
