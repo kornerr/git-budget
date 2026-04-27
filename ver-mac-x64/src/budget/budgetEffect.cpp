@@ -1,7 +1,7 @@
 #include <QClipboard>
 #include <QGuiApplication>
 
-#include "budgetEffects.h"
+#include "budgetEffect.h"
 #include "ignore.kd.h"
 
 void budgetCopyResult(const QString &r) {

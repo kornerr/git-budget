@@ -3,7 +3,7 @@
 
 #include "budget.h"
 #include "budgetAux.h"
-#include "budgetEffects.h"
+#include "budgetEffect.h"
 #include "ignore.kd.h"
 #include "VM.h"
 

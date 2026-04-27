@@ -11,7 +11,7 @@ set(
     src/App.cpp
     src/budget/budget.cpp
     src/budget/budgetAux.cpp
-    src/budget/budgetEffects.cpp
+    src/budget/budgetEffect.cpp
     src/ignore.kd.cpp
     src/KT.cpp
     src/VM.cpp
