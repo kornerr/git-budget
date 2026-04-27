@@ -37,16 +37,3 @@ BudgetContext:
         reportedWeekday: Int
         result: String
         spent: String
-
-NetRequest:
-    type: struct
-    fields:
-        body: String
-        method: String
-        url: String
-
-NetResponse:
-    type: struct
-    fields:
-        contents: String
-        req: NetRequest
