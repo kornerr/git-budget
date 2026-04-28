@@ -36,12 +36,6 @@ by [Kotlin Dialect](https://github.com/OGStudio/kotlin-dialect).
 
 Generated KD outputs are listed in `kd.yml` and typically match `ignore.kd.*` (see `.gitignore`). You must run code generation before a full build (see below).
 
-## Supported platforms
-
-- **Android** — API 24+ (`minSdk`), `compileSdk` / `targetSdk` 35; JVM target 1.8 for the app module.
-- **iOS** — deployment target 15.0+ (see `ver-ios/app/project.yml`).
-- **macOS (desktop)** — **Intel x64** Kotlin/Native target in `sdk-mac-x64` (`macosX64`); **Qt 6.8+** with **Qt Quick** (`ver-mac-x64/CMakeLists.txt`).
-
 ## Install build dependencies
 
 ### Common (all platforms that use KD)
@@ -135,7 +129,3 @@ This clones/updates `~/dev-cache/kd` (if needed) and runs the KD generator again
    This runs `ver-mac-x64/build/gbM64` (created by CMake; output directory is `ver-mac-x64/build/`).
 
 For **incremental** desktop rebuilds after the first `build-mac-x64` (skip KD/SDK reconfigure): **`./util/make-mac-x64`** re-runs `make` in the existing `ver-mac-x64/build` directory.
-
----
-
-`util/do-tmux` opens a tmux session with several windows for editing `ver-android`, `sdk-ios` / `ver-ios`, and `sdk-mac-x64` / `ver-mac-x64` in parallel; optional for day-to-day development.
