@@ -1,6 +1,16 @@
-Git Budget is a cross-platform application for Android, iOS, and macOS (Linux and Windows are pending).
+Git Budget is a cross-platform application with shared logic driven
+by [Kotlin Dialect](https://github.com/OGStudio/kotlin-dialect).
 
-Shared logic is driven by [Kotlin Dialect](https://github.com/OGStudio/kotlin-dialect).
+## Supported platforms
+
+| Platform | Status |
+| --- | --- |
+| Android | √ |
+| iOS | √ |
+| Linux | Pending |
+| macOS | √ |
+| Windows | Pending |
+| Browser | Pending |
 
 ## Project structure
 
