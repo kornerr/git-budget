@@ -1,0 +1,39 @@
+version: 3
+
+output:
+    ver-android/app/src/main/kotlin/org/opengamestudio/ignore.kd.kt:
+        type: kotlin
+    sdk-ios/gb/src/commonMain/kotlin/org/opengamestudio/ignore.kd.kt:
+        type: kotlin
+    ver-ios/src/ignore.kd.swift:
+        type: swift
+    sdk-mac-x64/gb/src/nativeMain/kotlin/org/opengamestudio/ignore.kd.kt:
+        type: c++sdk
+    ver-mac-x64/src/ignore.kd.h:
+        type: c++hdr
+    ver-mac-x64/src/ignore.kd.cpp:
+        type: c++src
+
+c++sdk: package org.opengamestudio
+c++sdk: import kotlinx.cinterop.*
+kotlin: package org.opengamestudio
+swift: import gb
+
+BudgetContext:
+    type: context
+    fields:
+        didClickCopy: Bool
+        didClickPasteMorningBalance: Bool
+        didClickPasteSpent: Bool
+        didLaunch: Bool
+        didSetup: Bool
+        inputDate: String
+        inputMorningBalance: String
+        inputSpent: String
+        morningBalance: String
+        pastedMorningBalance: String
+        pastedSpent: String
+        reportedDate: String
+        reportedWeekday: Int
+        result: String
+        spent: String

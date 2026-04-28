@@ -2,10 +2,14 @@
 SDIR=$(cd "$(dirname "$0")" ; pwd -P)
 
 cd $SDIR/../ver-android/app/src/main/kotlin/org/opengamestudio
-tmux new-window -n and
+tmux new-window -n a
 
+cd $SDIR/../sdk-ios/gb/src/commonMain/kotlin/org/opengamestudio
+tmux new-window -n sdk-i
 cd $SDIR/../ver-ios/src
-tmux new-window -n ios
+tmux new-window -n i
 
-cd $SDIR/../sdk-ios
-tmux new-window -n sdk-ios
+cd $SDIR/../sdk-mac-x64/gb/src/nativeMain/kotlin/org/opengamestudio
+tmux new-window -n sdk-m
+cd $SDIR/../ver-mac-x64/src
+tmux new-window -n m

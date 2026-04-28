@@ -1,0 +1,9 @@
+#!/bin/bash
+# Auxialiary things for scripts
+
+# Working directory
+HOME_DIR=$(echo ~)
+CACHE_DIR=$HOME_DIR/dev-cache
+# Kotlin Dialect location
+KD_DIR=$CACHE_DIR/kd
+KD_URL="https://github.com/OGStudio/kotlin-dialect"

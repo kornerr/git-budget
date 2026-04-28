@@ -3,14 +3,14 @@ SDIR=$(cd "$(dirname "$0")" ; pwd -P)
 
 BUILD_DIR=$SDIR/../sdk-ios/gb/build/XCFrameworks/release
 
-#./cld/generate-entities
+$SDIR/gen-kd
 
-# Собираем и архивируем библиотеку
+# Build and archive KMP code into a framework for iOS
 cd $SDIR/../sdk-ios
 ./gradlew assembleGbReleaseXCFramework
 cd $BUILD_DIR
 zip -r gb.xcframework.zip gb.xcframework
 
-# Генерируем проект iOS
+# Generate iOS project
 cd $SDIR/../ver-ios/app
 xcodegen

@@ -1,0 +1,7 @@
+#!/bin/bash
+
+STEP=$((STEP+1))
+echo -e "\n> > > > Step №$STEP. Build SDK for Desktop: $DESKTOP"
+
+cd $SDIR/../sdk-$DESKTOP
+./gradlew linkReleaseSharedNative

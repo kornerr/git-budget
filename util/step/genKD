@@ -1,0 +1,5 @@
+#!/bin/bash
+
+STEP=$((STEP+1))
+echo -e "\n> > > > Step №$STEP. Generate KD"
+node $KD_DIR/dist/app.js --file=$SDIR/../kd.yml
