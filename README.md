@@ -1,19 +1,18 @@
-# git-budget
+Git Budget is a cross-platform application for Android, iOS, and macOS (Linux and Windows are pending).
 
-Multi-platform budget app: **Android** (Jetpack Compose), **iOS** (SwiftUI with a Kotlin Multiplatform framework), and **macOS** (Qt 6 + QML with a Kotlin/Native `gb` SDK). Shared UI logic is driven by [Kotlin Dialect (KD)](https://github.com/OGStudio/kotlin-dialect) using `kd.yml` at the repo root.
+Shared logic is driven by [Kotlin Dialect](https://github.com/OGStudio/kotlin-dialect).
 
 ## Project structure
 
 | Path | Role |
 |------|------|
-| `kd.yml` | KD schema: `BudgetContext`, `NetRequest` / `NetResponse`, and output paths for generated code. |
-| `util/` | Build helper scripts. `util/other` defines `~/dev-cache/kd` as the clone location for the KD compiler. |
-| `ver-android/` | Android app (Gradle, Compose). Consumes generated `ignore.kd.*` under `app/.../org/opengamestudio/`. |
-| `ver-ios/` | iOS app sources (`src/`). Xcode project is generated in `ver-ios/app/` (see [Run on iOS](#run-on-ios)). |
-| `ver-ios/app/` | iOS app metadata: `project.yml` (XcodeGen), `Info.plist`, and `local/gb/` Swift package wrapping the `gb` XCFramework. |
-| `sdk-ios/` | Kotlin Multiplatform `gb` library: Android + iOS targets, produces an **XCFramework** for the iOS app. |
-| `sdk-mac-x64/` | Kotlin/Native `gb` shared library (`libgb.dylib`, **macosX64**) for the desktop app. |
-| `ver-mac-x64/` | Qt 6 **CMake** project: links the macOS `gb` SDK and builds the `gbM64` binary. |
+| `kd.yml` | Kotlin Dialect schema: `BudgetContext` and output paths for generated code |
+| `util/` | Build helper scripts |
+| `ver-android/` | Android application |
+| `ver-ios/` | iOS application |
+| `sdk-ios/` | Kotlin Multiplatform library for iOS application |
+| `sdk-mac-x64/` | Kotlin Multiplatform library for macOS |
+| `ver-mac-x64/` | macOS application |
 
 ## Statistics
 
