@@ -26,17 +26,16 @@ by [Kotlin Dialect](https://github.com/OGStudio/kotlin-dialect).
 
 ## Statistics
 
-**Saved Kotlin LOC** is the Kotlin in `sdk-ios/gb` or `sdk-mac-x64/gb` that you would otherwise reimplement in the host stack (Swift, C++/QML). The Android app has no separate `gb` module here—the canonical shared Kotlin under `ver-android/.../kotlin` is the app—so that row is **0** for saved lines. **Total LOC** is the per-platform sources for that app plus the paired SDK: Android, `ver-android/app/src/.../kotlin` `*.kt` except `ignore.kd.kt`; iOS + SDK, `ver-ios/src` Swift and storyboard except `ignore.kd.swift`, and `sdk-ios/gb/src` `*.kt` except `ignore.kd.kt`; macOS + SDK, `ver-mac-x64/src` `*.cpp` / `*.h` / `*.qml` except `ignore.kd.cpp` and `ignore.kd.h`, and `sdk-mac-x64/gb/src` `*.kt` except `ignore.kd.kt`. **Saved (%)** is `saved / total * 100`. Counts with `wc -l` (2026-04-27); symlinks in SDK trees resolve to the same `budget` sources as in `ver-android`. KD `ignore` outputs (listed above) are **not** counted, so the table reflects only non-`ignore` code.
+Shared logic is in Kotlin Multiplatform. So, how many lines of code (LOC)
+were saved (i.e. not duplicated) for each platform?
 
-| App (incl. `gb` SDK) | Saved Kotlin LOC | Saved (of total) | Total LOC |
-|------------------------|-----------------:|-----------------:|----------:|
-| `ver-android` | 0 | 0% | 652 |
-| `ver-ios` + `sdk-ios` | 333 | 58.5% | 569 |
-| `ver-mac-x64` + `sdk-mac-x64` | 340 | 44.7% | 761 |
+| Platform |  Saved LOC | Saved % | Total LOC |
+| --- | --- | --- | --- |
+| `ver-android` | 0 (Original Kotlin code) | 0% | 652 |
+| `ver-ios` + `sdk-ios` | 333 | 58% | 569 |
+| `ver-mac-x64` + `sdk-mac-x64` | 340 | 44% | 761 |
 
-Generated KD outputs are listed in `kd.yml` and typically match `ignore.kd.*` (see `.gitignore`). You must run code generation before a full build (see below).
-
-## Install build dependencies
+## Build dependencies
 
 ### Common (all platforms that use KD)
 
