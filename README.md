@@ -12,7 +12,9 @@ by [Kotlin Dialect](https://github.com/OGStudio/kotlin-dialect).
 | Windows | Pending |
 | Browser | Pending |
 
-* Android: https://github.com/user-attachments/assets/56cca84f-23f6-49d8-b30d-560fbb3de874
+### Android 
+
+https://github.com/user-attachments/assets/56cca84f-23f6-49d8-b30d-560fbb3de874
 
 ## Project structure
 
