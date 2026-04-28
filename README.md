@@ -31,7 +31,7 @@ https://github.com/user-attachments/assets/9053b76d-43d0-4d91-b03f-9f88b723ad1d
 | `util/` | Build helper scripts |
 | `ver-android/` | Android application |
 | `ver-ios/` | iOS application |
-| `sdk-ios/` | Kotlin Multiplatform library for iOS application |
+| `sdk-ios/` | Kotlin Multiplatform library for iOS |
 | `sdk-mac-x64/` | Kotlin Multiplatform library for macOS |
 | `ver-mac-x64/` | macOS application |
 
