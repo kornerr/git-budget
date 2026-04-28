@@ -3,14 +3,16 @@ by [Kotlin Dialect](https://github.com/OGStudio/kotlin-dialect).
 
 ## Supported platforms
 
-| Platform | Status | Demonstration |
-| --- | --- | --- |
-| Android | √ | https://github.com/user-attachments/assets/56cca84f-23f6-49d8-b30d-560fbb3de874 |
-| iOS | √ | |
-| Linux | Pending | |
-| macOS | √ | |
-| Windows | Pending | |
-| Browser | Pending | |
+| Platform | Status |
+| --- | --- |
+| Android | √ |
+| iOS | √ |
+| Linux | Pending |
+| macOS | √ |
+| Windows | Pending |
+| Browser | Pending |
+
+* Android: https://github.com/user-attachments/assets/56cca84f-23f6-49d8-b30d-560fbb3de874
 
 ## Project structure
 
