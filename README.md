@@ -10,7 +10,6 @@ by [Kotlin Dialect](https://github.com/OGStudio/kotlin-dialect).
 | Linux | Pending |
 | macOS | √ |
 | Windows | Pending |
-| Browser | Pending |
 
 ### Android 
 
@@ -19,6 +18,10 @@ https://github.com/user-attachments/assets/56cca84f-23f6-49d8-b30d-560fbb3de874
 ### iOS
 
 https://github.com/user-attachments/assets/d7226d0e-739d-45d8-9bd8-d8ba18d0aea6
+
+### macOS
+
+https://github.com/user-attachments/assets/9053b76d-43d0-4d91-b03f-9f88b723ad1d
 
 ## Project structure
 
