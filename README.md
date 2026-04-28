@@ -1,5 +1,5 @@
 Git Budget is a cross-platform application with shared logic driven
-by [Kotlin Dialect](https://github.com/OGStudio/kotlin-dialect).
+by [Kotlin Dialect](https://github.com/OGStudio/kotlin-dialect)
 
 ## Supported platforms
 
