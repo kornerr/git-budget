@@ -9,21 +9,12 @@ import org.eclipse.jgit.api.Git
 object GitComponent {
     init {
         println("ИГР GitC.init-01")
-
     }
 
-    fun setup(androidContext: Context) {
-        val location = androidContext.getExternalFilesDir(null)?.absolutePath + "/cloned-repo"
-        try {
-            val git = Git
-                .cloneRepository()
-                .setURI("https://github.com/OGStudio/kotlin-dialect")
-                .setDirectory(File(location))
-                .call()
-            println("ИГР GitC.init-02")
-        } catch (e: Exception) {
-            println("ИГР GitC.init-03 exception: '$e'")
-            e.printStackTrace()
-        }
+    fun setup(ctx: Context) {
+        val url = "https://github.com/OGStudio/kotlin-dialect"
+        val dir = ctx.getExternalFilesDir(null)?.absolutePath + "/cloned-repo"
+        val resClone = gitClone(dir, url)
+        println("ИГР GitC.init-01 resC: '$resClone'")
     }
 }

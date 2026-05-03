@@ -1,0 +1,24 @@
+package org.opengamestudio
+
+import java.io.File
+import org.eclipse.jgit.api.Git
+
+fun gitClone(
+    dir: String,
+    url: String
+): Boolean {
+    try {
+        val git = Git
+            .cloneRepository()
+            .setURI(url)
+            .setDirectory(File(dir))
+            .call()
+    } catch (e: Exception) {
+        println("ИГР gitC exception: '$e'")
+        e.printStackTrace()
+
+        return false
+    }
+
+    return true
+}
