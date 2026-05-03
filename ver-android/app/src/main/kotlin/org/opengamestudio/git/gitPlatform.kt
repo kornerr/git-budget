@@ -14,7 +14,7 @@ fun gitClone(
             .setDirectory(File(dir))
             .call()
     } catch (e: Exception) {
-        println("ИГР gitC exception: '$e'")
+        println("ИГР gitC url/dir/exception: '$url'/'$dir'/'$e'")
         e.printStackTrace()
 
         return false
