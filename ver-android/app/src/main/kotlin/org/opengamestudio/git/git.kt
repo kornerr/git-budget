@@ -15,6 +15,6 @@ object GitComponent {
         val url = "https://github.com/OGStudio/kotlin-dialect"
         val dir = ctx.getExternalFilesDir(null)?.absolutePath + "/cloned-repo"
         val resClone = gitClone(dir, url)
-        println("ИГР GitC.init-01 resC: '$resClone'")
+        println("ИГР GitC.init-02 resC: '$resClone'")
     }
 }
