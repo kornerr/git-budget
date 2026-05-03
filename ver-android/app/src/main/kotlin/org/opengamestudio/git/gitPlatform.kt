@@ -13,12 +13,12 @@ fun gitClone(
             .setURI(url)
             .setDirectory(File(dir))
             .call()
+
+        return true
     } catch (e: Exception) {
         println("ИГР gitC url/dir/exception: '$url'/'$dir'/'$e'")
         e.printStackTrace()
 
         return false
     }
-
-    return true
 }
