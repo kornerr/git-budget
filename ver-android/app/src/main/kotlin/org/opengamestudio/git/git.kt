@@ -2,11 +2,15 @@ package org.opengamestudio
 
 import android.content.Context
 import java.io.File
-import org.eclipse.jgit.api.Git
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 //private typealias GC = GitContext
 
 object GitComponent {
+    private val ioScope = CoroutineScope(Dispatchers.IO)
+
     init {
         println("ИГР GitC.init-01")
     }
@@ -15,8 +19,10 @@ object GitComponent {
         val url = "https://github.com/OGStudio/kotlin-dialect"
         val dir = ctx.getExternalFilesDir(null)?.absolutePath + "/cloned-repo"
         if (!File(dir).exists()) {
-            val resClone = gitClone(dir, url)
-            println("ИГР GitC.init-02 resC: '$resClone'")
+            ioScope.launch {
+                val resClone = gitClone(dir, url)
+                println("ИГР GitC.init-02 resC: '$resClone'")
+            }
         } else {
             println("ИГР GitC.init-03 no need to clone")
         }
