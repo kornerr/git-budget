@@ -8,10 +8,15 @@ fun gitClone(
     url: String
 ): Boolean {
     try {
+        val cr = UsernamePasswordCredentialsProvider(
+            "kornerr@gmail.com",
+            hash
+        )
         val git = Git
             .cloneRepository()
             .setURI(url)
             .setDirectory(File(dir))
+            .setCredentialsProvider(cr)
             .call()
 
         return true
