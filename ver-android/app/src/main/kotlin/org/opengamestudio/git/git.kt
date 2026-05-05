@@ -18,15 +18,21 @@ object GitComponent {
         var root = File(dir)
         //if (!root.exists()) {
             GlobalScope.launch(Dispatchers.IO/* + exceptionHandler*/) {
+                // 1. Clone
                 println("ИГР GitC.setup-01 before clone")
                 val resClone = gitClone(dir, url)
                 println("ИГР GitC.setup-02 resC: '$resClone'")
             
+                // 2. List files
                 val files = root.listFiles()
                 println("ИГР GitC.setup-02 files:")
                 for (item in files) {
                     println("ИГР > '$item'")
                 }
+
+                // 3. Print `abc`
+                val contents = File(dir + "/abc").readText()
+                println("ИГР GitC.setup-03 contents: '$contents'")
             }
 
             /*
