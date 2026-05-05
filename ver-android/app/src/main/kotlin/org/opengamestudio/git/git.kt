@@ -13,12 +13,14 @@ object GitComponent {
 
     fun setup(ctx: Context) {
         val url = "https://github.com/OGStudio/kotlin-dialect"
+        //val url = "https://git.opengamestudio.org/kornerr/private-test"
         val dir = ctx.getExternalFilesDir(null)?.absolutePath + "/cloned-repo"
         var root = File(dir)
         if (!root.exists()) {
             GlobalScope.launch(Dispatchers.IO/* + exceptionHandler*/) {
+                println("ИГР GitC.setup-01 before clone")
                 val resClone = gitClone(dir, url)
-                println("ИГР GitC.setup-01 resC: '$resClone'")
+                println("ИГР GitC.setup-02 resC: '$resClone'")
             }
         } else {
             println("ИГР GitC.setup-0X no need to clone")
