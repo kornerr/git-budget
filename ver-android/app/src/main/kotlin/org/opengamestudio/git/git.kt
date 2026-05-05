@@ -16,22 +16,24 @@ object GitComponent {
         val url = "https://git.opengamestudio.org/kornerr/private-test"
         val dir = ctx.getExternalFilesDir(null)?.absolutePath + "/cloned-repo"
         var root = File(dir)
-        if (!root.exists()) {
+        //if (!root.exists()) {
             GlobalScope.launch(Dispatchers.IO/* + exceptionHandler*/) {
                 println("ИГР GitC.setup-01 before clone")
                 val resClone = gitClone(dir, url)
                 println("ИГР GitC.setup-02 resC: '$resClone'")
+            
+                val files = root.listFiles()
+                println("ИГР GitC.setup-02 files:")
+                for (item in files) {
+                    println("ИГР > '$item'")
+                }
             }
+
+            /*
         } else {
             println("ИГР GitC.setup-0X no need to clone")
         }
-
-        /*
-        val files = root.listFiles()
-        println("ИГР GitC.setup-02 files:")
-        for (item in files) {
-            println("ИГР > '$item'")
-        }
         */
+
     }
 }

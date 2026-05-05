@@ -2,6 +2,7 @@ package org.opengamestudio
 
 import java.io.File
 import org.eclipse.jgit.api.Git
+import org.eclipse.jgit.transport.*
 
 fun gitClone(
     dir: String,
