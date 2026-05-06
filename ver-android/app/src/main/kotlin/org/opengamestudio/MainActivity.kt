@@ -16,7 +16,7 @@ class MainActivity: ComponentActivity() {
 
         VM.androidContext = this
         BudgetComponent.setup()
-        GitComponent.setup(this)
+        //GitComponent.setup(this)
 
         setContent {
             MyApplicationTheme {
