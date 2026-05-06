@@ -18,7 +18,7 @@ fun gitCtrl(): KDController {
     return GitProto.ctrl
 }
 
-fun gitCtrlCtx(): GittContext {
+fun gitCtrlCtx(): GitContext {
     return GitProto.ctrl.context as GitContext
 }
 
