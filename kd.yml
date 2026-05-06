@@ -37,3 +37,9 @@ BudgetContext:
         reportedWeekday: Int
         result: String
         spent: String
+
+GitContext:
+    type: context
+    fields:
+        didLaunch: Bool
+        filesDir: String
