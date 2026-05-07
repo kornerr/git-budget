@@ -1,5 +1,6 @@
 package org.opengamestudio
 
-fun masterListFiles(dir: String) {
-    println("MasterList dir: '$dir'")
+fun masterLaunchComponents() {
+    BudgetComponent.launch()
+    GitComponent.launch()
 }

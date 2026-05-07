@@ -16,10 +16,10 @@ object BudgetComponent {
         registerOneliners(budgetCtrl(), oneliners)
     }
 
-    fun setup() {
+    fun launch() {
         // Defaults
         budgetSet(F.reportedDate, budgetReportedDate())
         budgetSet(F.reportedWeekday, budgetReportedWeekday())
-        budgetSet(F.didSetup, true)
+        budgetSet(F.didLaunch, true)
     }
 }

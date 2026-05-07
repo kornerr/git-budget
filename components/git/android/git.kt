@@ -16,7 +16,7 @@ object GitComponent {
         registerOneliners(budgetCtrl(), oneliners)
     }
 
-    fun setup() {
+    fun launch() {
         gitSet(F.didLaunch, true)
 
         /*

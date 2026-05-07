@@ -7,7 +7,7 @@ object MasterProto {
         ctrl = KDController(MasterContext())
         setupComponentDebugging(ctrl, "Master")
         arrayOf(
-            ::masterShouldResetFilesDir,
+            ::masterShouldLaunch
         ).forEach { f ->
             ctrl.registerFunction { c -> f(c as MasterContext) }
         }

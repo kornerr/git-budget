@@ -15,8 +15,7 @@ class MainActivity: ComponentActivity() {
         enableEdgeToEdge()
 
         VM.androidContext = this
-        BudgetComponent.setup()
-        //GitComponent.setup(this)
+        MasterComponent.setup()
 
         setContent {
             MyApplicationTheme {
