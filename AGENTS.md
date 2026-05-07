@@ -29,6 +29,8 @@ Files staring with `ignore` are not tracked in git. `ignore` files should not be
 ```
 ./util/gen-kd
 ```
+So, GitContext, MasterContext, BudgetContext come from kd.yml. No need
+to write them by hand.
 
 ## Architecture: Kotlin Dialect
 

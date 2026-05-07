@@ -26,7 +26,6 @@ BudgetContext:
         didClickPasteMorningBalance: Bool
         didClickPasteSpent: Bool
         didLaunch: Bool
-        didSetup: Bool
         inputDate: String
         inputMorningBalance: String
         inputSpent: String
@@ -43,3 +42,9 @@ GitContext:
     fields:
         didLaunch: Bool
         filesDir: String
+
+MasterContext:
+    type: context
+    fields:
+        didLaunch: Bool
+        didSetup: Bool
