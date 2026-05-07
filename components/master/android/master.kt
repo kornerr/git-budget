@@ -1,5 +1,7 @@
 package org.opengamestudio
 
+private typealias MC = MasterContext
+
 object MasterComponent {
     init {
         val oneliners = arrayOf(
