@@ -42,6 +42,8 @@ GitContext:
     fields:
         didLaunch: Bool
         filesDir: String
+        repoURL: String
+        rootDir: String
 
 MasterContext:
     type: context

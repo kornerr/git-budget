@@ -29,3 +29,7 @@ fun gitCtrlCtxField(): String {
 fun gitSet(k: String, v: Any) {
     GitProto.ctrl.set(k, v)
 }
+
+fun gitSetupDefaults() {
+    gitSet(F.repoURL, "https://git.opengamestudio.org/kornerr/private-test")
+}
