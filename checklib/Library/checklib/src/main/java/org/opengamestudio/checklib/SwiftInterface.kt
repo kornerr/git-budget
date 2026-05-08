@@ -1,4 +1,4 @@
-package stream.swift.droid.checklib
+package org.opengamestudio.checklib
 
 import java.util.Date
 

@@ -9,7 +9,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.ui.Modifier
 import org.opengamestudio.ui.theme.MyApplicationTheme
 
-import stream.swift.droid.checklib.*
+import org.opengamestudio.checklib.*
 
 
 class MainActivity: ComponentActivity() {
@@ -18,7 +18,8 @@ class MainActivity: ComponentActivity() {
         enableEdgeToEdge()
         VM.androidContext = this
 
-        SwiftInterface.initialize(this)
+        //SwiftInterface.initialize(this)
+        println("ИГР01")
         SwiftInterface.sendInt(200)
 
         BudgetComponent.setup()
