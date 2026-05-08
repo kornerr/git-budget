@@ -24,4 +24,4 @@ rootProject.name = "ver-android"
 include("app")
 
 include(":checklib")
-project(":checklib").projectDir = file("checklib/Library/checklib")
+project(":checklib").projectDir = file("../checklib/Library/checklib")
