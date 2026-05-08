@@ -7,7 +7,7 @@ object GitComponent {
         val vm = VM
         val oneliners = arrayOf(
             F.didLaunch, { c: GC -> gitLocateRootDir(vm.androidContext!!) },
-            F.filesDir, { c: GC -> gitListFiles(c.filesDir) },
+            F.repoDir, { c: GC -> gitCheckRepoDirAvailability(c.repoDir) },
         )
         registerOneliners(gitCtrl(), oneliners)
     }

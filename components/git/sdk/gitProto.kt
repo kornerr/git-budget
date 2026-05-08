@@ -7,7 +7,7 @@ object GitProto {
         ctrl = KDController(GitContext())
         setupComponentDebugging(ctrl, "Git")
         arrayOf(
-            ::gitShouldResetFilesDir,
+            ::gitShouldResetRepoDir,
         ).forEach { f ->
             ctrl.registerFunction { c -> f(c as GitContext) }
         }

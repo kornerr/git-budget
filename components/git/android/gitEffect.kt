@@ -1,11 +1,13 @@
 package org.opengamestudio
 
 import android.content.Context
-
-
 import java.io.File
 //import kotlinx.coroutines.*
-*/
+
+fun gitCheckRepoDirAvailability(dir: String) {
+    val exists = File(dir).exists()
+    gitSet(F.repoDirExists, exists)
+}
 
 fun gitListFiles(dir: String) {
     val files = File(dir).listFiles()

@@ -41,7 +41,8 @@ GitContext:
     type: context
     fields:
         didLaunch: Bool
-        filesDir: String
+        repoDir: String
+        repoDirExists: Bool
         repoURL: String
         rootDir: String
 
