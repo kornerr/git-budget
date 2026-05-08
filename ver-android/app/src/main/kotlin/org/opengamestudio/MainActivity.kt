@@ -21,6 +21,8 @@ class MainActivity: ComponentActivity() {
         //SwiftInterface.initialize(this)
         println("ИГР01")
         SwiftInterface.sendInt(200)
+        println("ИГР02")
+
 
         BudgetComponent.setup()
         setContent {
