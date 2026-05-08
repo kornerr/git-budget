@@ -16,8 +16,12 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        maven("https://jitpack.io")
     }
 }
 
 rootProject.name = "ver-android"
 include("app")
+
+include(":checklib")
+include(":checklib").projectDir = file("checklib/Library/checklib")
