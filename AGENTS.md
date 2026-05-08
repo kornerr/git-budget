@@ -14,6 +14,15 @@ There are two approaches:
 * `android/` directory: Kotlin code with Android platform specific dependencies like HTTP loading, WebSocket communication, file I/O, etc.
 * `sdk/` directory: Cross-platform Kotlin code that is used for android, browser, desktop, ios, cannot contain any Java related stuff or platform specific stuff
 
+### Git component structure (as an example for all components)
+
+* git/sdk/gitConst.kt: constants used in git* files
+* git/sdk/gitProto.kt: contains controller instance and registers shoulds (reducers) into the controller
+* git/sdk/gitShould.kt: contains shoulds (reducers) to transition component's state from A to B
+* git/android/git.kt: contains bindings of events to effect functions
+* git/android/gitEffects.kt: contains effect functions
+* git/android/git-android.kt: contains platform specific code like accessing JGit, etc.
+
 ## Legacy approach
 
 Most of the time source code lives in **`ver-android/app/src/main/kotlin/ru/iva/`**.
