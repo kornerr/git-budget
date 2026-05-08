@@ -2,13 +2,18 @@ package org.opengamestudio
 
 import android.content.Context
 
-/*
+
 import java.io.File
-import kotlinx.coroutines.*
+//import kotlinx.coroutines.*
 */
 
 fun gitListFiles(dir: String) {
-    println("ИГР gitLF dir: '$dir'")
+    val files = File(dir).listFiles()
+    println("ИГР gitLF-01 dir/files: '$dir'")
+    for (item in files) {
+        println("ИГР > '$item'")
+    }
+    println("ИГР gitLF-02 dir: '$dir'")
 }
 
 fun gitLocateRootDir(ctx: Context) {
