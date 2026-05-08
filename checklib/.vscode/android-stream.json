@@ -1,0 +1,26 @@
+{
+	"name": "Checklib",
+	"packageName": "org.opengamestudio",
+	"packageMode": "Library",
+	"compileSDK": 35,
+	"minSDK": 28,
+	"javaVersion": 11,
+	"soMode": "Packed",
+	"schemes": [
+		{
+			"title": "Checklib Debug",
+			"swiftTargets": [
+				"Checklib"
+			],
+			"buildConfiguration": "Debug"
+		},
+		{
+			"title": "Checklib Release",
+			"swiftTargets": [
+				"Checklib"
+			],
+			"buildConfiguration": "Release"
+		}
+	],
+	"selectedScheme": "Checklib Release"
+}
