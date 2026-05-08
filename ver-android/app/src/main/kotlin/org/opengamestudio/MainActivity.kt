@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material3.Scaffold
 import androidx.compose.ui.Modifier
 import org.opengamestudio.ui.theme.MyApplicationTheme
-import stream.swift.droid.checklib.SwiftInterface
 
 import stream.swift.droid.checklib.*
 
