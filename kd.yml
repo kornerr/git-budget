@@ -40,6 +40,9 @@ BudgetContext:
 GitContext:
     type: context
     fields:
+        clone: Bool
+        cloneError: String
+        didClone: Bool
         didLaunch: Bool
         repoDir: String
         repoDirExists: Bool

@@ -6,6 +6,7 @@ object GitComponent {
     init {
         val vm = VM
         val oneliners = arrayOf(
+            F.clone, { c: GC -> gitClone(c.repoDir, c.repoURL) },
             F.didLaunch, { c: GC -> gitLocateRootDir(vm.androidContext!!) },
             F.repoDir, { c: GC -> gitCheckRepoDirAvailability(c.repoDir) },
         )

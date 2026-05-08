@@ -20,8 +20,7 @@ There are two approaches:
 * git/sdk/gitProto.kt: contains controller instance and registers shoulds (reducers) into the controller
 * git/sdk/gitShould.kt: contains shoulds (reducers) to transition component's state from A to B
 * git/android/git.kt: contains bindings of events to effect functions
-* git/android/gitEffects.kt: contains effect functions that can only reference standard Android classes from Java or Kotlin
-* git/android/git-android.kt: contains functions that are only to be used in effects to collapse the complexity of calling other functions like wrapping try/catch for JGit calls, etc.
+* git/android/gitEffects.kt: contains effect functions that have platform specific code (in this case Android specific)
 
 ## Legacy approach
 

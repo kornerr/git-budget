@@ -1,5 +1,23 @@
 package org.opengamestudio
 
+// Clone repository
+//
+// Conditions:
+// 1. Repository dir is absent
+fun gitShouldClone(c: GitContext): GitContext {
+    if (
+        c.recentField == F.repoDirExists &&
+        !c.repoDirExists
+    ) {
+        c.clone = true
+        c.recentField = F.clone
+        return c
+    }
+
+    c.recentField = F.none
+    return c
+}
+
 // Set repository dir
 //
 // Conditions:
