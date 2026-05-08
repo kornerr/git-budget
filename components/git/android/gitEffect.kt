@@ -46,6 +46,31 @@ fun gitClone(
     println("ИГР GitC.setup-03 contents: '$contents'")
 */
 
+fun gitPull(dir: String) {
+    val cr = UsernamePasswordCredentialsProvider(
+        "kornerr@gmail.com",
+        hash
+    )
+    val client = Git
+        .open(File(dir))
+        .pull()
+        .setCredentialsProvider(cr)
+
+    GlobalScope.launch(Dispatchers.IO) {
+        try {
+            client.call()
+            GlobalScope.launch(Dispatchers.Main) {
+                gitSet(F.didPull, true)
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+            GlobalScope.launch(Dispatchers.Main) {
+                gitSet(F.pullError, "$e")
+            }
+        }
+    }
+}
+
 fun gitListFiles(dir: String) {
     val files = File(dir).listFiles()
     println("ИГР gitLF-01 dir/files: '$dir'")

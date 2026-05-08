@@ -43,7 +43,10 @@ GitContext:
         clone: Bool
         cloneError: String
         didClone: Bool
+        didPull: Bool
         didLaunch: Bool
+        pull: Bool
+        pullError: String
         repoDir: String
         repoDirExists: Bool
         repoURL: String

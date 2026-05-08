@@ -8,6 +8,7 @@ object GitProto {
         setupComponentDebugging(ctrl, "Git")
         arrayOf(
             ::gitShouldClone,
+            ::gitShouldPull,
             ::gitShouldResetRepoDir,
         ).forEach { f ->
             ctrl.registerFunction { c -> f(c as GitContext) }

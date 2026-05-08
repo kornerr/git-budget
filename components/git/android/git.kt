@@ -8,6 +8,7 @@ object GitComponent {
         val oneliners = arrayOf(
             F.clone, { c: GC -> gitClone(c.repoDir, c.repoURL) },
             F.didLaunch, { c: GC -> gitLocateRootDir(vm.androidContext!!) },
+            F.pull, { c: GC -> gitPull(c.repoDir) },
             F.repoDir, { c: GC -> gitCheckRepoDirAvailability(c.repoDir) },
         )
         registerOneliners(gitCtrl(), oneliners)

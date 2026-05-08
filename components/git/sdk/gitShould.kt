@@ -18,6 +18,24 @@ fun gitShouldClone(c: GitContext): GitContext {
     return c
 }
 
+// Pull repository
+//
+// Conditions:
+// 1. Repository dir is present
+fun gitShouldPull(c: GitContext): GitContext {
+    if (
+        c.recentField == F.repoDirExists &&
+        c.repoDirExists
+    ) {
+        c.pull = true
+        c.recentField = F.pull
+        return c
+    }
+
+    c.recentField = F.none
+    return c
+}
+
 // Set repository dir
 //
 // Conditions:
