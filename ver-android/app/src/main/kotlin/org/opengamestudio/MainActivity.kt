@@ -22,11 +22,13 @@ class MainActivity: ComponentActivity() {
         println("ИГР01")
         SwiftInterface.sendInt(200)
         println("ИГР02")
-        /*SwiftInterface.fetchAsyncDataWithCallback(object : SwiftInterface.FetchCallback {
+        SwiftInterface.fetchAsyncDataWithCallback(object : SwiftInterface.FetchCallback {
             override fun onResult(result: String) {
-                println("ИГР SwiftI.fetchADWC result: '$result'")
+                println("ИГР SwiftI.fetchADWC")// result: '$result'")
             }
-        })*/
+        })
+        println("ИГР03")
+
 
 
         BudgetComponent.setup()
