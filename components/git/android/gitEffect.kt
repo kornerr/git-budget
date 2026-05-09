@@ -41,15 +41,20 @@ fun gitClone(
 }
 
 fun gitCommit(dir: String) {
-    val cr = UsernamePasswordCredentialsProvider(
-        "kornerr@gmail.com",
-        hash
-    )
-    // TODO ADD_TO_FILE
+
+
+
+    val datetime = "${java.time.LocalDateTime.now()}"
+
+    // TMP: Move outside
+    File(dir + "/gb.log").appendText("\n$datetime")
+
+
     val client = Git
         .open(File(dir))
         .commit()
-        .setCredentialsProvider(cr)
+        .setAll(true)
+        .setMessage(datetime)
 
     GlobalScope.launch(Dispatchers.IO) {
         try {
