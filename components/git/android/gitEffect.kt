@@ -117,3 +117,28 @@ fun gitPull(dir: String) {
         }
     }
 }
+
+fun gitPush(dir: String) {
+    val cr = UsernamePasswordCredentialsProvider(
+        "kornerr@gmail.com",
+        hash
+    )
+    val client = Git
+        .open(File(dir))
+        .push()
+        .setCredentialsProvider(cr)
+
+    GlobalScope.launch(Dispatchers.IO) {
+        try {
+            client.call()
+            GlobalScope.launch(Dispatchers.Main) {
+                gitSet(F.didPush, true)
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+            GlobalScope.launch(Dispatchers.Main) {
+                gitSet(F.pushError, "$e")
+            }
+        }
+    }
+}
