@@ -22,9 +22,11 @@ swift: import gb
 BudgetContext:
     type: context
     fields:
+        didClickCommit: Bool
         didClickCopy: Bool
         didClickPasteMorningBalance: Bool
         didClickPasteSpent: Bool
+        didClickPush: Bool
         didLaunch: Bool
         inputDate: String
         inputMorningBalance: String

@@ -83,5 +83,22 @@ fun BudgetView(
                 }
             }
         }
+        Spacer(Modifier.height(8.dp))
+        Row(
+            //horizontalArrangement = Arrangement.End,
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            FilledTonalButton(
+                onClick = { budgetSet(F.didClickCommit, true) },
+            ) {
+                Text(vm.commitTitle.value)
+            }
+            Spacer(modifier = Modifier.fillMaxWidth())
+            FilledTonalButton(
+                onClick = { budgetSet(F.didClickPush, true) },
+            ) {
+                Text(vm.pushTitle.value)
+            }
+        }
     }
 }
