@@ -183,7 +183,7 @@ public func sendDate(envPointer: UnsafeMutablePointer<JNIEnv?>, clazzRef: jobjec
 /// Example of receiving any type from Java/Kotlin (String, Int, Boolean, etc.)
 @_cdecl("Java_org_opengamestudio_checklib_SwiftInterface_sendAny")
 public func sendAny(envPointer: UnsafeMutablePointer<JNIEnv?>, clazzRef: jobject, key: jobject, value: jobject) {
-    let logger = Logger(label: "🐦‍🔥 SWIFT")
+    let logger = Logger(label: "ИГР sendA")
     let localEnv = JEnv(envPointer)
     defer {
         localEnv.deleteLocalRefPure(key)
@@ -191,46 +191,42 @@ public func sendAny(envPointer: UnsafeMutablePointer<JNIEnv?>, clazzRef: jobject
     }
 
     guard let keyString = key.wrap().string() else {
-        logger.info("📦 sendAny: unable to unwrap key")
+        logger.info("unable to unwrap key")
         return
     }
+    logger.info("key: \(keyString)")
 
     if let strVal = value.wrap().string() {
-        logger.info("📦 sendAny key: \(keyString), string: \(strVal)")
-        print("ИГР sendAny key: '\(keyString)' string: '\(strVal)'")
+        logger.info("key: \(keyString), string: \(strVal)")
         return
     }
 
     guard let box = value.box(localEnv) else {
-        logger.info("📦 sendAny: unable to box value")
+        logger.info("unable to box value")
         return
     }
     guard let obj = box.object() else {
-        logger.info("📦 sendAny: unable to unwrap value")
+        logger.info("unable to unwrap value")
         return
     }
 
     if let intVal = obj.callIntMethod(name: "intValue") {
-        logger.info("📦 sendAny key: \(keyString), int: \(intVal)")
-        print("ИГР sendAny key: '\(keyString)' int: \(intVal)")
+        logger.info("value int: \(intVal)")
         return
     }
 
     if let longVal = obj.callLongMethod(name: "longValue") {
-        logger.info("📦 sendAny key: \(keyString), long: \(longVal)")
-        print("ИГР sendAny key: '\(keyString)' long: \(longVal)")
+        logger.info("value long: \(longVal)")
         return
     }
 
     if let boolVal = obj.callBoolMethod(name: "booleanValue") {
-        logger.info("📦 sendAny key: \(keyString), bool: \(boolVal)")
-        print("ИГР sendAny key: '\(keyString)' bool: \(boolVal)")
+        logger.info("value bool: \(boolVal)")
         return
     }
 
     let toString = obj.toString()
-    logger.info("📦 sendAny key: \(keyString), val: \(toString)")
-    print("ИГР sendAny key: '\(keyString)' val: '\(toString)'")
+    logger.info("value val/str: \(toString)")
 }
 
 /// Example of synchronously returning a string to Java/Kotlin

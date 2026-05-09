@@ -26,8 +26,12 @@ class MainActivity: ComponentActivity() {
             println("ИГР SwiftI.fetchADWC result: '$result'")
         }
         println("ИГР03")
-
-
+        SwiftInterface.sendAny("url", "http://ya.ru")
+        println("ИГР04")
+        SwiftInterface.sendAny("selectedId", 153)
+        println("ИГР05")
+        SwiftInterface.sendAny("didLaunch", true)
+        println("ИГР06")
 
         BudgetComponent.setup()
         setContent {
