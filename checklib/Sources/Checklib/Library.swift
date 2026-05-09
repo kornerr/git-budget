@@ -196,11 +196,6 @@ public func sendAny(envPointer: UnsafeMutablePointer<JNIEnv?>, clazzRef: jobject
     }
     logger.info("key: \(keyString)")
 
-    if let strVal = value.wrap().string() {
-        logger.info("key: \(keyString), string: \(strVal)")
-        return
-    }
-
     guard let box = value.box(localEnv) else {
         logger.info("unable to box value")
         return
@@ -210,17 +205,23 @@ public func sendAny(envPointer: UnsafeMutablePointer<JNIEnv?>, clazzRef: jobject
         return
     }
 
-    if let intVal = obj.callIntMethod(name: "intValue") {
+    let intVal = obj.callIntMethod(name: "intValue")
+    localEnv.exceptionClear()
+    if let intVal = intVal {
         logger.info("value int: \(intVal)")
         return
     }
 
-    if let longVal = obj.callLongMethod(name: "longValue") {
+    let longVal = obj.callLongMethod(name: "longValue")
+    localEnv.exceptionClear()
+    if let longVal = longVal {
         logger.info("value long: \(longVal)")
         return
     }
 
-    if let boolVal = obj.callBoolMethod(name: "booleanValue") {
+    let boolVal = obj.callBoolMethod(name: "booleanValue")
+    localEnv.exceptionClear()
+    if let boolVal = boolVal {
         logger.info("value bool: \(boolVal)")
         return
     }
