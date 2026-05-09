@@ -18,7 +18,7 @@ object SwiftInterface {
     external fun ping(): String
     
     external fun fetchAsyncData(): String
-    fun interface FetchCallback {
+    interface FetchCallback {
         fun onResult(result: String)
     }
     external fun fetchAsyncDataWithCallback(callback: FetchCallback)
