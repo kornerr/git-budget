@@ -98,6 +98,7 @@ public func initialize(envPointer: UnsafeMutablePointer<JNIEnv?>, clazzRef: jobj
 public func sendInt(envPointer: UnsafeMutablePointer<JNIEnv?>, clazzRef: jobject, number: jint) {
     let logger = Logger(label: "🐦‍🔥 SWIFT")
     logger.info("#️⃣ sendInt: \(number)")
+    print("ИГР this was Swift number: '\(number)'")
 }
 
 /// Example of receiving an integer array from Java/Kotlin

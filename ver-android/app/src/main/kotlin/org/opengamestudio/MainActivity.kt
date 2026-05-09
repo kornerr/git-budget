@@ -22,6 +22,9 @@ class MainActivity: ComponentActivity() {
         println("ИГР01")
         SwiftInterface.sendInt(200)
         println("ИГР02")
+        SwiftInterface.fetchAsyncDataWithCallback {
+            result: Any -> println("ИГР SwiftI.fetchADWC result: '$result'")
+        }
 
 
         BudgetComponent.setup()
