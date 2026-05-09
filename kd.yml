@@ -44,11 +44,17 @@ GitContext:
     fields:
         clone: Bool
         cloneError: String
+        commit: Bool
+        commitError: String
         didClone: Bool
-        didPull: Bool
+        didCommit: Bool
         didLaunch: Bool
+        didPull: Bool
+        didPush: Bool
         pull: Bool
         pullError: String
+        push: Bool
+        pushError: String
         repoDir: String
         repoDirExists: Bool
         repoURL: String
