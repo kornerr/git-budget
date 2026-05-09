@@ -22,8 +22,8 @@ class MainActivity: ComponentActivity() {
         println("ИГР01")
         SwiftInterface.sendInt(200)
         println("ИГР02")
-        SwiftInterface.fetchAsyncDataWithCallback {
-            result: Any -> println("ИГР SwiftI.fetchADWC result: '$result'")
+        SwiftInterface.fetchAsyncDataWithCallback { result: String ->
+            println("ИГР SwiftI.fetchADWC result: '$result'")
         }
 
 
