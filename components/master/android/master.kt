@@ -11,6 +11,7 @@ object MasterComponent {
     }
 
     fun setup() {
+        masterBindComponents()
         masterSet(F.didSetup, true)
     }
 }
