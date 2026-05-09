@@ -403,17 +403,25 @@ struct DataContext {
     var url = ""
 }
 
-var currentDataContext = DataContext()
+nonisolated(unsafe) var currentDataContext = DataContext()
 
 func getCurrentDataContext() -> DataContext {
     return currentDataContext
 }
 
 #if os(Android)
-@_cdecl("Java_org_opengamestudio_checklib_SwiftInterface_getCurrentDataContext")
-public func getCurrentDataContextJNI(envPointer: UnsafeMutablePointer<JNIEnv?>, clazzRef: jobject) -> jobject? {
-    let context = getCurrentDataContext()
-    let json = "{\"didLaunch\":\(context.didLaunch),\"selectedId\":\(context.selectedId),\"url\":\"\(context.url)\"}"
-    return json.wrap().reference()
+@_cdecl("Java_org_opengamestudio_checklib_SwiftInterface_getCurrentDataContextDidLaunch")
+public func getCurrentDataContextDidLaunch(envPointer: UnsafeMutablePointer<JNIEnv?>, clazzRef: jobject) -> jboolean {
+    return jboolean(getCurrentDataContext().didLaunch ? 1 : 0)
+}
+
+@_cdecl("Java_org_opengamestudio_checklib_SwiftInterface_getCurrentDataContextSelectedId")
+public func getCurrentDataContextSelectedId(envPointer: UnsafeMutablePointer<JNIEnv?>, clazzRef: jobject) -> jint {
+    return jint(getCurrentDataContext().selectedId)
+}
+
+@_cdecl("Java_org_opengamestudio_checklib_SwiftInterface_getCurrentDataContextUrl")
+public func getCurrentDataContextUrl(envPointer: UnsafeMutablePointer<JNIEnv?>, clazzRef: jobject) -> jobject? {
+    return getCurrentDataContext().url.wrap().reference()
 }
 #endif
