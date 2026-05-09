@@ -23,7 +23,11 @@ object SwiftInterface {
     }
     external fun fetchAsyncDataWithCallback(callback: FetchCallback)
     external fun sendAny(key: String, value: Any)
-    external fun getCurrentDataContextDidLaunch(): Boolean
-    external fun getCurrentDataContextSelectedId(): Int
-    external fun getCurrentDataContextUrl(): String
+    external fun getCurrentDataContext(): DataContextDto
 }
+
+data class DataContextDto(
+    val didLaunch: Boolean,
+    val selectedId: Int,
+    val url: String
+)

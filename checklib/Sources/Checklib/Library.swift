@@ -410,18 +410,11 @@ func getCurrentDataContext() -> DataContext {
 }
 
 #if os(Android)
-@_cdecl("Java_org_opengamestudio_checklib_SwiftInterface_getCurrentDataContextDidLaunch")
-public func getCurrentDataContextDidLaunch(envPointer: UnsafeMutablePointer<JNIEnv?>, clazzRef: jobject) -> jboolean {
-    return jboolean(getCurrentDataContext().didLaunch ? 1 : 0)
-}
-
-@_cdecl("Java_org_opengamestudio_checklib_SwiftInterface_getCurrentDataContextSelectedId")
-public func getCurrentDataContextSelectedId(envPointer: UnsafeMutablePointer<JNIEnv?>, clazzRef: jobject) -> jint {
-    return jint(getCurrentDataContext().selectedId)
-}
-
-@_cdecl("Java_org_opengamestudio_checklib_SwiftInterface_getCurrentDataContextUrl")
-public func getCurrentDataContextUrl(envPointer: UnsafeMutablePointer<JNIEnv?>, clazzRef: jobject) -> jobject? {
-    return getCurrentDataContext().url.wrap().reference()
+@_cdecl("Java_org_opengamestudio_checklib_SwiftInterface_getCurrentDataContext")
+public func getCurrentDataContextJNI(envPointer: UnsafeMutablePointer<JNIEnv?>, clazzRef: jobject) -> jobject? {
+    let context = getCurrentDataContext()
+    guard let clazz = JClass.load("org/opengamestudio/checklib/DataContextDto"),
+          let obj = clazz.newObject(args: context.didLaunch, Int32(context.selectedId), context.url) else { return nil }
+    return obj.ref.ref
 }
 #endif
