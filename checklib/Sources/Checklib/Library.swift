@@ -206,21 +206,21 @@ public func sendAny(envPointer: UnsafeMutablePointer<JNIEnv?>, clazzRef: jobject
     }
 
     let intVal = obj.callIntMethod(name: "intValue")
-    localEnv.exceptionClear()
+    localEnv.clearException()
     if let intVal = intVal {
         logger.info("value int: \(intVal)")
         return
     }
 
     let longVal = obj.callLongMethod(name: "longValue")
-    localEnv.exceptionClear()
+    localEnv.clearException()
     if let longVal = longVal {
         logger.info("value long: \(longVal)")
         return
     }
 
     let boolVal = obj.callBoolMethod(name: "booleanValue")
-    localEnv.exceptionClear()
+    localEnv.clearException()
     if let boolVal = boolVal {
         logger.info("value bool: \(boolVal)")
         return
