@@ -396,3 +396,9 @@ public final class JDate: JObjectable, Sendable {
         return Date(timeIntervalSince1970: TimeInterval(time) / 1000.0)
     }
 }
+
+struct DataContext {
+    var didLaunch = false
+    var selectedId = 0
+    var url = ""
+}
