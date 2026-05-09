@@ -23,4 +23,5 @@ object SwiftInterface {
     }
     external fun fetchAsyncDataWithCallback(callback: FetchCallback)
     external fun sendAny(key: String, value: Any)
+    external fun getCurrentDataContext(): String
 }

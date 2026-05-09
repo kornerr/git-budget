@@ -402,3 +402,18 @@ struct DataContext {
     var selectedId = 0
     var url = ""
 }
+
+var currentDataContext = DataContext()
+
+func getCurrentDataContext() -> DataContext {
+    return currentDataContext
+}
+
+#if os(Android)
+@_cdecl("Java_org_opengamestudio_checklib_SwiftInterface_getCurrentDataContext")
+public func getCurrentDataContextJNI(envPointer: UnsafeMutablePointer<JNIEnv?>, clazzRef: jobject) -> jobject? {
+    let context = getCurrentDataContext()
+    let json = "{\"didLaunch\":\(context.didLaunch),\"selectedId\":\(context.selectedId),\"url\":\"\(context.url)\"}"
+    return json.wrap().reference()
+}
+#endif
