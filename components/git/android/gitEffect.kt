@@ -40,11 +40,53 @@ fun gitClone(
     }
 }
 
+fun gitCommit(dir: String) {
+    val cr = UsernamePasswordCredentialsProvider(
+        "kornerr@gmail.com",
+        hash
+    )
+    // TODO ADD_TO_FILE
+    val client = Git
+        .open(File(dir))
+        .commit()
+        .setCredentialsProvider(cr)
+
+    GlobalScope.launch(Dispatchers.IO) {
+        try {
+            client.call()
+            GlobalScope.launch(Dispatchers.Main) {
+                gitSet(F.didCommit, true)
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+            GlobalScope.launch(Dispatchers.Main) {
+                gitSet(F.commitError, "$e")
+            }
+        }
+    }
+}
+
 /*
     // 3. Print `abc`
     val contents = File(dir + "/abc").readText()
     println("ИГР GitC.setup-03 contents: '$contents'")
 */
+
+/*
+fun gitListFiles(dir: String) {
+    val files = File(dir).listFiles()
+    println("ИГР gitLF-01 dir/files: '$dir'")
+    for (item in files) {
+        println("ИГР > '$item'")
+    }
+    println("ИГР gitLF-02 dir: '$dir'")
+}
+*/
+
+fun gitLocateRootDir(ctx: Context) {
+    val dir = ctx.getExternalFilesDir(null)?.absolutePath ?: "N/A"
+    gitSet(F.rootDir, dir)
+}
 
 fun gitPull(dir: String) {
     val cr = UsernamePasswordCredentialsProvider(
@@ -70,18 +112,3 @@ fun gitPull(dir: String) {
         }
     }
 }
-
-fun gitListFiles(dir: String) {
-    val files = File(dir).listFiles()
-    println("ИГР gitLF-01 dir/files: '$dir'")
-    for (item in files) {
-        println("ИГР > '$item'")
-    }
-    println("ИГР gitLF-02 dir: '$dir'")
-}
-
-fun gitLocateRootDir(ctx: Context) {
-    val dir = ctx.getExternalFilesDir(null)?.absolutePath ?: "N/A"
-    gitSet(F.rootDir, dir)
-}
-
