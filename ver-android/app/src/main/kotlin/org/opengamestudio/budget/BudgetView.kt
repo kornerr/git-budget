@@ -93,7 +93,7 @@ fun BudgetView(
             ) {
                 Text(vm.commitTitle.value)
             }
-            Spacer(modifier = Modifier.fillMaxWidth())
+            Spacer(Modifier.weight(1f))
             FilledTonalButton(
                 onClick = { budgetSet(F.didClickPush, true) },
             ) {
