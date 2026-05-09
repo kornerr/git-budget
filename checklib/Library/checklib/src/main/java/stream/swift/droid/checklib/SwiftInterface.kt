@@ -1,4 +1,4 @@
-package org.opengamestudio.checklib
+package stream.swift.droid.checklib
 
 import java.util.Date
 
@@ -18,9 +18,8 @@ object SwiftInterface {
     external fun ping(): String
     
     external fun fetchAsyncData(): String
-    fun interface FetchCallback {
+    interface FetchCallback {
         fun onResult(result: String)
     }
     external fun fetchAsyncDataWithCallback(callback: FetchCallback)
-    external fun sendAny(key: String, value: Any)
 }
