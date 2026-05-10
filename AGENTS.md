@@ -32,7 +32,8 @@ Files staring with `ignore` are not tracked in git. `ignore` files should not be
 
 ## Code generation
 
-`kd.yml` defines data structs and contexts. Regenerate after changes:
+`kd.yml` defines data structs and contexts. Regenerate after changes with
+the following command (make sure to run it from the root of the project):
 
 ```
 ./util/gen-kd
