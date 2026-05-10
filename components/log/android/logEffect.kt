@@ -1,5 +1,5 @@
 package org.opengamestudio
 
 fun logRead() {
-    println("Log: didLaunch triggered")
+    println("TODO read")
 }

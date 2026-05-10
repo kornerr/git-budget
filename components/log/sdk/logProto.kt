@@ -4,10 +4,10 @@ object LogProto {
     val ctrl: KDController
 
     init {
-        ctrl = KDController(Log())
+        ctrl = KDController(LogContext())
         setupComponentDebugging(ctrl, "Log")
         arrayOf(
-            ::logShouldReadOnLaunch,
+            ::logShouldRead,
         ).forEach { f ->
             ctrl.registerFunction { c -> f(c as LogContext) }
         }

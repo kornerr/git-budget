@@ -60,9 +60,10 @@ GitContext:
         repoURL: String
         rootDir: String
 
-Log:
+LogContext:
     type: context
     fields:
+        didLaunch: Bool
         didRead: Bool
         didWrite: Bool
         items: [LogItem]

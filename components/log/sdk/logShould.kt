@@ -1,9 +1,14 @@
 package org.opengamestudio
 
-fun logShouldReadOnLaunch(c: LogContext): LogContext {
-    if (c.recentField == F.didLaunch) {
-        c.didRead = true
-        c.recentField = F.didRead
+/* Read log
+ *
+ * Conditions:
+ * 1. Did launch
+ */
+fun logShouldRead(c: LogContext): LogContext {
+    /* 1 */ if (c.recentField == F.didLaunch) {
+        c.read = true
+        c.recentField = F.read
         return c
     }
 
