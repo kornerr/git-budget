@@ -69,7 +69,7 @@ LogContext:
         didRead: Bool
         didWrite: Bool
         items: [LogItem]
-        logContents: String
+        logLines: [String]
         read: Bool
         readError: String
         repoDir: String
