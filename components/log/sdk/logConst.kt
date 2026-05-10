@@ -1,3 +1,3 @@
 package org.opengamestudio
 
-val GIT_REPO_DIR = "gbrepo"
+val LOG_FILE = "gb.log"

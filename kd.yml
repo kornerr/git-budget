@@ -63,12 +63,15 @@ GitContext:
 LogContext:
     type: context
     fields:
+        didClone: Bool
         didLaunch: Bool
+        didPull: Bool
         didRead: Bool
         didWrite: Bool
         items: [LogItem]
         read: Bool
         readError: String
+        repoDir: String
         write: Bool
         writeError: String
 
