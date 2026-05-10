@@ -11,4 +11,5 @@ fun logRead(dir: String) {
     }
     println("ИГР logR-03 end")
     logSet(F.logLines, lines)
+    logParse(lines)
 }
