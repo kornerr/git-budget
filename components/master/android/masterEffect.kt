@@ -12,4 +12,5 @@ fun masterBindComponents() {
 fun masterLaunchComponents() {
     BudgetComponent.launch()
     GitComponent.launch()
+    LogComponent.launch()
 }
