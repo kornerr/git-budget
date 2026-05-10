@@ -75,8 +75,8 @@ LogItem:
     type: struct
     fields:
         dt: Int
-        left: Double
-        spent: Double
+        left: Float
+        spent: Float
 
 MasterContext:
     type: context
