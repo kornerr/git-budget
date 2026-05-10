@@ -4,6 +4,7 @@ import java.io.File
 
 fun logRead(dir: String) {
     val f = File("$dir/$LOG_FILE")
-    val txt = f.readText()
+    val txt = f.readString()
+    println("ИГР logR txt: '$txt'")
     logSet(F.logContents, txt)
 }
