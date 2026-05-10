@@ -60,6 +60,24 @@ GitContext:
         repoURL: String
         rootDir: String
 
+Log:
+    type: context
+    fields:
+        didRead: Bool
+        didWrite: Bool
+        items: [LogItem]
+        read: Bool
+        readError: String
+        write: Bool
+        writeError: String
+
+LogItem:
+    type: struct
+    fields:
+        dt: Int
+        left: Double
+        spent: Double
+
 MasterContext:
     type: context
     fields:
