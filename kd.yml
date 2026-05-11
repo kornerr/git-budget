@@ -68,8 +68,8 @@ LogContext:
         didPull: Bool
         didRead: Bool
         didWrite: Bool
+        fileLines: [String]
         items: [LogItem]
-        logLines: [String]
         read: Bool
         readError: String
         repoDir: String
@@ -79,7 +79,7 @@ LogContext:
 LogItem:
     type: struct
     fields:
-        dt: Int
+        dt: String
         left: Float
         spent: Float
 

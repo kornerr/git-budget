@@ -5,7 +5,8 @@ private typealias LC = LogContext
 object LogComponent {
     init {
         val oneliners = arrayOf(
-            F.read, { c: LC -> logRead(c.repoDir) },
+            F.fileLines, { c: LC -> logParse(c.fileLines) },
+            F.read, { c: LC -> logReadFile(c.repoDir) },
         )
         registerOneliners(logCtrl(), oneliners)
     }
