@@ -8,6 +8,7 @@ object LogProto {
         setupComponentDebugging(ctrl, "Log")
         arrayOf(
             ::logShouldRead,
+            ::logShouldResetItems,
         ).forEach { f ->
             ctrl.registerFunction { c -> f(c as LogContext) }
         }

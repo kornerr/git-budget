@@ -18,3 +18,19 @@ fun logShouldRead(c: LogContext): LogContext {
     c.recentField = F.none
     return c
 }
+
+/* Reset items
+ *
+ * Conditions:
+ * 1. Loaded items
+ */
+fun logShouldResetItems(c: LogContext): LogContext {
+    /* 1 */ if (c.recentField == F.loadedItems) {
+        c.items = logArrayItemsToDict(c.loadedItems)
+        c.recentField = F.items
+        return c
+    }
+
+    c.recentField = F.none
+    return c
+}

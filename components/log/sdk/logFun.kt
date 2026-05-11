@@ -1,5 +1,13 @@
 package org.opengamestudio
 
+fun logArrayItemsToDict(items: Array<LogItem>): Map<String, LogItem> {
+    var d = mutableMapOf<String, LogItem>()
+    for (item in items) {
+        d[item.dt] = item
+    }
+    return d
+}
+
 fun logParseItems(lines: Array<String>): Array<LogItem> {
     var items = arrayOf<LogItem>()
     var item: LogItem? = null
