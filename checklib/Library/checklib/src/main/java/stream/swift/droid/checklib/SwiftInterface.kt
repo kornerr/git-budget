@@ -11,15 +11,4 @@ object SwiftInterface {
 
     external fun initialize(caller: Any)
 
-    external fun sendInt(number: Int)
-    external fun sendIntArray(array: IntArray)
-    external fun sendString(string: String)
-    external fun sendDate(date: Date)
-    external fun ping(): String
-    
-    external fun fetchAsyncData(): String
-    interface FetchCallback {
-        fun onResult(result: String)
-    }
-    external fun fetchAsyncDataWithCallback(callback: FetchCallback)
 }

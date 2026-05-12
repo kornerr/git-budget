@@ -93,14 +93,6 @@ public func initialize(envPointer: UnsafeMutablePointer<JNIEnv?>, clazzRef: jobj
 // Call the following methods after the `initialize` method above has been called
 
 #if os(Android)
-/// Example of receiving an integer from Java/Kotlin
-@_cdecl("Java_org_opengamestudio_checklib_SwiftInterface_sendInt")
-public func sendInt(envPointer: UnsafeMutablePointer<JNIEnv?>, clazzRef: jobject, number: jint) {
-    let logger = Logger(label: "🐦‍🔥 SWIFT")
-    logger.info("#️⃣ sendInt: \(number)")
-    print("ИГР this was Swift number: '\(number)'")
-}
-
 /// Example of receiving any type from Java/Kotlin (String, Int, Boolean, etc.)
 @_cdecl("Java_org_opengamestudio_checklib_SwiftInterface_sendAny")
 public func sendAny(envPointer: UnsafeMutablePointer<JNIEnv?>, clazzRef: jobject, key: jobject, value: jobject) {
@@ -172,20 +164,6 @@ public func sendAny(envPointer: UnsafeMutablePointer<JNIEnv?>, clazzRef: jobject
         currentDataContext.url = valStr
         logger.info("ИГР currentDC: \(currentDataContext)")
         currentDataContextDidChangeCallback?.callVoidMethod(name: "onChanged")
-    }
-}
-
-/// Example of async operation with callback (this is the best practice)
-@_cdecl("Java_org_opengamestudio_checklib_SwiftInterface_fetchAsyncDataWithCallback")
-public func fetchAsyncDataWithCallback(env: UnsafeMutablePointer<JNIEnv?>, obj: jobject, callback: jobject) {
-    let env = JEnv(env)
-    defer { env.deleteLocalRefPure(callback) }
-    guard let object = callback.box(env)?.object() else { return }
-    Task {
-        // Simulate async operation
-        try? await Task.sleep(nanoseconds: 5_000_000_000) // 5 seconds
-        // Call callback.onResult method
-        object.callVoidMethod(name: "onResult", args: "Async data fetched successfully!")
     }
 }
 
