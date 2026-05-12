@@ -12,6 +12,7 @@ object LogComponent {
     }
 
     fun launch() {
+        logSet(F.reportedDateYear, logReportedDateYear())
         logSet(F.didLaunch, true)
     }
 }

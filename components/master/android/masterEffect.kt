@@ -10,10 +10,6 @@ fun masterBindComponents() {
     })
 
     // Budget -> Log
-    budgetCtrl().registerFieldCallback(F.reportedDate, { cc: KDContext ->
-        val c = cc as BudgetContext
-        logSet(F.reportedDate, c.reportedDate)
-    })
     budgetCtrl().registerFieldCallback(F.spent, { cc: KDContext ->
         val c = cc as BudgetContext
         logSet(F.spent, c.spent)

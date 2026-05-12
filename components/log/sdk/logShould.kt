@@ -42,7 +42,7 @@ fun logShouldResetItems(c: LogContext): LogContext {
  */
 fun logShouldResetReportedItem(c: LogContext): LogContext {
     /* 1 */ if (c.recentField == F.spent) {
-        c.reportedItem = logReportedItem(c.items, c.reportedDate, c.spent)
+        c.reportedItem = logReportedItem(c.items, c.reportedDateYear, c.spent)
         c.recentField = F.reportedItem
         return c
     }

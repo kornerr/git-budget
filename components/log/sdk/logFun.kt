@@ -48,11 +48,11 @@ fun logParseItems(lines: Array<String>): Array<LogItem> {
 // Create reported item
 fun logReportedItem(
     items: Map<String, LogItem>,
-    reportedDate: String,
+    reportedDt: String,
     spent: String
 ): LogItem {
     var item = LogItem()
-    item.dt = reportedDate // TODO: YYYY-MM-DD
+    item.dt = reportedDt
     item.spent = spent.toFloat()
     item.left = -153f // TODO: Formula
 
