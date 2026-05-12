@@ -6,67 +6,50 @@
 </head>
 <body>
   <h1>Swift + WebAssembly</h1>
-  <p id="msg">loading...</p>
-  <p id="calc">loading...</p>
+  <p><b>stringValue:</b> <span id="sv"></span></p>
+  <p><b>intValue:</b> <span id="iv"></span></p>
 
   <script>
-    const wasiStubs = {
-      wasi_snapshot_preview1: {
-        args_get: () => 0,
-        args_sizes_get: () => 0,
-        environ_get: () => 0,
-        environ_sizes_get: () => 0,
-        fd_close: () => 0,
-        fd_fdstat_get: () => 0,
-        fd_prestat_get: () => 8,
-        fd_prestat_dir_name: () => 8,
-        fd_read: () => 0,
-        fd_seek: () => 0,
-        fd_write: (fd, iovs, iovsLen, nwritten) => {
-          const mem = new Uint8Array(wasmInstance.exports.memory.buffer);
-          let out = "";
-          for (let i = 0; i < iovsLen; i++) {
-            const ptr = new DataView(mem.buffer).getUint32(iovs + i * 8, true);
-            const len = new DataView(mem.buffer).getUint32(iovs + i * 8 + 4, true);
-            for (let j = 0; j < len; j++) out += String.fromCharCode(mem[ptr + j]);
-          }
-          if (fd === 1 || fd === 2) console.log(out);
-          new DataView(mem.buffer).setUint32(nwritten, out.length, true);
-          return 0;
+    async function init() {
+      const wasi = { wasi_snapshot_preview1: {
+        args_get: () => 0, args_sizes_get: () => 0,
+        environ_get: () => 0, environ_sizes_get: () => 0,
+        fd_close: () => 0, fd_fdstat_get: () => 0,
+        fd_prestat_get: () => 8, fd_prestat_dir_name: () => 8,
+        fd_read: () => 0, fd_seek: () => 0, fd_write: () => 0,
+        path_open: () => 8, proc_exit: () => {},
+        random_get: () => 0,
+      }};
+
+      const { instance } = await WebAssembly.instantiateStreaming(fetch("hwcli.wasm"), wasi);
+      const mem = () => new Uint8Array(instance.exports.memory.buffer);
+
+      const readCStr = (p) => {
+        const b = mem(); let e = p;
+        while (b[e]) e++;
+        return new TextDecoder().decode(b.slice(p, e));
+      };
+
+      const exports = instance.exports;
+
+      const ctx = {
+        get stringValue() { return readCStr(exports.get_string()); },
+        set stringValue(v) {
+          const enc = new TextEncoder().encode(v + "\0");
+          const scratch = exports.get_scratch();
+          const b = mem();
+          for (let i = 0; i < enc.length; i++) b[scratch + i] = enc[i];
+          exports.set_string(scratch);
         },
-        path_open: () => 8,
-        proc_exit: (code) => { throw new Error(`exit(${code})`); },
-        random_get: (buf, len) => {
-          const view = new Uint8Array(wasmInstance.exports.memory.buffer);
-          for (let i = 0; i < len; i++) view[buf + i] = (Math.random() * 256) | 0;
-          return 0;
-        },
-      }
-    };
+        get intValue() { return exports.get_int(); },
+        set intValue(v) { exports.set_int(v); },
+      };
 
-    let wasmInstance;
+      document.getElementById("sv").textContent = ctx.stringValue;
+      document.getElementById("iv").textContent = ctx.intValue;
+    }
 
-    WebAssembly.instantiateStreaming(fetch("hwcli.wasm"), wasiStubs)
-      .then(({ instance }) => {
-        wasmInstance = instance;
-
-        const mem = new Uint8Array(instance.exports.memory.buffer);
-        const readCStr = (ptr) => {
-          let end = ptr;
-          while (mem[end] !== 0) end++;
-          return new TextDecoder().decode(mem.slice(ptr, end));
-        };
-
-        const msgPtr = instance.exports.get_message();
-        document.getElementById("msg").textContent = readCStr(msgPtr);
-
-        const result = instance.exports.add(37, 5);
-        document.getElementById("calc").textContent =
-          `37 + 5 = ${result}`;
-      })
-      .catch(err => {
-        document.getElementById("msg").textContent = "Error: " + err.message;
-      });
+    init().catch(e => document.body.innerHTML += `<p>Error: ${e.message}</p>`);
   </script>
 </body>
 </html>
