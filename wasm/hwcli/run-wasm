@@ -1,4 +1,3 @@
 #!/bin/bash
-SWIFT=~/.swiftly/bin/swift
-#$SWIFT run --swift-sdk swift-6.3.1-RELEASE_wasm
-$SWIFT run --swift-sdk swift-6.3.1-RELEASE_wasm-embedded
+cp .build/debug/hwcli.wasm .
+python3 -m http.server 8080

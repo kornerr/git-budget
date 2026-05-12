@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 SWIFT=~/.swiftly/bin/swift
-#$SWIFT build --swift-sdk swift-6.3.1-RELEASE_wasm
-$SWIFT build --swift-sdk swift-6.3.1-RELEASE_wasm-embedded
+$SWIFT build --swift-sdk swift-6.3.1-RELEASE_wasm
+cp .build/debug/hwcli.wasm .
