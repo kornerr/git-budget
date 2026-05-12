@@ -1,0 +1,74 @@
+{
+	"name": "swiftstream",
+	"build": {
+		"dockerfile": "Dockerfile",
+		"args": {}
+	},
+	"containerEnv": {
+		"S_MODE": "ANDROID",
+		"S_TOOLCHAIN_URL_X86": "https://download.swift.org/swift-6.2-release/ubuntu2404/swift-6.2-RELEASE/swift-6.2-RELEASE-ubuntu24.04.tar.gz",
+		"S_TOOLCHAIN_URL_ARM": "https://download.swift.org/swift-6.2-release/ubuntu2404-aarch64/swift-6.2-RELEASE/swift-6.2-RELEASE-ubuntu24.04-aarch64.tar.gz",
+		"S_VERSION_MAJOR": "6",
+		"S_VERSION_MINOR": "2",
+		"S_VERSION_PATCH": "0",
+		"S_ARTIFACT_ANDROID_URL": "https://github.com/swift-android-sdk/swift-android-sdk/releases/download/6.2/swift-6.2-RELEASE-android-0.1.artifactbundle.tar.gz",
+		"S_ANDROID_VERSION": "24-0.1",
+		"S_GRADLE_VERSION": "8.14",
+		"S_NDK_VERSION": "r27d",
+		"S_SDK_VERSION": "35"
+	},
+	"appPort": [],
+	"otherPortsAttributes": {},
+	"postStartCommand": "cmd.sh",
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"swiftstream.swiftstream",
+				"swiftlang.swift-vscode",
+				"mateocerquetella.xcode-12-theme"
+			],
+			"settings": {
+				"extensions.ignoreRecommendations": true,
+				"remote.autoForwardPorts": false,
+				"swift.path": "/swift/toolchains/6.2-RELEASE/usr/bin",
+				"swift.swiftEnvironmentVariables": {
+					"DEVELOPER_DIR": "public"
+				},
+				"lldb.library": "/swift/toolchains/6.2-RELEASE/usr/lib/liblldb.so",
+				"lldb.launch.expressions": "native",
+				"swift.autoGenerateLaunchConfigurations": true,
+				"swift.backgroundCompilation": false,
+				"swift.showCreateSwiftProjectInWelcomePage": false,
+				"editor.semanticHighlighting.enabled": true
+			}
+		}
+	},
+	"capAdd": [
+		"SYS_PTRACE"
+	],
+	"securityOpt": [
+		"seccomp=unconfined"
+	],
+	"mounts": [
+		{
+			"source": "${localWorkspaceFolderBasename}-swiftbuild",
+			"target": "${containerWorkspaceFolder}/.build",
+			"type": "volume"
+		},
+		{
+			"source": "swift-toolchains",
+			"target": "/swift/toolchains",
+			"type": "volume"
+		},
+		{
+			"source": "swift-sdks",
+			"target": "/swift/sdks",
+			"type": "volume"
+		},
+		{
+			"source": "android",
+			"target": "/opt/android",
+			"type": "volume"
+		}
+	]
+}

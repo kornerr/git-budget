@@ -1,0 +1,33 @@
+{
+  "originHash" : "40c10309808c1b731bb692e60a82ccf03871f8fa9f4ea14d96b13872ac7fac14",
+  "pins" : [
+    {
+      "identity" : "androidlogging",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/swifdroid/AndroidLogging.git",
+      "state" : {
+        "revision" : "5d715b364b3562f093c0cb0c95b2b86b597911f0",
+        "version" : "0.1.1"
+      }
+    },
+    {
+      "identity" : "jni-kit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/swifdroid/jni-kit.git",
+      "state" : {
+        "revision" : "92b519ec5425913ecc90dee8f34d954b9344e7f5",
+        "version" : "2.13.2"
+      }
+    },
+    {
+      "identity" : "swift-log",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-log.git",
+      "state" : {
+        "revision" : "5073617dac96330a486245e4c0179cb0a6fd2256",
+        "version" : "1.12.0"
+      }
+    }
+  ],
+  "version" : 3
+}
