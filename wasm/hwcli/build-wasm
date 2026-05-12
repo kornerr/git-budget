@@ -1,3 +1,4 @@
 #!/bin/bash
 SWIFT=~/.swiftly/bin/swift
-$SWIFT build --swift-sdk swift-6.3.1-RELEASE_wasm
+#$SWIFT build --swift-sdk swift-6.3.1-RELEASE_wasm
+$SWIFT build --swift-sdk swift-6.3.1-RELEASE_wasm-embedded
