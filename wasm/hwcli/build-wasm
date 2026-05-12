@@ -1,3 +1,3 @@
 #!/bin/bash
-swift build --swift-sdk swift-6.3.1-RELEASE_wasm
-#swift build --swift-sdk wasm32-unknown-wasip1 
+SWIFT=~/.swiftly/bin/swift
+$SWIFT build --swift-sdk swift-6.3.1-RELEASE_wasm
