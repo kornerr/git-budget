@@ -1,5 +1,6 @@
 package org.opengamestudio
 
+// Convert array of log items into dictionary with date as key
 fun logArrayItemsToDict(items: Array<LogItem>): Map<String, LogItem> {
     var d = mutableMapOf<String, LogItem>()
     for (item in items) {
@@ -8,6 +9,7 @@ fun logArrayItemsToDict(items: Array<LogItem>): Map<String, LogItem> {
     return d
 }
 
+// Parse raw lines of strings to an array of log items
 fun logParseItems(lines: Array<String>): Array<LogItem> {
     var items = arrayOf<LogItem>()
     var item: LogItem? = null
@@ -41,4 +43,18 @@ fun logParseItems(lines: Array<String>): Array<LogItem> {
         }
     }
     return items
+}
+
+// Create reported item
+fun logReportedItem(
+    items: Map<String, LogItem>,
+    reportedDate: String,
+    spent: String
+): LogItem {
+    var item = LogItem()
+    item.dt = reportedDate // TODO: YYYY-MM-DD
+    item.spent = spent.toFloat()
+    item.left = -153f // TODO: Formula
+
+    return item
 }

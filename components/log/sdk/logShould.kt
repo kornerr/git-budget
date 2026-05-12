@@ -34,3 +34,19 @@ fun logShouldResetItems(c: LogContext): LogContext {
     c.recentField = F.none
     return c
 }
+
+/* Reset reported (yesterday's) item
+ *
+ * Conditions:
+ * 1. Spent has been changed
+ */
+fun logShouldResetReportedItem(c: LogContext): LogContext {
+    /* 1 */ if (c.recentField == F.spent) {
+        c.reportedItem = logReportedItem(c.items, c.reportedDate, c.spent)
+        c.recentField = F.reportedItem
+        return c
+    }
+
+    c.recentField = F.none
+    return c
+}

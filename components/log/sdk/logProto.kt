@@ -9,6 +9,7 @@ object LogProto {
         arrayOf(
             ::logShouldRead,
             ::logShouldResetItems,
+            ::logShouldResetReportedItem,
         ).forEach { f ->
             ctrl.registerFunction { c -> f(c as LogContext) }
         }

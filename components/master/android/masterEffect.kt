@@ -8,6 +8,16 @@ fun masterBindComponents() {
     budgetCtrl().registerFieldCallback(F.didClickPush, { cc: KDContext ->
         gitSet(F.push, true)
     })
+
+    // Budget -> Log
+    budgetCtrl().registerFieldCallback(F.reportedDate, { cc: KDContext ->
+        val c = cc as BudgetContext
+        logSet(F.reportedDate, c.reportedDate)
+    })
+    budgetCtrl().registerFieldCallback(F.spent, { cc: KDContext ->
+        val c = cc as BudgetContext
+        logSet(F.spent, c.spent)
+    })
     
     // Git -> Log
     gitCtrl().registerFieldCallback(F.didClone, { cc: KDContext ->
