@@ -216,6 +216,7 @@ public func sendAny(envPointer: UnsafeMutablePointer<JNIEnv?>, clazzRef: jobject
             currentDataContext.recentField = keyString
             currentDataContext.selectedId = intVal
             logger.info("ИГР currentDC: \(currentDataContext)")
+            currentDataContextDidChangeCallback?.callVoidMethod(name: "onChanged")
         }
         return
     }
@@ -237,6 +238,7 @@ public func sendAny(envPointer: UnsafeMutablePointer<JNIEnv?>, clazzRef: jobject
             currentDataContext.recentField = keyString
             currentDataContext.didLaunch = boolVal
             logger.info("ИГР currentDC: \(currentDataContext)")
+            currentDataContextDidChangeCallback?.callVoidMethod(name: "onChanged")
         }
         return
     }
@@ -248,6 +250,7 @@ public func sendAny(envPointer: UnsafeMutablePointer<JNIEnv?>, clazzRef: jobject
         currentDataContext.recentField = keyString
         currentDataContext.url = valStr
         logger.info("ИГР currentDC: \(currentDataContext)")
+        currentDataContextDidChangeCallback?.callVoidMethod(name: "onChanged")
     }
 }
 
@@ -297,6 +300,14 @@ public func fetchAsyncDataWithCallback(env: UnsafeMutablePointer<JNIEnv?>, obj: 
         // Call callback.onResult method
         object.callVoidMethod(name: "onResult", args: "Async data fetched successfully!")
     }
+}
+
+@_cdecl("Java_org_opengamestudio_checklib_SwiftInterface_registerCallback")
+public func registerCallback(envPointer: UnsafeMutablePointer<JNIEnv?>, clazzRef: jobject, callback: jobject) {
+    let env = JEnv(envPointer)
+    defer { env.deleteLocalRefPure(callback) }
+    guard let object = callback.box(env)?.object() else { return }
+    currentDataContextDidChangeCallback = object
 }
 #endif
 
@@ -428,6 +439,9 @@ struct DataContext {
 
 // Singleton context.
 nonisolated(unsafe) var currentDataContext = DataContext()
+
+// Optional callback invoked after each context change.
+nonisolated(unsafe) var currentDataContextDidChangeCallback: JObject? = nil
 
 func getCurrentDataContext() -> DataContext {
     return currentDataContext

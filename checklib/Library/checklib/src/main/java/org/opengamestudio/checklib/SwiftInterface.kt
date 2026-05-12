@@ -24,6 +24,10 @@ object SwiftInterface {
     external fun fetchAsyncDataWithCallback(callback: FetchCallback)
     external fun sendAny(key: String, value: Any)
     external fun getCurrentDataContext(): DataContextDto
+    fun interface DataContextCallback {
+        fun onChanged()
+    }
+    external fun registerCallback(callback: DataContextCallback)
 }
 
 data class DataContextDto(

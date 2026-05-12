@@ -19,23 +19,16 @@ class MainActivity: ComponentActivity() {
         VM.androidContext = this
 
         SwiftInterface.initialize(this)
-        println("ИГР01")
-        SwiftInterface.sendInt(200)
-        println("ИГР02")
-        SwiftInterface.fetchAsyncDataWithCallback { result: String ->
-            println("ИГР SwiftI.fetchADWC result: '$result'")
+        SwiftInterface.registerCallback {
+            println("ИГР SwiftI.getCDC: '${SwiftInterface.getCurrentDataContext()}'")
         }
-        println("ИГР03")
+        println("ИГР01")
         SwiftInterface.sendAny("url", "http://ya.ru")
-        println("ИГР04")
+        println("ИГР02")
         SwiftInterface.sendAny("selectedId", 153)
-        println("ИГР05")
-        var ctx = SwiftInterface.getCurrentDataContext()
-        println("ИГР06 ctx: '$ctx'")
+        println("ИГР03")
         SwiftInterface.sendAny("didLaunch", true)
-        println("ИГР07")
-        ctx = SwiftInterface.getCurrentDataContext()
-        println("ИГР08 ctx: '$ctx'")
+        println("ИГР04")
 
         BudgetComponent.setup()
         setContent {
