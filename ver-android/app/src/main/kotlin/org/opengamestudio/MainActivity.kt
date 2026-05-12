@@ -27,7 +27,8 @@ class MainActivity: ComponentActivity() {
         }
         println("ИГР03")
         SwiftInterface.sendAny("url", "http://ya.ru")
-        println("ИГР04")
+        var ctx = SwiftInterface.getCurrentDataContext()
+        println("ИГР04 ctx: '$ctx'")
         SwiftInterface.sendAny("selectedId", 153)
         println("ИГР05")
         SwiftInterface.sendAny("didLaunch", true)

@@ -190,12 +190,14 @@ public func sendAny(envPointer: UnsafeMutablePointer<JNIEnv?>, clazzRef: jobject
         localEnv.deleteLocalRefPure(value)
     }
 
+    // Key
     guard let keyString = key.wrap().string() else {
         logger.info("unable to unwrap key")
         return
     }
     logger.info("key: \(keyString)")
 
+    // Unwrap value
     guard let box = value.box(localEnv) else {
         logger.info("unable to box value")
         return
@@ -205,13 +207,18 @@ public func sendAny(envPointer: UnsafeMutablePointer<JNIEnv?>, clazzRef: jobject
         return
     }
 
+    // Int
     let intVal = obj.callIntMethod(name: "intValue")
     localEnv.clearException()
     if let intVal = intVal {
         logger.info("value int: \(intVal)")
+        if keyString == "selectedId" {
+            currentDataContext.selectedId = intVal
+        }
         return
     }
 
+    // Long
     let longVal = obj.callLongMethod(name: "longValue")
     localEnv.clearException()
     if let longVal = longVal {
@@ -219,15 +226,23 @@ public func sendAny(envPointer: UnsafeMutablePointer<JNIEnv?>, clazzRef: jobject
         return
     }
 
+    // Bool
     let boolVal = obj.callBoolMethod(name: "booleanValue")
     localEnv.clearException()
     if let boolVal = boolVal {
         logger.info("value bool: \(boolVal)")
+        if keyString == "didLaunch" {
+            currentDataContext.didLaunch = boolVal
+        }
         return
     }
 
-    let toString = obj.toString()
-    logger.info("value val/str: \(toString)")
+    // String
+    let valStr = obj.toString()
+    logger.info("value valStr: \(valStr)")
+    if keyString == "url" {
+        currentDataContext.url = valStr
+    }
 }
 
 /// Example of synchronously returning a string to Java/Kotlin
@@ -399,10 +414,11 @@ public final class JDate: JObjectable, Sendable {
 
 struct DataContext {
     var didLaunch = false
-    var selectedId = 0
+    var selectedId: Int32 = 0
     var url = ""
 }
 
+// Singleton context.
 nonisolated(unsafe) var currentDataContext = DataContext()
 
 func getCurrentDataContext() -> DataContext {
@@ -413,8 +429,15 @@ func getCurrentDataContext() -> DataContext {
 @_cdecl("Java_org_opengamestudio_checklib_SwiftInterface_getCurrentDataContext")
 public func getCurrentDataContextJNI(envPointer: UnsafeMutablePointer<JNIEnv?>, clazzRef: jobject) -> jobject? {
     let context = getCurrentDataContext()
-    guard let clazz = JClass.load("org/opengamestudio/checklib/DataContextDto"),
-          let obj = clazz.newObject(args: context.didLaunch, Int32(context.selectedId), context.url) else { return nil }
+    guard
+        let clazz = JClass.load("org/opengamestudio/checklib/DataContextDto"),
+        let obj = clazz.newObject(args:
+            context.didLaunch,
+            Int32(context.selectedId),
+            context.url
+        ) else {
+            return nil
+        }
     return obj.ref.ref
 }
 #endif
