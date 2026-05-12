@@ -432,6 +432,7 @@ func getCurrentDataContext() -> DataContext {
 @_cdecl("Java_org_opengamestudio_checklib_SwiftInterface_getCurrentDataContext")
 public func getCurrentDataContextJNI(envPointer: UnsafeMutablePointer<JNIEnv?>, clazzRef: jobject) -> jobject? {
     let context = getCurrentDataContext()
+    let localEnv = JEnv(envPointer)
     guard
         let clazz = JClass.load("org/opengamestudio/checklib/DataContextDto"),
         let obj = clazz.newObject(args:
@@ -441,6 +442,6 @@ public func getCurrentDataContextJNI(envPointer: UnsafeMutablePointer<JNIEnv?>, 
         ) else {
             return nil
         }
-    return obj.ref.ref
+    return localEnv.newLocalRefPure(obj.ref.ref)
 }
 #endif
