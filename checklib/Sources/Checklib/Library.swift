@@ -195,7 +195,7 @@ public func sendAny(envPointer: UnsafeMutablePointer<JNIEnv?>, clazzRef: jobject
         logger.info("unable to unwrap key")
         return
     }
-    logger.info("key: \(keyString)")
+    logger.info("ИГР key: \(keyString)")
 
     // Unwrap value
     guard let box = value.box(localEnv) else {
@@ -211,9 +211,10 @@ public func sendAny(envPointer: UnsafeMutablePointer<JNIEnv?>, clazzRef: jobject
     let intVal = obj.callIntMethod(name: "intValue")
     localEnv.clearException()
     if let intVal = intVal {
-        logger.info("value int: \(intVal)")
+        logger.info("ИГР value int: \(intVal)")
         if keyString == "selectedId" {
             currentDataContext.selectedId = intVal
+            logger.info("ИГР currentDC: \(currentDataContext)")
         }
         return
     }
@@ -230,18 +231,20 @@ public func sendAny(envPointer: UnsafeMutablePointer<JNIEnv?>, clazzRef: jobject
     let boolVal = obj.callBoolMethod(name: "booleanValue")
     localEnv.clearException()
     if let boolVal = boolVal {
-        logger.info("value bool: \(boolVal)")
+        logger.info("ИГР value bool: \(boolVal)")
         if keyString == "didLaunch" {
             currentDataContext.didLaunch = boolVal
+            logger.info("ИГР currentDC: \(currentDataContext)")
         }
         return
     }
 
     // String
     let valStr = obj.toString()
-    logger.info("value valStr: \(valStr)")
+    logger.info("ИГР value str: \(valStr)")
     if keyString == "url" {
         currentDataContext.url = valStr
+        logger.info("ИГР currentDC: \(currentDataContext)")
     }
 }
 

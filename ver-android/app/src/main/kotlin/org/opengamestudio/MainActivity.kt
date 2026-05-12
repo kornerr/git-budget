@@ -27,12 +27,13 @@ class MainActivity: ComponentActivity() {
         }
         println("ИГР03")
         SwiftInterface.sendAny("url", "http://ya.ru")
-        var ctx = SwiftInterface.getCurrentDataContext()
-        println("ИГР04 ctx: '$ctx'")
+        println("ИГР04")
         SwiftInterface.sendAny("selectedId", 153)
         println("ИГР05")
         SwiftInterface.sendAny("didLaunch", true)
         println("ИГР06")
+        var ctx = SwiftInterface.getCurrentDataContext()
+        println("ИГР07 ctx: '$ctx'")
 
         BudgetComponent.setup()
         setContent {
