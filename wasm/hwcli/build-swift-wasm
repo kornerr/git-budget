@@ -1,0 +1,2 @@
+#!/bin/bash
+swift build --swift-sdk swift-6.3.1-RELEASE_wasm
