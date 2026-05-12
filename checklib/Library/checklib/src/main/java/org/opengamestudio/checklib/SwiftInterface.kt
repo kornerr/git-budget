@@ -29,5 +29,6 @@ object SwiftInterface {
 data class DataContextDto(
     val didLaunch: Boolean,
     val selectedId: Int,
-    val url: String
+    val url: String,
+    val recentField: String
 )

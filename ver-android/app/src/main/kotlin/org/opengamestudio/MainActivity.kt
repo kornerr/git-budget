@@ -30,10 +30,12 @@ class MainActivity: ComponentActivity() {
         println("ИГР04")
         SwiftInterface.sendAny("selectedId", 153)
         println("ИГР05")
-        SwiftInterface.sendAny("didLaunch", true)
-        println("ИГР06")
         var ctx = SwiftInterface.getCurrentDataContext()
-        println("ИГР07 ctx: '$ctx'")
+        println("ИГР06 ctx: '$ctx'")
+        SwiftInterface.sendAny("didLaunch", true)
+        println("ИГР07")
+        ctx = SwiftInterface.getCurrentDataContext()
+        println("ИГР08 ctx: '$ctx'")
 
         BudgetComponent.setup()
         setContent {

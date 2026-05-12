@@ -213,6 +213,7 @@ public func sendAny(envPointer: UnsafeMutablePointer<JNIEnv?>, clazzRef: jobject
     if let intVal = intVal {
         logger.info("ИГР value int: \(intVal)")
         if keyString == "selectedId" {
+            currentDataContext.recentField = keyString
             currentDataContext.selectedId = intVal
             logger.info("ИГР currentDC: \(currentDataContext)")
         }
@@ -233,6 +234,7 @@ public func sendAny(envPointer: UnsafeMutablePointer<JNIEnv?>, clazzRef: jobject
     if let boolVal = boolVal {
         logger.info("ИГР value bool: \(boolVal)")
         if keyString == "didLaunch" {
+            currentDataContext.recentField = keyString
             currentDataContext.didLaunch = boolVal
             logger.info("ИГР currentDC: \(currentDataContext)")
         }
@@ -243,6 +245,7 @@ public func sendAny(envPointer: UnsafeMutablePointer<JNIEnv?>, clazzRef: jobject
     let valStr = obj.toString()
     logger.info("ИГР value str: \(valStr)")
     if keyString == "url" {
+        currentDataContext.recentField = keyString
         currentDataContext.url = valStr
         logger.info("ИГР currentDC: \(currentDataContext)")
     }
@@ -419,6 +422,8 @@ struct DataContext {
     var didLaunch = false
     var selectedId: Int32 = 0
     var url = ""
+
+    var recentField = ""
 }
 
 // Singleton context.
@@ -438,7 +443,8 @@ public func getCurrentDataContextJNI(envPointer: UnsafeMutablePointer<JNIEnv?>, 
         let obj = clazz.newObject(args:
             context.didLaunch,
             Int32(context.selectedId),
-            context.url
+            context.url,
+            context.recentField,
         ) else {
             return nil
         }
