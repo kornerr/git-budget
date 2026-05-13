@@ -1,3 +1,5 @@
+nonisolated(unsafe) var contextDidChangeCallback: (() -> Void)?
+
 func sendAny(key: String, value: Any) {
     currentDataContext.recentField = key
     switch key {
@@ -10,6 +12,7 @@ func sendAny(key: String, value: Any) {
     default:
         break
     }
+    contextDidChangeCallback?()
 }
 
 @_expose(wasm, "sendAnyString")
@@ -32,4 +35,15 @@ func sendAnyInt(_ keyPtr: UnsafePointer<CChar>, _ value: Int32) {
 func sendAnyBool(_ keyPtr: UnsafePointer<CChar>, _ value: Bool) {
     let key = String(cString: keyPtr)
     sendAny(key: key, value: value)
+}
+
+@_extern(wasm, module: "env", name: "jsCallback")
+func jsCallback()
+
+@_expose(wasm, "registerCallback")
+@MainActor
+func registerCallback() {
+    contextDidChangeCallback = {
+        jsCallback()
+    }
 }

@@ -14,11 +14,19 @@
     <script type="module">
         import { initWasm } from "./swift-helper.js";
 
-        const { exports: e, readStr, writeStr, sendAny } = await initWasm();
+        const { exports: e, readStr, writeStr, sendAny, registerCallback } = await initWasm();
 
         sendAny("url", "http://ya.ru");
         sendAny("selectedId", 153);
         sendAny("didLaunch", true);
+
+        registerCallback(() => {
+            const didLaunch = !!e.DataContext_didLaunch();
+            const selectedId = e.DataContext_selectedId();
+            const url = readStr(e.DataContext_url());
+            const recentField = readStr(e.DataContext_recentField());
+            console.log("DataContext didL/selectedI/url/recentF:", didLaunch, selectedId, url, recentField);
+        });
 
         const ctx = {
             get didLaunch() { return !!e.DataContext_didLaunch(); },
