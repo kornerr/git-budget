@@ -1,14 +1,24 @@
 func sendAny(key: String, value: Any) {
     currentDataContext.recentField = key
-    switch key {
-    case "didLaunch":
-        if let v = value as? Bool { currentDataContext.didLaunch = v }
-    case "selectedId":
-        if let v = value as? Int32 { currentDataContext.selectedId = v }
-    case "url":
-        if let v = value as? String { currentDataContext.url = v }
-    default:
-        break
+    if
+        key == "didLaunch",
+        let v = value as? Bool
+    {
+        currentDataContext.didLaunch = v
+    }
+
+    if
+        key == "selectedId",
+        let v = value as? Int32
+    {
+        currentDataContext.selectedId = v
+    }
+
+    if
+        key == "url",
+        let v = value as? String
+    {
+        currentDataContext.url = v
     }
 }
 
