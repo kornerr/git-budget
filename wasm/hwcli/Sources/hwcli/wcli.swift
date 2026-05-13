@@ -50,9 +50,9 @@ func sendAnyBool(_ keyPtr: UnsafePointer<CChar>, _ value: Bool) {
 @_extern(wasm, module: "env", name: "jsCallback")
 func jsCallback()
 
-@_expose(wasm, "registerCallback")
+@_expose(wasm, "setupSwiftCallback")
 @MainActor
-func registerCallback() {
+func setupSwiftCallback() {
     contextDidChangeCallback = {
         jsCallback()
     }

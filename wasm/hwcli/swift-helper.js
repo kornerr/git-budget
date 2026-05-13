@@ -25,12 +25,13 @@ export async function initWasm() {
             jsCallback: () => {
                 if (!storedCallback) return;
                 const e = instance.exports;
-                storedCallback({
+                const ctx = {
                     get didLaunch() { return !!e.DataContext_didLaunch(); },
                     get selectedId() { return e.DataContext_selectedId(); },
                     get url() { return readStr(e.DataContext_url()); },
                     get recentField() { return readStr(e.DataContext_recentField()); },
-                });
+                };
+                storedCallback(ctx);
             },
         },
     };
@@ -81,6 +82,6 @@ export async function initWasm() {
         readStr,
         writeStr,
         sendAny,
-        registerCallback: (fn) => { storedCallback = fn; instance.exports.registerCallback(); },
+        registerCallback: (fn) => { storedCallback = fn; instance.exports.setupSwiftCallback(); },
     };
 }
