@@ -37,5 +37,21 @@ export async function initWasm() {
         fn(buf);
     };
 
-    return { exports: instance.exports, readStr, writeStr };
+    const sendAny = (key, value) => {
+        const enc = new TextEncoder().encode(key + "\0");
+        const buf = instance.exports.strBuf();
+        const b = mem();
+        for (let i = 0; i < enc.length; i++) b[buf + i] = enc[i];
+        if (typeof value === "string") {
+            const encV = new TextEncoder().encode(value + "\0");
+            for (let i = 0; i < encV.length; i++) b[buf + 64 + i] = encV[i];
+            instance.exports.sendAnyString(buf, buf + 64);
+        } else if (typeof value === "number") {
+            instance.exports.sendAnyInt(buf, value);
+        } else if (typeof value === "boolean") {
+            instance.exports.sendAnyBool(buf, value);
+        }
+    };
+
+    return { exports: instance.exports, readStr, writeStr, sendAny };
 }

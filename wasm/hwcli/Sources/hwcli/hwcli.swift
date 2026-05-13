@@ -1,6 +1,8 @@
 // Buffer for passing strings between JS and WASM
+@MainActor
 private let cStringBuffer = UnsafeMutablePointer<CChar>.allocate(capacity: 1024)
-@MainActor @_expose(wasm, "strBuf")
+@_expose(wasm, "strBuf")
+@MainActor
 func strBuf() -> UnsafeMutablePointer<CChar> { cStringBuffer }
 
 func bakeCString(_ s: String, into p: UnsafeMutablePointer<CChar>) {
