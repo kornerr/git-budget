@@ -11,55 +11,26 @@
   <p><b>url:</b> <span id="url"></span></p>
   <p><b>recentField:</b> <span id="rf"></span></p>
 
-  <script>
-    async function init() {
-      const wasi = { wasi_snapshot_preview1: {
-        args_get: () => 0, args_sizes_get: () => 0,
-        environ_get: () => 0, environ_sizes_get: () => 0,
-        fd_close: () => 0, fd_fdstat_get: () => 0,
-        fd_prestat_get: () => 8, fd_prestat_dir_name: () => 8,
-        fd_read: () => 0, fd_seek: () => 0, fd_write: () => 0,
-        path_open: () => 8, proc_exit: () => {},
-        random_get: () => 0,
-      }};
+  <script type="module">
+    import { initWasm } from "./swift-wrapper.js";
 
-      const { instance } = await WebAssembly.instantiateStreaming(fetch("hwcli.wasm"), wasi);
-      const mem = () => new Uint8Array(instance.exports.memory.buffer);
+    const { exports: e, readStr, writeStr } = await initWasm();
 
-      const readCStr = (p) => {
-        const b = mem(); let e = p;
-        while (b[e]) e++;
-        return new TextDecoder().decode(b.slice(p, e));
-      };
+    const ctx = {
+      get didLaunch() { return !!e.DataContext_didLaunch(); },
+      set didLaunch(v) { e.DataContext_setDidLaunch(v); },
+      get selectedId() { return e.DataContext_selectedId(); },
+      set selectedId(v) { e.DataContext_setSelectedId(v); },
+      get url() { return readStr(e.DataContext_url()); },
+      set url(v) { writeStr(v, e.DataContext_setURL); },
+      get recentField() { return readStr(e.DataContext_recentField()); },
+      set recentField(v) { writeStr(v, e.DataContext_setRecentField); },
+    };
 
-      const writeStr = (v, fn) => {
-        const enc = new TextEncoder().encode(v + "\0");
-        const buf = instance.exports.strBuf();
-        const b = mem();
-        for (let i = 0; i < enc.length; i++) b[buf + i] = enc[i];
-        fn(buf);
-      };
-
-      const e = instance.exports;
-
-      const ctx = {
-        get didLaunch() { return !!e.DataContext_didLaunch(); },
-        set didLaunch(v) { e.DataContext_setDidLaunch(v); },
-        get selectedId() { return e.DataContext_selectedId(); },
-        set selectedId(v) { e.DataContext_setSelectedId(v); },
-        get url() { return readCStr(e.DataContext_url()); },
-        set url(v) { writeStr(v, e.DataContext_setURL); },
-        get recentField() { return readCStr(e.DataContext_recentField()); },
-        set recentField(v) { writeStr(v, e.DataContext_setRecentField); },
-      };
-
-      document.getElementById("dl").textContent = ctx.didLaunch;
-      document.getElementById("si").textContent = ctx.selectedId;
-      document.getElementById("url").textContent = ctx.url;
-      document.getElementById("rf").textContent = ctx.recentField;
-    }
-
-    init().catch(e => document.body.innerHTML += `<p>Error: ${e.message}</p>`);
+    document.getElementById("dl").textContent = ctx.didLaunch;
+    document.getElementById("si").textContent = ctx.selectedId;
+    document.getElementById("url").textContent = ctx.url;
+    document.getElementById("rf").textContent = ctx.recentField;
   </script>
 </body>
 </html>
