@@ -5,43 +5,26 @@
         <title>Swift WebAssembly Demo</title>
     </head>
     <body>
-    <h1>Swift + WebAssembly</h1>
-    <p>didLaunch: '<span id="dl"></span>'</p>
-    <p>selectedId: '<span id="si"></span>'</p>
-    <p>url: '<span id="url"></span>'</p>
-    <p>recentField: '<span id="rf"></span>'</p>
 
     <script type="module">
         import { initWasm } from "./swift-helper.js";
 
         const { exports: e, readStr, writeStr, sendAny, registerCallback } = await initWasm();
 
+        registerCallback(() => {
+            const ctx = {
+                get didLaunch() { return !!e.DataContext_didLaunch(); },
+                get selectedId() { return e.DataContext_selectedId(); },
+                get url() { return readStr(e.DataContext_url()); },
+                get recentField() { return readStr(e.DataContext_recentField()); },
+            };
+            console.log("ИГР ctx didL/selectedI/url/recentF:", ctx.didLaunch, ctx.selectedId, ctx.url, ctx.recentField);
+        });
+
         sendAny("url", "http://ya.ru");
         sendAny("selectedId", 153);
         sendAny("didLaunch", true);
 
-        registerCallback(() => {
-            const didLaunch = !!e.DataContext_didLaunch();
-            const selectedId = e.DataContext_selectedId();
-            const url = readStr(e.DataContext_url());
-            const recentField = readStr(e.DataContext_recentField());
-            console.log("DataContext didL/selectedI/url/recentF:", didLaunch, selectedId, url, recentField);
-        });
-
-        const ctx = {
-            get didLaunch() { return !!e.DataContext_didLaunch(); },
-            set didLaunch(v) { e.DataContext_setDidLaunch(v); },
-            get selectedId() { return e.DataContext_selectedId(); },
-            set selectedId(v) { e.DataContext_setSelectedId(v); },
-            get url() { return readStr(e.DataContext_url()); },
-            set url(v) { writeStr(v, e.DataContext_setURL); },
-            get recentField() { return readStr(e.DataContext_recentField()); },
-        };
-
-        document.getElementById("dl").textContent = ctx.didLaunch;
-        document.getElementById("si").textContent = ctx.selectedId;
-        document.getElementById("url").textContent = ctx.url;
-        document.getElementById("rf").textContent = ctx.recentField;
     </script>
 </body>
 </html>

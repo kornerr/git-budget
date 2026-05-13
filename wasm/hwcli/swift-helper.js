@@ -21,9 +21,6 @@ export async function initWasm() {
             proc_exit: () => {},
             random_get: () => 0,
         },
-        env: {
-            jsCallback: () => { if (storedCallback) storedCallback(); },
-        },
     };
 
     const result = await WebAssembly.instantiateStreaming(fetch(WASM_FILE), importObject);
@@ -58,6 +55,7 @@ export async function initWasm() {
         } else if (typeof value === "boolean") {
             instance.exports.sendAnyBool(buf, value);
         }
+        if (storedCallback) storedCallback();
     };
 
     return {
@@ -65,6 +63,6 @@ export async function initWasm() {
         readStr,
         writeStr,
         sendAny,
-        registerCallback: (fn) => { storedCallback = fn; instance.exports.registerCallback(); },
+        registerCallback: (fn) => { storedCallback = fn; },
     };
 }

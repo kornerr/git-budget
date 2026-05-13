@@ -29,11 +29,6 @@ nonisolated(unsafe) var currentDataContext = DataContext()
 func DataContext_didLaunch() -> Bool {
     currentDataContext.didLaunch
 }
-@_expose(wasm, "DataContext_setDidLaunch")
-@MainActor
-func DataContext_setDidLaunch(_ value: Bool) {
-    currentDataContext.didLaunch = value
-}
 
 // selectedId
 @_expose(wasm, "DataContext_selectedId")
@@ -41,18 +36,8 @@ func DataContext_setDidLaunch(_ value: Bool) {
 func DataContext_selectedId() -> Int32 {
     currentDataContext.selectedId
 }
-@_expose(wasm, "DataContext_setSelectedId")
-@MainActor
-func DataContext_setSelectedId(_ value: Int32) {
-    currentDataContext.selectedId = value
-}
 
 // url
-@_expose(wasm, "DataContext_setURL")
-@MainActor
-func DataContext_setURL(_ ptr: UnsafePointer<CChar>) {
-    currentDataContext.url = String(cString: ptr)
-}
 @_expose(wasm, "DataContext_url")
 @MainActor
 func DataContext_url() -> UnsafePointer<CChar> {
