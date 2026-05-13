@@ -1,34 +1,46 @@
+private let cStringBuffer = UnsafeMutablePointer<CChar>.allocate(capacity: 1024)
+@MainActor @_expose(wasm, "strBuf")
+func strBuf() -> UnsafeMutablePointer<CChar> { cStringBuffer }
+
 func bakeCString(_ s: String, into p: UnsafeMutablePointer<CChar>) {
     let bytes = s.utf8CString
-    for i in bytes.indices { p[i] = bytes[i] }
+    for i in bytes.indices {
+        p[i] = bytes[i]
+    }
 }
 
-private let cStringBuffer = UnsafeMutablePointer<CChar>.allocate(capacity: 256)
+struct DataContext {
+    var didLaunch = false
+    var selectedId: Int32 = 0
+    var url = ""
 
+    var recentField = ""
+}
+
+// Singleton-like context.
+nonisolated(unsafe) var currentDataContext = DataContext()
+
+// selectedId
+@_expose(wasm, "DataContext_selectedId")
 @MainActor
-final class DataContext {
-    static let shared = DataContext()
-    var stringValue = "Hello, world"
-    var intVal: Int32 = 153
-    private init() {}
+func DataContext_selectedId() -> Int32 {
+    currentDataContext.selectedId
+}
+@_expose(wasm, "DataContext_setSelectedId")
+@MainActor
+func DataContext_setSelectedId(_ value: Int32) {
+    currentDataContext.selectedId = value
 }
 
-@MainActor @_expose(wasm, "get_string")
-func get_string() -> UnsafePointer<CChar> {
-    bakeCString(DataContext.shared.stringValue, into: cStringBuffer)
+// url
+@_expose(wasm, "DataContext_setURL")
+@MainActor
+func DataContext_setURL(_ ptr: UnsafePointer<CChar>) {
+    currentDataContext.url = String(cString: ptr)
+}
+@_expose(wasm, "DataContext_url")
+@MainActor
+func DataContext_url() -> UnsafePointer<CChar> {
+    bakeCString(currentDataContext.url, into: cStringBuffer)
     return UnsafePointer(cStringBuffer)
 }
-
-@MainActor @_expose(wasm, "get_int")
-func get_int() -> Int32 { DataContext.shared.intVal }
-
-@MainActor @_expose(wasm, "set_int")
-func set_int(_ value: Int32) { DataContext.shared.intVal = value }
-
-@MainActor @_expose(wasm, "set_string")
-func set_string(_ ptr: UnsafePointer<CChar>) {
-    DataContext.shared.stringValue = String(cString: ptr)
-}
-
-@MainActor @_expose(wasm, "get_scratch")
-func get_scratch() -> UnsafeMutablePointer<CChar> { cStringBuffer }
