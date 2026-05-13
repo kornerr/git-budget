@@ -24,7 +24,6 @@
             get url() { return readStr(e.DataContext_url()); },
             set url(v) { writeStr(v, e.DataContext_setURL); },
             get recentField() { return readStr(e.DataContext_recentField()); },
-            set recentField(v) { writeStr(v, e.DataContext_setRecentField); },
         };
 
         document.getElementById("dl").textContent = ctx.didLaunch;
