@@ -1,10 +1,24 @@
 @MainActor
 enum DataContext {
+    static func bakeCString(_ s: String, into p: UnsafeMutablePointer<CChar>) {
+        let bytes = s.utf8CString
+        for i in bytes.indices { p[i] = bytes[i] }
+    }
+
+    static func fillFromCString(_ src: UnsafePointer<CChar>, into dst: UnsafeMutablePointer<CChar>, capacity: Int) {
+        var i = 0
+        while i < capacity - 1 {
+            dst[i] = src[i]
+            if src[i] == 0 { break }
+            i += 1
+        }
+        dst[capacity - 1] = 0
+    }
+
     static let strBuf: UnsafeMutablePointer<CChar> = {
         let p = UnsafeMutablePointer<CChar>.allocate(capacity: 256)
-        p[0] = 72;  p[1] = 101; p[2] = 108; p[3] = 108; p[4] = 111
-        p[5] = 44;  p[6] = 32;  p[7] = 119; p[8] = 111; p[9] = 114
-        p[10] = 108; p[11] = 100; p[12] = 0
+        let s = "Hello, world"
+        bakeCString(s, into: p)
         return p
     }()
 
@@ -12,13 +26,7 @@ enum DataContext {
     static var intVal: Int32 = 153
 
     static func setString(from ptr: UnsafePointer<CChar>) {
-        var i = 0
-        while i < 255 {
-            strBuf[i] = ptr[i]
-            if ptr[i] == 0 { break }
-            i += 1
-        }
-        strBuf[255] = 0
+        fillFromCString(ptr, into: strBuf, capacity: 256)
     }
 }
 
