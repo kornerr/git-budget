@@ -11,13 +11,7 @@
 
         const { exports: e, readStr, writeStr, sendAny, registerCallback } = await initWasm();
 
-        registerCallback(() => {
-            const ctx = {
-                get didLaunch() { return !!e.DataContext_didLaunch(); },
-                get selectedId() { return e.DataContext_selectedId(); },
-                get url() { return readStr(e.DataContext_url()); },
-                get recentField() { return readStr(e.DataContext_recentField()); },
-            };
+        registerCallback((ctx) => {
             console.log("ИГР ctx didL/selectedI/url/recentF:", ctx.didLaunch, ctx.selectedId, ctx.url, ctx.recentField);
         });
 
