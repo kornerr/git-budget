@@ -76,7 +76,6 @@ LogContext:
         repoDir: String
         reportedDateYear: String
         reportedItem: LogItem
-        spent: String
         write: Bool
         writeError: String
 

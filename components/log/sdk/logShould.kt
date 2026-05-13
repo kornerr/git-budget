@@ -35,6 +35,7 @@ fun logShouldResetItems(c: LogContext): LogContext {
     return c
 }
 
+/*
 /* Reset reported (yesterday's) item
  *
  * Conditions:
@@ -50,3 +51,4 @@ fun logShouldResetReportedItem(c: LogContext): LogContext {
     c.recentField = F.none
     return c
 }
+*/
