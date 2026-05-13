@@ -1,5 +1,5 @@
 #!/bin/bash
 set -e
 SWIFT=~/.swiftly/bin/swift
-$SWIFT build -enable-experimental-feature Extern --swift-sdk swift-6.3.1-RELEASE_wasm
+$SWIFT build -Xswiftc -enable-experimental-feature -Xswiftc Extern --swift-sdk swift-6.3.1-RELEASE_wasm
 cp .build/debug/hwcli.wasm .
