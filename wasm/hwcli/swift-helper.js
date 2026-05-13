@@ -27,6 +27,10 @@ export async function initWasm() {
     instance = result.instance;
     const mem = () => new Uint8Array(instance.exports.memory.buffer);
 
+    const copyStrBuf = (b, buf, enc, off) => {
+        for (let i = 0; i < enc.length; i++) b[buf + off + i] = enc[i];
+    };
+
     const readStr = (p) => {
         const b = mem(); let e = p;
         while (b[e]) e++;
@@ -37,23 +41,25 @@ export async function initWasm() {
         const enc = new TextEncoder().encode(v + "\0");
         const buf = instance.exports.strBuf();
         const b = mem();
-        for (let i = 0; i < enc.length; i++) b[buf + i] = enc[i];
+        copyStrBuf(b, buf, enc, 0);
         fn(buf);
     };
 
     const sendAny = (key, value) => {
         const enc = new TextEncoder().encode(key + "\0");
-        const buf = instance.exports.strBuf();
+        const keyPtr = instance.exports.strBuf();
+        const valOffset = 64;
+        const strValPtr = keyPtr + valOffset;
         const b = mem();
-        for (let i = 0; i < enc.length; i++) b[buf + i] = enc[i];
+        copyStrBuf(b, keyPtr, enc, 0);
         if (typeof value === "string") {
-            const encV = new TextEncoder().encode(value + "\0");
-            for (let i = 0; i < encV.length; i++) b[buf + 64 + i] = encV[i];
-            instance.exports.sendAnyString(buf, buf + 64);
+            const val = new TextEncoder().encode(value + "\0");
+            copyStrBuf(b, keyPtr, val, valOffset);
+            instance.exports.sendAnyString(keyPtr, strValPtr);
         } else if (typeof value === "number") {
-            instance.exports.sendAnyInt(buf, value);
+            instance.exports.sendAnyInt(keyPtr, value);
         } else if (typeof value === "boolean") {
-            instance.exports.sendAnyBool(buf, value);
+            instance.exports.sendAnyBool(keyPtr, value);
         }
         if (storedCallback) storedCallback();
     };
