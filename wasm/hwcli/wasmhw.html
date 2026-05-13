@@ -6,8 +6,10 @@
 </head>
 <body>
   <h1>Swift + WebAssembly</h1>
-  <p><b>stringValue:</b> <span id="sv"></span></p>
-  <p><b>intValue:</b> <span id="iv"></span></p>
+  <p><b>didLaunch:</b> <span id="dl"></span></p>
+  <p><b>selectedId:</b> <span id="si"></span></p>
+  <p><b>url:</b> <span id="url"></span></p>
+  <p><b>recentField:</b> <span id="rf"></span></p>
 
   <script>
     async function init() {
@@ -30,23 +32,31 @@
         return new TextDecoder().decode(b.slice(p, e));
       };
 
-      const exports = instance.exports;
-
-      const ctx = {
-        get stringValue() { return readCStr(exports.get_string()); },
-        set stringValue(v) {
-          const enc = new TextEncoder().encode(v + "\0");
-          const scratch = exports.get_scratch();
-          const b = mem();
-          for (let i = 0; i < enc.length; i++) b[scratch + i] = enc[i];
-          exports.set_string(scratch);
-        },
-        get intValue() { return exports.get_int(); },
-        set intValue(v) { exports.set_int(v); },
+      const writeStr = (v, fn) => {
+        const enc = new TextEncoder().encode(v + "\0");
+        const buf = instance.exports.strBuf();
+        const b = mem();
+        for (let i = 0; i < enc.length; i++) b[buf + i] = enc[i];
+        fn(buf);
       };
 
-      document.getElementById("sv").textContent = ctx.stringValue;
-      document.getElementById("iv").textContent = ctx.intValue;
+      const e = instance.exports;
+
+      const ctx = {
+        get didLaunch() { return !!e.DataContext_didLaunch(); },
+        set didLaunch(v) { e.DataContext_setDidLaunch(v); },
+        get selectedId() { return e.DataContext_selectedId(); },
+        set selectedId(v) { e.DataContext_setSelectedId(v); },
+        get url() { return readCStr(e.DataContext_url()); },
+        set url(v) { writeStr(v, e.DataContext_setURL); },
+        get recentField() { return readCStr(e.DataContext_recentField()); },
+        set recentField(v) { writeStr(v, e.DataContext_setRecentField); },
+      };
+
+      document.getElementById("dl").textContent = ctx.didLaunch;
+      document.getElementById("si").textContent = ctx.selectedId;
+      document.getElementById("url").textContent = ctx.url;
+      document.getElementById("rf").textContent = ctx.recentField;
     }
 
     init().catch(e => document.body.innerHTML += `<p>Error: ${e.message}</p>`);

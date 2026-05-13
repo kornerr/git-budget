@@ -1,3 +1,4 @@
+// Buffer for passing strings between JS and WASM
 private let cStringBuffer = UnsafeMutablePointer<CChar>.allocate(capacity: 1024)
 @MainActor @_expose(wasm, "strBuf")
 func strBuf() -> UnsafeMutablePointer<CChar> { cStringBuffer }
@@ -17,8 +18,20 @@ struct DataContext {
     var recentField = ""
 }
 
-// Singleton-like context.
+// Singleton-like context
 nonisolated(unsafe) var currentDataContext = DataContext()
+
+// didLaunch
+@_expose(wasm, "DataContext_didLaunch")
+@MainActor
+func DataContext_didLaunch() -> Bool {
+    currentDataContext.didLaunch
+}
+@_expose(wasm, "DataContext_setDidLaunch")
+@MainActor
+func DataContext_setDidLaunch(_ value: Bool) {
+    currentDataContext.didLaunch = value
+}
 
 // selectedId
 @_expose(wasm, "DataContext_selectedId")
@@ -42,5 +55,13 @@ func DataContext_setURL(_ ptr: UnsafePointer<CChar>) {
 @MainActor
 func DataContext_url() -> UnsafePointer<CChar> {
     bakeCString(currentDataContext.url, into: cStringBuffer)
+    return UnsafePointer(cStringBuffer)
+}
+
+// recentField (read-only)
+@_expose(wasm, "DataContext_recentField")
+@MainActor
+func DataContext_recentField() -> UnsafePointer<CChar> {
+    bakeCString(currentDataContext.recentField, into: cStringBuffer)
     return UnsafePointer(cStringBuffer)
 }
