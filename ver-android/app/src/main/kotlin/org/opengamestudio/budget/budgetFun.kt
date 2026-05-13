@@ -1,5 +1,7 @@
 package org.opengamestudio
 
+//fun budgetHistoryMorningBalance
+
 // Остаток виден не во все дни. Не виден в:
 // 1. пятницу
 // 2. воскресенье

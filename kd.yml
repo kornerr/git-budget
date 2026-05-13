@@ -75,7 +75,7 @@ LogContext:
         read: Bool
         readError: String
         repoDir: String
-        reportedDateYear: String
+        reportedDate: String
         reportedItem: LogItem
         write: Bool
         writeError: String

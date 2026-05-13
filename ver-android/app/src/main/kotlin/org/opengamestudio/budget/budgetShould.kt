@@ -5,6 +5,7 @@ package org.opengamestudio
  * Conditions:
  * 1. User did input morning balance
  * 2. User did paste morning balance
+ * 3. Log items have become available
  */
 fun budgetShouldResetMorningBalance(c: BudgetContext): BudgetContext {
     /* 1 */ if (c.recentField == F.inputMorningBalance) {
@@ -15,6 +16,12 @@ fun budgetShouldResetMorningBalance(c: BudgetContext): BudgetContext {
 
     /* 2 */ if (c.recentField == F.pastedMorningBalance) {
         c.morningBalance = c.pastedMorningBalance
+        c.recentField = F.morningBalance
+        return c
+    }
+
+    /* 3 */ if (c.recentField == F.logItems) {
+        c.morningBalance = "000"//budgetHistoryMorningBalance(c.logItems)
         c.recentField = F.morningBalance
         return c
     }
