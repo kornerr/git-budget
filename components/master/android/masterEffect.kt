@@ -20,6 +20,12 @@ fun masterBindComponents() {
         val c = cc as GitContext
         logSet(F.repoDir, c.repoDir)
     })
+    
+    // Log -> Budget
+    logCtrl().registerFieldCallback(F.items, { cc: KDContext ->
+        val c = cc as LogContext
+        budgetSet(F.logItems, c.items)
+    })
 }
 
 fun masterLaunchComponents() {
