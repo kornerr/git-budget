@@ -22,6 +22,7 @@ swift: import gb
 BudgetContext:
     type: context
     fields:
+        dateBeforeReported: String
         didClickCommit: Bool
         didClickCopy: Bool
         didClickPasteMorningBalance: Bool
@@ -39,6 +40,7 @@ BudgetContext:
         reportedWeekday: Int
         result: String
         spent: String
+        weekdayBeforeReported: Int
 
 GitContext:
     type: context

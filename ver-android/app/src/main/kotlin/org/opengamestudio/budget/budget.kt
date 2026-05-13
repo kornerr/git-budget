@@ -18,8 +18,11 @@ object BudgetComponent {
 
     fun launch() {
         // Defaults
-        budgetSet(F.reportedDate, reportedDate())
-        budgetSet(F.reportedWeekday, reportedWeekday())
+        budgetSet(F.dateBeforeReported, reportedDate(2))
+        budgetSet(F.reportedDate, reportedDate(1))
+        budgetSet(F.reportedWeekday, reportedWeekday(1))
+        budgetSet(F.weekdayBeforeReported, reportedWeekday(2))
+
         budgetSet(F.didLaunch, true)
     }
 }

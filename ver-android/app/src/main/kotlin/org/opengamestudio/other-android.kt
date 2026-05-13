@@ -12,9 +12,9 @@ fun clipboardText(ctx: Context): String {
 }
 
 // Get reported date as YYYY-MM-DD
-fun reportedDate(): String {
+fun reportedDate(minus: Int): String {
     val now = LocalDate.now()
-    val yesterday = now.minusDays(1)
+    val yesterday = now.minusDays(minus.toLong())
     val day = yesterday.get(ChronoField.DAY_OF_MONTH)
     val mon = yesterday.get(ChronoField.MONTH_OF_YEAR)
     val year = yesterday.get(ChronoField.YEAR)
@@ -25,8 +25,8 @@ fun reportedDate(): String {
 }
 
 // Get reported week day where 1 == Monday, ..., 7 == Sunday
-fun reportedWeekday(): Int {
+fun reportedWeekday(minus: Int): Int {
     val now = LocalDate.now()
-    val yesterday = now.minusDays(1)
+    val yesterday = now.minusDays(minus.toLong())
     return yesterday.get(ChronoField.DAY_OF_WEEK)
 }

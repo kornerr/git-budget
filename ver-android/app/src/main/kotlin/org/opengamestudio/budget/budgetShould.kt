@@ -21,7 +21,11 @@ fun budgetShouldResetMorningBalance(c: BudgetContext): BudgetContext {
     }
 
     /* 3 */ if (c.recentField == F.logItems) {
-        c.morningBalance = "000"//budgetHistoryMorningBalance(c.logItems)
+        c.morningBalance = budgetHistoryBalance(
+            c.logItems,
+            c.dateBeforeReported,
+            c.weekdayBeforeReported
+        )
         c.recentField = F.morningBalance
         return c
     }
