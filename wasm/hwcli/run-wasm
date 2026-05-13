@@ -1,3 +1,0 @@
-#!/bin/bash
-cp .build/debug/hwcli.wasm .
-python3 -m http.server 8080

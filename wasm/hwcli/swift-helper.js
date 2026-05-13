@@ -21,6 +21,18 @@ export async function initWasm() {
             proc_exit: () => {},
             random_get: () => 0,
         },
+        env: {
+            jsCallback: () => {
+                if (!storedCallback) return;
+                const e = instance.exports;
+                storedCallback({
+                    get didLaunch() { return !!e.DataContext_didLaunch(); },
+                    get selectedId() { return e.DataContext_selectedId(); },
+                    get url() { return readStr(e.DataContext_url()); },
+                    get recentField() { return readStr(e.DataContext_recentField()); },
+                });
+            },
+        },
     };
 
     const result = await WebAssembly.instantiateStreaming(fetch(WASM_FILE), importObject);
@@ -61,16 +73,7 @@ export async function initWasm() {
         } else if (typeof value === "boolean") {
             instance.exports.sendAnyBool(keyPtr, value);
         }
-        if (storedCallback) {
-            const e = instance.exports;
-            const ctx = {
-                get didLaunch() { return !!e.DataContext_didLaunch(); },
-                get selectedId() { return e.DataContext_selectedId(); },
-                get url() { return readStr(e.DataContext_url()); },
-                get recentField() { return readStr(e.DataContext_recentField()); },
-            };
-            storedCallback(ctx);
-        }
+
     };
 
     return {
@@ -78,6 +81,6 @@ export async function initWasm() {
         readStr,
         writeStr,
         sendAny,
-        registerCallback: (fn) => { storedCallback = fn; },
+        registerCallback: (fn) => { storedCallback = fn; instance.exports.registerCallback(); },
     };
 }
