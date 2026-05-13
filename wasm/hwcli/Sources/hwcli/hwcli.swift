@@ -45,7 +45,7 @@ func DataContext_url() -> UnsafePointer<CChar> {
     return UnsafePointer(cStringBuffer)
 }
 
-// recentField (read-only)
+// recentField
 @_expose(wasm, "DataContext_recentField")
 @MainActor
 func DataContext_recentField() -> UnsafePointer<CChar> {
