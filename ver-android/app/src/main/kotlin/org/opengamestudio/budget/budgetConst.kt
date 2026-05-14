@@ -1,17 +1,1 @@
-package org.opengamestudio
-
-val BUDGET_INITIAL_SUM = 30000f
-val BUDGET_RESTDAY_SUM = 15000f
-val BUDGET_RESULT_DATE_T = "%DATE%"
-val BUDGET_RESULT_LEFT_T = "Осталось Р/д: %VALUE%"
-val BUDGET_RESULT_OVERRUN_T = "Перерасход: %VALUE%"
-val BUDGET_RESULT_WEEKDAY_T = "Будни: %SPENT% / %BALANCE% %PERCENT%"
-val BUDGET_RESULT_WEEKEND_T = "Выходные: %SPENT% / %BALANCE% %PERCENT%"
-val BUDGET_WEEKDAY_MON = 1
-val BUDGET_WEEKDAY_TUE = 2
-val BUDGET_WEEKDAY_WED = 3
-val BUDGET_WEEKDAY_THU = 4
-val BUDGET_WEEKDAY_FRI = 5
-val BUDGET_WEEKDAY_SAT = 6
-val BUDGET_WEEKDAY_SUN = 7
-val BUDGET_WORKDAY_SUM = 6000f
+../../../../../../../../components/budget/sdk/budgetConst.kt
