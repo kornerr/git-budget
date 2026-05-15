@@ -1,12 +1,15 @@
 package org.opengamestudio
+
 import android.content.Context
-import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.*
 
 object VM {
     var androidContext: Context? = null
 
     val commitTitle = mutableStateOf("Commit")
+
+    val isBudgetTabSelected = mutableStateOf(false)
+    val isSettingsTabSelected = mutableStateOf(false)
 
     val morningBalance = mutableStateOf("")
     val morningBalancePasteTitle = mutableStateOf("Paste")

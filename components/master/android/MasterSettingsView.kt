@@ -17,9 +17,6 @@ fun MasterSettingsView(
             .padding(top = 8.dp)
             .padding(horizontal = 24.dp)
     ) {
-        Text(
-            text = "Git",
-            style = MaterialTheme.typography.headlineMedium
-        )
+        Text("TODO: SETTINGS")
     }
 }

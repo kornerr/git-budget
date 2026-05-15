@@ -92,5 +92,9 @@ LogItem:
 MasterContext:
     type: context
     fields:
+        didClickBudgetTab: Bool
+        didClickSettingsTab: Bool
         didLaunch: Bool
         didSetup: Bool
+        isBudgetTabSelected: Bool
+        isSettingsTabSelected: Bool
