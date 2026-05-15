@@ -20,3 +20,53 @@ fun masterShouldLaunch(c: MasterContext): MasterContext {
     return c
 }
 
+// Reset Budget tab selection state
+//
+// Conditions:
+// 1. Did launch
+// 2. User did click Budget tab
+// 3. User did click another tab
+fun masterShouldResetBudgetTabSelection(c: MasterContext): MasterContext {
+    /* 1 */ if (c.recentField == F.didLaunch) {
+        c.isBudgetTabSelected = true
+        c.recentField = F.isBudgetTabSelected
+        return c
+    }
+
+    /* 2 */ if (c.recentField == F.didClickBudgetTab) {
+        c.isBudgetTabSelected = true
+        c.recentField = F.isBudgetTabSelected
+        return c
+    }
+
+    /* 3 */ if (c.recentField == F.didClickSettingsTab) {
+        c.isBudgetTabSelected = false
+        c.recentField = F.isBudgetTabSelected
+        return c
+    }
+
+    c.recentField = F.none
+    return c
+}
+
+// Reset Settings tab selection state
+//
+// Conditions:
+// 1. User did click Settings tab
+// 2. User did click another tab
+fun masterShouldResetSettingsTabSelection(c: MasterContext): MasterContext {
+    /* 2 */ if (c.recentField == F.didClickSettingsTab) {
+        c.isSettingsTabSelected = true
+        c.recentField = F.isSettingsTabSelected
+        return c
+    }
+
+    /* 3 */ if (c.recentField == F.didClickBudgetTab) {
+        c.isSettingsTabSelected = false
+        c.recentField = F.isSettingsTabSelected
+        return c
+    }
+
+    c.recentField = F.none
+    return c
+}
