@@ -19,12 +19,10 @@ class MainActivity: ComponentActivity() {
 
         setContent {
             MyApplicationTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    BudgetView(
-                        Modifier.padding(innerPadding),
-                        VM
-                    )
-                }
+                MasterView(
+                    modifier = Modifier.fillMaxSize(),
+                    VM
+                )
             }
         }
     }
