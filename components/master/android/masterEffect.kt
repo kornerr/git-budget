@@ -28,6 +28,14 @@ fun masterBindComponents() {
     })
 }
 
+fun masterFillLogs(
+    items: Array<String>,
+    vm: VM
+) {
+    vm.logs.clear()
+    vm.logs.addAll(items)
+}
+
 fun masterLaunchComponents() {
     BudgetComponent.launch()
     GitComponent.launch()

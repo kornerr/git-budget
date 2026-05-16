@@ -99,6 +99,6 @@ MasterContext:
         isBudgetTabSelected: Bool
         isSettingsTabSelected: Bool
         logBudgetChange: String
-        logChange: String
         logGitChange: String
         logLogChange: String
+        logs: [String]

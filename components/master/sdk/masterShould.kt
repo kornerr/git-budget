@@ -20,35 +20,6 @@ fun masterShouldLaunch(c: MasterContext): MasterContext {
     return c
 }
 
-// Consolidate logs
-//
-// Conditions:
-// 1. Budget context changed
-// 2. Git context changed
-// 3. Log context changed
-fun masterShouldLogChange(c: MasterContext): MasterContext {
-    /* 1 */ if (c.recentField == F.logBudgetChange) {
-        c.logChange = c.logBudgetChange
-        c.recentField = F.logChange
-        return c
-    }
-
-    /* 2 */ if (c.recentField == F.logGitChange) {
-        c.logChange = c.logGitChange
-        c.recentField = F.logChange
-        return c
-    }
-
-    /* 3 */ if (c.recentField == F.logLogChange) {
-        c.logChange = c.logLogChange
-        c.recentField = F.logChange
-        return c
-    }
-
-    c.recentField = F.none
-    return c
-}
-
 // Reset Budget tab selection state
 //
 // Conditions:
@@ -71,6 +42,35 @@ fun masterShouldResetBudgetTabSelection(c: MasterContext): MasterContext {
     /* 3 */ if (c.recentField == F.didClickSettingsTab) {
         c.isBudgetTabSelected = false
         c.recentField = F.isBudgetTabSelected
+        return c
+    }
+
+    c.recentField = F.none
+    return c
+}
+
+// Consolidate logs
+//
+// Conditions:
+// 1. Budget context changed
+// 2. Git context changed
+// 3. Log context changed
+fun masterShouldResetLogs(c: MasterContext): MasterContext {
+    /* 1 */ if (c.recentField == F.logBudgetChange) {
+        c.logs += c.logBudgetChange
+        c.recentField = F.logs
+        return c
+    }
+
+    /* 2 */ if (c.recentField == F.logGitChange) {
+        c.logs += c.logGitChange
+        c.recentField = F.logs
+        return c
+    }
+
+    /* 3 */ if (c.recentField == F.logLogChange) {
+        c.logs += c.logLogChange
+        c.recentField = F.logs
         return c
     }
 

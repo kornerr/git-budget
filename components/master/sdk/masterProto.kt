@@ -8,8 +8,8 @@ object MasterProto {
         setupComponentDebugging(ctrl, "Master")
         arrayOf(
             ::masterShouldLaunch,
-            ::masterShouldLogChange,
             ::masterShouldResetBudgetTabSelection,
+            ::masterShouldResetLogs,
             ::masterShouldResetSettingsTabSelection,
         ).forEach { f ->
             ctrl.registerFunction { c -> f(c as MasterContext) }
