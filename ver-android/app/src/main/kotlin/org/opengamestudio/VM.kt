@@ -23,4 +23,11 @@ object VM {
     val spent = mutableStateOf("")
     val spentPasteTitle = mutableStateOf("Paste")
     val spentPlaceholder = mutableStateOf("Spent")
+
+    val stubItems = mutableStateListOf(
+        "Account", "Notifications", "Privacy", "Security", "Appearance",
+        "Language", "Storage", "Backup", "About", "Help",
+        "Advanced", "Developer Options", "Beta Features", "Experimental", "Network",
+        "Proxy", "Cache", "Sync", "Theme", "Font Size",
+    )
 }

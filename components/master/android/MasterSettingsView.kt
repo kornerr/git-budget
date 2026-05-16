@@ -1,6 +1,7 @@
 package org.opengamestudio
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -11,12 +12,20 @@ fun MasterSettingsView(
     modifier: Modifier = Modifier,
     vm: VM,
 ) {
-    Column(
+    LazyColumn(
         modifier = modifier
             .fillMaxSize()
             .padding(top = 8.dp)
-            .padding(horizontal = 24.dp)
+            .padding(horizontal = 24.dp),
+        verticalArrangement = Arrangement.spacedBy(4.dp),
     ) {
-        Text("TODO: SETTINGS")
+        items(vm.stubItems) { item ->
+            Text(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(vertical = 12.dp),
+                text = item,
+            )
+        }
     }
 }
