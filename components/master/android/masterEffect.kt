@@ -36,19 +36,15 @@ fun masterLaunchComponents() {
 
 fun masterLogComponents() {
     budgetCtrl().registerCallback { c ->
-        val dbg = formatContextChange(c)
+        val dbg = formatContextChange(c, "Budget")
         masterSet(F.logBudgetChange, dbg)
     }
     gitCtrl().registerCallback { c ->
-        val dbg = formatContextChange(c)
+        val dbg = formatContextChange(c, "Git")
         masterSet(F.logGitChange, dbg)
     }
     logCtrl().registerCallback { c ->
-        val dbg = formatContextChange(c)
+        val dbg = formatContextChange(c, "Log")
         masterSet(F.logLogChange, dbg)
-    }
-    masterCtrl().registerCallback { c ->
-        val dbg = formatContextChange(c)
-        masterSet(F.logMasterChange, dbg)
     }
 }

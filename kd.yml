@@ -102,4 +102,3 @@ MasterContext:
         logChange: String
         logGitChange: String
         logLogChange: String
-        logMasterChange: String

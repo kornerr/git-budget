@@ -26,10 +26,21 @@ fun masterShouldLaunch(c: MasterContext): MasterContext {
 // 1. Budget context changed
 // 2. Git context changed
 // 3. Log context changed
-// 4. Master context changed
 fun masterShouldLogChange(c: MasterContext): MasterContext {
     /* 1 */ if (c.recentField == F.logBudgetChange) {
         c.logChange = c.logBudgetChange
+        c.recentField = F.logChange
+        return c
+    }
+
+    /* 2 */ if (c.recentField == F.logGitChange) {
+        c.logChange = c.logGitChange
+        c.recentField = F.logChange
+        return c
+    }
+
+    /* 3 */ if (c.recentField == F.logLogChange) {
+        c.logChange = c.logLogChange
         c.recentField = F.logChange
         return c
     }
