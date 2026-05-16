@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Swift WebAssembly Demo</title>
+    </head>
+    <body>
+
+    <script type="module">
+        import { initWasm } from "./swift-helper.js";
+
+        const { exports: e, readStr, writeStr, sendAny, registerCallback } = await initWasm();
+
+        registerCallback((ctx) => {
+            console.log("ИГР ctx didL/selectedI/url/recentF:", ctx.didLaunch, ctx.selectedId, ctx.url, ctx.recentField);
+        });
+
+        sendAny("url", "http://ya.ru");
+        sendAny("selectedId", 153);
+        sendAny("didLaunch", true);
+
+    </script>
+</body>
+</html>
