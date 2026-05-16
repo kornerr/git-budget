@@ -98,3 +98,8 @@ MasterContext:
         didSetup: Bool
         isBudgetTabSelected: Bool
         isSettingsTabSelected: Bool
+        logBudgetChange: String
+        logChange: String
+        logGitChange: String
+        logLogChange: String
+        logMasterChange: String

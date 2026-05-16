@@ -33,3 +33,22 @@ fun masterLaunchComponents() {
     GitComponent.launch()
     LogComponent.launch()
 }
+
+fun masterLogComponents() {
+    budgetCtrl().registerCallback { c ->
+        val dbg = formatContextChange(c)
+        masterSet(F.logBudgetChange, dbg)
+    }
+    gitCtrl().registerCallback { c ->
+        val dbg = formatContextChange(c)
+        masterSet(F.logGitChange, dbg)
+    }
+    logCtrl().registerCallback { c ->
+        val dbg = formatContextChange(c)
+        masterSet(F.logLogChange, dbg)
+    }
+    masterCtrl().registerCallback { c ->
+        val dbg = formatContextChange(c)
+        masterSet(F.logMasterChange, dbg)
+    }
+}

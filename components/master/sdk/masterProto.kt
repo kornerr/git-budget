@@ -8,6 +8,7 @@ object MasterProto {
         setupComponentDebugging(ctrl, "Master")
         arrayOf(
             ::masterShouldLaunch,
+            ::masterShouldLogChange,
             ::masterShouldResetBudgetTabSelection,
             ::masterShouldResetSettingsTabSelection,
         ).forEach { f ->

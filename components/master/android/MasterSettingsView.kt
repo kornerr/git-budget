@@ -19,11 +19,11 @@ fun MasterSettingsView(
             .padding(horizontal = 24.dp),
         verticalArrangement = Arrangement.spacedBy(4.dp),
     ) {
-        items(vm.stubItems) { item ->
+        items(vm.logs) { item ->
             Text(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(vertical = 12.dp),
+                    .padding(vertical = 8.dp),
                 text = item,
             )
         }

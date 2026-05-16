@@ -20,6 +20,24 @@ fun masterShouldLaunch(c: MasterContext): MasterContext {
     return c
 }
 
+// Consolidate logs
+//
+// Conditions:
+// 1. Budget context changed
+// 2. Git context changed
+// 3. Log context changed
+// 4. Master context changed
+fun masterShouldLogChange(c: MasterContext): MasterContext {
+    /* 1 */ if (c.recentField == F.logBudgetChange) {
+        c.logChange = c.logBudgetChange
+        c.recentField = F.logChange
+        return c
+    }
+
+    c.recentField = F.none
+    return c
+}
+
 // Reset Budget tab selection state
 //
 // Conditions:
