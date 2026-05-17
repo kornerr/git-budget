@@ -7,6 +7,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.graphics.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.ImeAction
@@ -23,7 +24,7 @@ fun BudgetView(
             .padding(top = 8.dp)
             .padding(horizontal = 24.dp)
     ) {
-        Row {
+        Row(verticalAlignment = Alignment.CenterVertically) {
             TextField(
                 keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
                 modifier = Modifier.weight(2f),
@@ -40,7 +41,9 @@ fun BudgetView(
             }
         }
         Spacer(Modifier.height(8.dp))
-        Row {
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
             TextField(
                 keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done),
                 modifier = Modifier.weight(2f),

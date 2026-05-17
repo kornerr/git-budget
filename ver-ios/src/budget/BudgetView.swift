@@ -9,7 +9,7 @@ struct BudgetView: View {
 
     var body: some View {
         VStack(spacing: 8) {
-            HStack(spacing: 8) {
+            HStack(spacing: 8, alignment: .center) {
                 TextField(
                     "",
                     text: Binding(
@@ -24,7 +24,7 @@ struct BudgetView: View {
                 }
                     .buttonStyle(.borderedProminent)
             }
-            HStack(spacing: 8) {
+            HStack(spacing: 8, alignment: .center) {
                 TextField(
                     "",
                     text: Binding(
