@@ -20,9 +20,9 @@ fun budgetShouldResetMorningBalance(c: BudgetContext): BudgetContext {
         return c
     }
 
-    /* 3 */ if (c.recentField == F.logItems) {
+    /* 3 */ if (c.recentField == F.historyItems) {
         c.morningBalance = budgetHistoryBalance(
-            c.logItems,
+            c.historyItems,
             c.dateBeforeReported,
             c.weekdayBeforeReported
         )

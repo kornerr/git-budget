@@ -1,11 +1,10 @@
 package org.opengamestudio
 
 fun budgetHistoryBalance(
-    logItems: Map<String, LogItem>,
+    historyItems: Map<String, HistoryItem>,
     dt: String,
     weekday: Int
 ): String {
-    // Monday - 1 or Saturday - 1
     if (
         weekday == BUDGET_WEEKDAY_SUN ||
         weekday == BUDGET_WEEKDAY_FRI
@@ -13,8 +12,7 @@ fun budgetHistoryBalance(
         return BUDGET_INITIAL_SUM.toString()
     }
 
-    // Other days
-    return logItems[dt]?.left.toString() ?: "0000"
+    return historyItems[dt]?.left.toString() ?: "0000"
 }
 
 // Остаток виден не во все дни. Не виден в:

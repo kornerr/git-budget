@@ -29,10 +29,10 @@ BudgetContext:
         didClickPasteSpent: Bool
         didClickPush: Bool
         didLaunch: Bool
+        historyItems: [String: HistoryItem]
         inputDate: String
         inputMorningBalance: String
         inputSpent: String
-        logItems: [String: LogItem]
         morningBalance: String
         pastedMorningBalance: String
         pastedSpent: String
@@ -63,7 +63,7 @@ GitContext:
         repoURL: String
         rootDir: String
 
-LogContext:
+HistoryContext:
     type: context
     fields:
         didClone: Bool
@@ -72,17 +72,17 @@ LogContext:
         didRead: Bool
         didWrite: Bool
         fileLines: [String]
-        items: [String: LogItem]
-        loadedItems: [LogItem]
+        items: [String: HistoryItem]
+        loadedItems: [HistoryItem]
         read: Bool
         readError: String
         repoDir: String
         reportedDate: String
-        reportedItem: LogItem
+        reportedItem: HistoryItem
         write: Bool
         writeError: String
 
-LogItem:
+HistoryItem:
     type: struct
     fields:
         dt: String
@@ -100,5 +100,5 @@ MasterContext:
         isSettingsTabSelected: Bool
         logBudgetChange: String
         logGitChange: String
-        logLogChange: String
+        logHistoryChange: String
         logs: [String]

@@ -9,22 +9,22 @@ fun masterBindComponents() {
         gitSet(F.push, true)
     })
 
-    // Git -> Log
+    // Git -> History
     gitCtrl().registerFieldCallback(F.didClone, { cc: KDContext ->
-        logSet(F.didClone, true)
+        historySet(F.didClone, true)
     })
     gitCtrl().registerFieldCallback(F.didPull, { cc: KDContext ->
-        logSet(F.didPull, true)
+        historySet(F.didPull, true)
     })
     gitCtrl().registerFieldCallback(F.repoDir, { cc: KDContext ->
         val c = cc as GitContext
-        logSet(F.repoDir, c.repoDir)
+        historySet(F.repoDir, c.repoDir)
     })
     
-    // Log -> Budget
-    logCtrl().registerFieldCallback(F.items, { cc: KDContext ->
-        val c = cc as LogContext
-        budgetSet(F.logItems, c.items)
+    // History -> Budget
+    historyCtrl().registerFieldCallback(F.items, { cc: KDContext ->
+        val c = cc as HistoryContext
+        budgetSet(F.historyItems, c.items)
     })
 }
 
@@ -39,7 +39,7 @@ fun masterFillLogs(
 fun masterLaunchComponents() {
     BudgetComponent.launch()
     GitComponent.launch()
-    LogComponent.launch()
+    HistoryComponent.launch()
 }
 
 fun masterLogComponents() {
@@ -51,8 +51,8 @@ fun masterLogComponents() {
         val dbg = formatContextChange(c, "Git")
         masterSet(F.logGitChange, dbg)
     }
-    logCtrl().registerCallback { c ->
-        val dbg = formatContextChange(c, "Log")
-        masterSet(F.logLogChange, dbg)
+    historyCtrl().registerCallback { c ->
+        val dbg = formatContextChange(c, "History")
+        masterSet(F.logHistoryChange, dbg)
     }
 }

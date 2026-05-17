@@ -68,8 +68,8 @@ fun masterShouldResetLogs(c: MasterContext): MasterContext {
         return c
     }
 
-    /* 3 */ if (c.recentField == F.logLogChange) {
-        c.logs += c.logLogChange
+    /* 3 */ if (c.recentField == F.logHistoryChange) {
+        c.logs += c.logHistoryChange
         c.recentField = F.logs
         return c
     }

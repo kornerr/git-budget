@@ -6,10 +6,10 @@ tmux new-window -n s-git
 cd $SDIR/../components/git/android
 tmux new-window -n a-git
 
-cd $SDIR/../components/log/sdk
-tmux new-window -n s-log
-cd $SDIR/../components/log/android
-tmux new-window -n a-log
+cd $SDIR/../components/history/sdk
+tmux new-window -n s-history
+cd $SDIR/../components/history/android
+tmux new-window -n a-history
 
 #cd $SDIR/../components/master/sdk
 #tmux new-window -n s-master
