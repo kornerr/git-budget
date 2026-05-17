@@ -15,15 +15,11 @@ fun gitClone(
     dir: String,
     url: String
 ) {
-    val cr = UsernamePasswordCredentialsProvider(
-        "kornerr@gmail.com",
-        hash
-    )
     val client = Git
         .cloneRepository()
         .setURI(url)
         .setDirectory(File(dir))
-        .setCredentialsProvider(cr)
+        .setCredentialsProvider(gitCreds())
 
     GlobalScope.launch(Dispatchers.IO/* + exceptionHandler*/) {
         try {
@@ -94,14 +90,10 @@ fun gitLocateRootDir(ctx: Context) {
 }
 
 fun gitPull(dir: String) {
-    val cr = UsernamePasswordCredentialsProvider(
-        "kornerr@gmail.com",
-        hash
-    )
     val client = Git
         .open(File(dir))
         .pull()
-        .setCredentialsProvider(cr)
+        .setCredentialsProvider(gitCreds())
 
     GlobalScope.launch(Dispatchers.IO) {
         try {
@@ -119,14 +111,10 @@ fun gitPull(dir: String) {
 }
 
 fun gitPush(dir: String) {
-    val cr = UsernamePasswordCredentialsProvider(
-        "kornerr@gmail.com",
-        hash
-    )
     val client = Git
         .open(File(dir))
         .push()
-        .setCredentialsProvider(cr)
+        .setCredentialsProvider(gitCreds())
 
     GlobalScope.launch(Dispatchers.IO) {
         try {
