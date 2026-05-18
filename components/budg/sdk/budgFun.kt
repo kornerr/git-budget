@@ -1,5 +1,14 @@
 package org.opengamestudio
 
+// Balance left after subtracting spent from morning balance
+fun budgBalanceLeft(
+    morningBalance: Float,
+    spent: Float
+): String {
+    val balance = morningBalance - spent
+    return budgStringNumber(balance, 2)
+}
+
 fun budgHistoryBalance(
     historyItems: Map<String, HistItem>,
     dt: String,

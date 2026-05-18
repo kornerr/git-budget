@@ -7,6 +7,7 @@ object BudgProto {
         ctrl = KDController(BudgContext())
         setupComponentDebugging(ctrl, "Budg")
         arrayOf(
+            ::budgShouldResetLeft,
             ::budgShouldResetMorningBalance,
             ::budgShouldResetResult,
             ::budgShouldResetSpent,
