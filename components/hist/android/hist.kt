@@ -12,7 +12,6 @@ object HistComponent {
     }
 
     fun launch() {
-        histSet(F.reportedDate, reportedDate(1))
         histSet(F.didLaunch, true)
     }
 }

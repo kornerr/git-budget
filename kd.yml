@@ -37,6 +37,7 @@ BudgContext:
         pastedMorningBalance: String
         pastedSpent: String
         reportedDate: String
+        reportedLeft: String
         reportedWeekday: Int
         result: String
         spent: String
@@ -77,8 +78,6 @@ HistContext:
         read: Bool
         readError: String
         repoDir: String
-        reportedDate: String
-        reportedItem: HistItem
         write: Bool
         writeError: String
 

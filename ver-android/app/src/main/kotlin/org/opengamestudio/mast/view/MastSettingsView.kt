@@ -1,1 +1,1 @@
-../../../../../../../../components/mast/android/view/MastSettingsView.kt
+../../../../../../../../../components/mast/android/view/MastSettingsView.kt

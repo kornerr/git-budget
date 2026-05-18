@@ -1,7 +1,7 @@
 package org.opengamestudio
 
 fun mastBindComponents() {
-    // Budget -> Git
+    // Budg -> Git
     budgCtrl().registerFieldCallback(F.didClickCommit, { cc: KDContext ->
         gitSet(F.commit, true)
     })
@@ -21,7 +21,7 @@ fun mastBindComponents() {
         histSet(F.repoDir, c.repoDir)
     })
     
-    // Hist -> Budget
+    // Hist -> Budg
     histCtrl().registerFieldCallback(F.items, { cc: KDContext ->
         val c = cc as HistContext
         budgSet(F.historyItems, c.items)
