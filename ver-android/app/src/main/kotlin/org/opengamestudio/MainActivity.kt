@@ -18,7 +18,7 @@ class MainActivity: ComponentActivity() {
 
         val vm = VM
         vm.androidContext = this
-        MasterComponent.setup()
+        MastComponent.setup()
 
         setContent {
             MyApplicationTheme {
@@ -28,13 +28,13 @@ class MainActivity: ComponentActivity() {
                         NavigationBar {
                             NavigationBarItem(
                                 selected = vm.isBudgetTabSelected.value,
-                                onClick = { masterSet(F.didClickBudgetTab, true) },
+                                onClick = { mastSet(F.didClickBudgetTab, true) },
                                 label = { Text("Budget") },
                                 icon = { Icon(Icons.Default.Home, contentDescription = null) }
                             )
                             NavigationBarItem(
                                 selected = vm.isSettingsTabSelected.value,
-                                onClick = { masterSet(F.didClickSettingsTab, true) },
+                                onClick = { mastSet(F.didClickSettingsTab, true) },
                                 label = { Text("Settings") },
                                 icon = { Icon(Icons.Default.Settings, contentDescription = null) }
                             )
@@ -42,13 +42,13 @@ class MainActivity: ComponentActivity() {
                     }
                 ) { innerPadding ->
                     if (vm.isBudgetTabSelected.value) {
-                        BudgetView(
+                        BudgView(
                             modifier = Modifier.padding(innerPadding),
                             vm = vm
                         )
                     }
                     if (vm.isSettingsTabSelected.value) {
-                        MasterSettingsView(
+                        MastSettingsView(
                             modifier = Modifier.padding(innerPadding),
                             vm = vm
                         )

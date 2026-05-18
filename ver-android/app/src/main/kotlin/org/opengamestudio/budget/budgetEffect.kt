@@ -1,1 +1,0 @@
-../../../../../../../../components/budget/android/budgetEffect.kt

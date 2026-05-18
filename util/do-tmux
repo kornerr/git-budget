@@ -6,15 +6,15 @@ tmux new-window -n s-git
 cd $SDIR/../components/git/android
 tmux new-window -n a-git
 
-cd $SDIR/../components/history/sdk
-tmux new-window -n s-history
-cd $SDIR/../components/history/android
-tmux new-window -n a-history
+cd $SDIR/../components/hist/sdk
+tmux new-window -n s-hist
+cd $SDIR/../components/hist/android
+tmux new-window -n a-hist
 
-#cd $SDIR/../components/master/sdk
-#tmux new-window -n s-master
-cd $SDIR/../components/master/android
-tmux new-window -n a-master
+#cd $SDIR/../components/mast/sdk
+#tmux new-window -n s-mast
+cd $SDIR/../components/mast/android
+tmux new-window -n a-mast
 
 cd $SDIR/../ver-android/app/src/main/kotlin/org/opengamestudio
 tmux new-window -n a

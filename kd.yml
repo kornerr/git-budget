@@ -19,7 +19,7 @@ c++sdk: import kotlinx.cinterop.*
 kotlin: package org.opengamestudio
 swift: import gb
 
-BudgetContext:
+BudgContext:
     type: context
     fields:
         dateBeforeReported: String
@@ -29,7 +29,7 @@ BudgetContext:
         didClickPasteSpent: Bool
         didClickPush: Bool
         didLaunch: Bool
-        historyItems: [String: HistoryItem]
+        historyItems: [String: HistItem]
         inputDate: String
         inputMorningBalance: String
         inputSpent: String
@@ -63,7 +63,7 @@ GitContext:
         repoURL: String
         rootDir: String
 
-HistoryContext:
+HistContext:
     type: context
     fields:
         didClone: Bool
@@ -72,24 +72,24 @@ HistoryContext:
         didRead: Bool
         didWrite: Bool
         fileLines: [String]
-        items: [String: HistoryItem]
-        loadedItems: [HistoryItem]
+        items: [String: HistItem]
+        loadedItems: [HistItem]
         read: Bool
         readError: String
         repoDir: String
         reportedDate: String
-        reportedItem: HistoryItem
+        reportedItem: HistItem
         write: Bool
         writeError: String
 
-HistoryItem:
+HistItem:
     type: struct
     fields:
         dt: String
         left: Float
         spent: Float
 
-MasterContext:
+MastContext:
     type: context
     fields:
         didClickBudgetTab: Bool

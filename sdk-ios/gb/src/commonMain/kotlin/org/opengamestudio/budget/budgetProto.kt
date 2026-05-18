@@ -1,1 +1,0 @@
-../../../../../../../../components/budget/sdk/budgetProto.kt
