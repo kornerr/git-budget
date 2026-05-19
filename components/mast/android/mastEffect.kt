@@ -1,15 +1,11 @@
 package org.opengamestudio
 
 fun mastBindComponents() {
-    // Budg -> Git
-    /*
-    budgCtrl().registerFieldCallback(F.didClickCommit, { cc: KDContext ->
-        gitSet(F.commit, true)
+    // Budg -> Hist
+    budgCtrl().registerFieldCallback(F.reportedItem, { cc: KDContext ->
+        val c = cc as BudgContext
+        histSet(F.reportedItem, c.reportedItem)
     })
-    budgCtrl().registerFieldCallback(F.didClickPush, { cc: KDContext ->
-        gitSet(F.push, true)
-    })
-    */
 
     // Git -> Hist
     gitCtrl().registerFieldCallback(F.didClone, { cc: KDContext ->

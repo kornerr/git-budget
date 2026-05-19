@@ -9,6 +9,7 @@ object BudgProto {
         arrayOf(
             ::budgShouldResetLeft,
             ::budgShouldResetMorningBalance,
+            ::budgShouldResetReportedItem,
             ::budgShouldResetResult,
             ::budgShouldResetSpent,
         ).forEach { f ->

@@ -50,6 +50,26 @@ fun budgShouldResetMorningBalance(c: BudgContext): BudgContext {
     return c
 }
 
+/* Construct currently reported item
+ *
+ * Conditions:
+ * 1. Remaning balance has been calculated
+ */
+fun budgShouldResetReportedItem(c: BudgContext): BudgContext {
+    /* 1 */ if (c.recentField == F.left) {
+        c.reportedItem = HistItem(
+            c.reportedDate,
+            c.left.toFloat(),
+            c.spent.toFloat()
+        )
+        c.recentField = F.reportedItem
+        return c
+    }
+
+    c.recentField = F.none
+    return c
+}
+
 /* Construct result
  *
  * Conditions:
