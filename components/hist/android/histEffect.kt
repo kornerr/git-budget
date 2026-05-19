@@ -12,3 +12,14 @@ fun histReadFile(dir: String) {
     val lines = f.readLines().toTypedArray()
     histSet(F.fileLines, lines)
 }
+
+fun histWriteFile(
+    dir: String,
+    ditems: Map<String, HistItem>
+) {
+    val f = File("$dir/$HIST_FILE")
+    val items = histDictItemsToArray(ditems)
+    //val txt = histItemsToString(items)
+    //val lines = f.readLines().toTypedArray()
+    /*histSet(F.didWrite, true)*/
+}

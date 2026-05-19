@@ -17,6 +17,15 @@ fun histArrayItemsToDict(items: Array<HistItem>): Map<String, HistItem> {
     return d
 }
 
+fun histDictItemsToArray(ditems: Map<String, HistItem>): Array<HistItem> {
+    var items = arrayOf<HistItem>()
+    val keys = ditems.keys.sorted()
+    for (dt in keys) {
+        items += ditems[dt]!!
+    }
+    return items
+}
+
 fun histParseItems(lines: Array<String>): Array<HistItem> {
     var items = arrayOf<HistItem>()
     var item: HistItem? = null
