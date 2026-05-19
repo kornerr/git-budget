@@ -19,7 +19,7 @@ fun histWriteFile(
 ) {
     val f = File("$dir/$HIST_FILE")
     val items = histDictItemsToArray(ditems)
-    //val txt = histItemsToString(items)
-    //val lines = f.readLines().toTypedArray()
-    /*histSet(F.didWrite, true)*/
+    val contents = histItemsToString(items)
+    f.writeText(contents)
+    histSet(F.didWrite, true)
 }

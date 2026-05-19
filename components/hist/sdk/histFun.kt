@@ -26,6 +26,16 @@ fun histDictItemsToArray(ditems: Map<String, HistItem>): Array<HistItem> {
     return items
 }
 
+fun histItemsToString(items: Array<HistItem>): String {
+    var o = ""
+    for (item in items) {
+        o += "\n$HIST_PREFIX_DATE = ${item.dt}"
+        o += "\n$HIST_PREFIX_SPENT = ${item.spent}"
+        o += "\n$HIST_PREFIX_LEFT = ${item.left}"
+    }
+    return o
+}
+
 fun histParseItems(lines: Array<String>): Array<HistItem> {
     var items = arrayOf<HistItem>()
     var item: HistItem? = null
