@@ -23,11 +23,10 @@ BudgContext:
     type: context
     fields:
         dateBeforeReported: String
-        didClickCommit: Bool
         didClickCopy: Bool
         didClickPasteMorningBalance: Bool
         didClickPasteSpent: Bool
-        didClickPush: Bool
+        didClickSave: Bool
         didLaunch: Bool
         historyItems: [String: HistItem]
         inputDate: String

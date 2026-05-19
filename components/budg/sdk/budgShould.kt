@@ -3,10 +3,10 @@ package org.opengamestudio
 /* How much balance left
  *
  * Conditions:
- * 1. User did click commit
+ * 1. User did click Save
  */
 fun budgShouldResetLeft(c: BudgContext): BudgContext {
-    /* 1 */ if (c.recentField == F.didClickCommit) {
+    /* 1 */ if (c.recentField == F.didClickSave) {
         c.left = budgBalanceLeft(c.morningBalance.toFloat(), c.spent.toFloat())
         c.recentField = F.left
         return c

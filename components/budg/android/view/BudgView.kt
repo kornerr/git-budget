@@ -87,21 +87,10 @@ fun BudgView(
             }
         }
         Spacer(Modifier.height(8.dp))
-        Row(
-            //horizontalArrangement = Arrangement.End,
-            modifier = Modifier.fillMaxWidth()
+        FilledTonalButton(
+            onClick = { budgSet(F.didClickSave, true) },
         ) {
-            FilledTonalButton(
-                onClick = { budgSet(F.didClickCommit, true) },
-            ) {
-                Text(vm.commitTitle.value)
-            }
-            Spacer(Modifier.weight(1f))
-            FilledTonalButton(
-                onClick = { budgSet(F.didClickPush, true) },
-            ) {
-                Text(vm.pushTitle.value)
-            }
+            Text(vm.saveTitle.value)
         }
     }
 }

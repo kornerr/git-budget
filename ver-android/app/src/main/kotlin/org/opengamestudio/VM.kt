@@ -6,8 +6,6 @@ import androidx.compose.runtime.*
 object VM {
     var androidContext: Context? = null
 
-    val commitTitle = mutableStateOf("Commit")
-
     val isBudgetTabSelected = mutableStateOf(false)
     val isSettingsTabSelected = mutableStateOf(false)
 
@@ -17,10 +15,10 @@ object VM {
     val morningBalancePasteTitle = mutableStateOf("Paste")
     val morningBalancePlaceholder = mutableStateOf("Morning balance")
 
-    val pushTitle = mutableStateOf("Push")
-
     val result = mutableStateOf("TODO-Result")
     val resultCopyTitle = mutableStateOf("Copy")
+
+    val saveTitle = mutableStateOf("Save")
 
     val spent = mutableStateOf("")
     val spentPasteTitle = mutableStateOf("Paste")
