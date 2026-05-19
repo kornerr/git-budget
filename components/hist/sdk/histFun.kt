@@ -1,5 +1,14 @@
 package org.opengamestudio
 
+fun histAcceptItem(
+    was: Map<String, HistItem>,
+    item: HistItem
+): Map<String, HistItem> {
+    var d = was.toMutableMap()
+    d[item.dt] = item
+    return d
+}
+
 fun histArrayItemsToDict(items: Array<HistItem>): Map<String, HistItem> {
     var d = mutableMapOf<String, HistItem>()
     for (item in items) {

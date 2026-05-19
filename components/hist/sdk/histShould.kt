@@ -1,9 +1,14 @@
 package org.opengamestudio
 
+// Trigger reading the file
+//
+// Conditions:
+// 1. Cloning succeeded
+// 2. Pulling succeeded
 fun histShouldRead(c: HistContext): HistContext {
     if (
-        c.recentField == F.didClone ||
-        c.recentField == F.didPull
+        /* 1 */ c.recentField == F.didClone ||
+        /* 2 */ c.recentField == F.didPull
     ) {
         c.read = true
         c.recentField = F.read
@@ -14,9 +19,20 @@ fun histShouldRead(c: HistContext): HistContext {
     return c
 }
 
+// Reset history of items
+//
+// Conditions:
+// 1. Items have been loaded after reading the file
+// 2. Currently reported item has been updated
 fun histShouldResetItems(c: HistContext): HistContext {
-    if (c.recentField == F.loadedItems) {
+    /* 1 */ if (c.recentField == F.loadedItems) {
         c.items = histArrayItemsToDict(c.loadedItems)
+        c.recentField = F.items
+        return c
+    }
+
+    /* 2 */ if (c.recentField == F.reportedItem) {
+        c.items = histAcceptItem(c.items, c.reportedItem)
         c.recentField = F.items
         return c
     }
