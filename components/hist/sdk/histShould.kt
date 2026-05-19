@@ -23,7 +23,6 @@ fun histShouldRead(c: HistContext): HistContext {
 //
 // Conditions:
 // 1. Items have been loaded after reading the file
-// 2. Currently reported item has been updated
 fun histShouldResetItems(c: HistContext): HistContext {
     /* 1 */ if (c.recentField == F.loadedItems) {
         c.items = histArrayItemsToDict(c.loadedItems)
@@ -31,9 +30,18 @@ fun histShouldResetItems(c: HistContext): HistContext {
         return c
     }
 
-    /* 2 */ if (c.recentField == F.reportedItem) {
-        c.items = histAcceptItem(c.items, c.reportedItem)
-        c.recentField = F.items
+    c.recentField = F.none
+    return c
+}
+
+// Reset history of items to be saved
+//
+// Conditions:
+// 1. Newly reported item has been updated
+fun histShouldSaveItems(c: HistContext): HistContext {
+    /* 1 */ if (c.recentField == F.reportedItem) {
+        c.saveItems = histAcceptItem(c.items, c.reportedItem)
+        c.recentField = F.saveItems
         return c
     }
 

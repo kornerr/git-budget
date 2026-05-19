@@ -9,6 +9,7 @@ object HistProto {
         arrayOf(
             ::histShouldRead,
             ::histShouldResetItems,
+            ::histShouldSaveItems,
         ).forEach { f ->
             ctrl.registerFunction { c -> f(c as HistContext) }
         }

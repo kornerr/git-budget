@@ -79,6 +79,7 @@ HistContext:
         readError: String
         repoDir: String
         reportedItem: HistItem
+        saveItems: [String: HistItem]
         write: Bool
         writeError: String
 
