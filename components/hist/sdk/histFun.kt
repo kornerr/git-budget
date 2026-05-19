@@ -32,7 +32,6 @@ fun histItemsToString(items: Array<HistItem>): String {
         o += "\n$HIST_PREFIX_DATE= ${item.dt}"
         o += "\n$HIST_PREFIX_SPENT= ${item.spent}"
         o += "\n$HIST_PREFIX_LEFT= ${item.left}"
-        o + "\n"
     }
     /**/println("ИГР histITS o: '$o'")
     return o
