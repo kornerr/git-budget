@@ -98,6 +98,72 @@ fun budgShouldResetResult(c: BudgContext): BudgContext {
     return c
 }
 
+/* Reset Save availability
+ *
+ * Conditions:
+ * 1. Did start pulling
+ * 2. Did finish pulling or pushing successfully
+ * 3. Did start pushing
+ */
+fun budgShouldResetSaveAvailability(c: BudgContext): BudgContext {
+    /* 1 */ if (c.recentField == F.pull) {
+        c.isSaveEnabled = false
+        c.recentField = F.isSaveEnabled
+        return c
+    }
+
+    /* 2 */ if (
+        c.recentField == F.didPull ||
+        c.recentField == F.didPush
+    ) {
+        c.isSaveEnabled = true
+        c.recentField = F.isSaveEnabled
+        return c
+    }
+
+    /* 3 */ if (c.recentField == F.push) {
+        c.isSaveEnabled = false
+        c.recentField = F.isSaveEnabled
+        return c
+    }
+
+    c.recentField = F.none
+    return c
+}
+
+/* Specify Save button title
+ *
+ * Conditions:
+ * 1. Did start pulling
+ * 2. Did finish pulling or pushing successfully
+ * 3. Did start pushing
+ */
+fun budgShouldResetSaveTitle(c: BudgContext): BudgContext {
+    /* 1 */ if (c.recentField == F.pull) {
+        c.saveTitle = "Pulling..."
+        c.recentField = F.saveTitle
+        return c
+    }
+
+    /* 2 */ if (
+        c.recentField == F.didPull ||
+        c.recentField == F.didPush
+    ) {
+        c.saveTitle = "Save"
+        c.recentField = F.saveTitle
+        return c
+    }
+
+    /* 3 */ if (c.recentField == F.push) {
+        c.saveTitle = "Pushing..."
+        c.recentField = F.saveTitle
+        return c
+    }
+
+    c.recentField = F.none
+    return c
+}
+
 /* Consolidate spent value
  *
  * Conditions:

@@ -11,6 +11,8 @@ object BudgProto {
             ::budgShouldResetMorningBalance,
             ::budgShouldResetReportedItem,
             ::budgShouldResetResult,
+            ::budgShouldResetSaveAvailability,
+            ::budgShouldResetSaveTitle,
             ::budgShouldResetSpent,
         ).forEach { f ->
             ctrl.registerFunction { c -> f(c as BudgContext) }

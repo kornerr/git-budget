@@ -7,6 +7,20 @@ fun mastBindComponents() {
         histSet(F.reportedItem, c.reportedItem)
     })
 
+    // Git -> Budg
+    gitCtrl().registerFieldCallback(F.didPull, { cc: KDContext ->
+        budgSet(F.didPull, true)
+    })
+    gitCtrl().registerFieldCallback(F.didPush, { cc: KDContext ->
+        budgSet(F.didPush, true)
+    })
+    gitCtrl().registerFieldCallback(F.pull, { cc: KDContext ->
+        budgSet(F.pull, true)
+    })
+    gitCtrl().registerFieldCallback(F.push, { cc: KDContext ->
+        budgSet(F.push, true)
+    })
+
     // Git -> Hist
     gitCtrl().registerFieldCallback(F.didClone, { cc: KDContext ->
         histSet(F.didClone, true)

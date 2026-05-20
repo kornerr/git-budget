@@ -8,6 +8,7 @@ object VM {
 
     val isBudgetTabSelected = mutableStateOf(false)
     val isSettingsTabSelected = mutableStateOf(false)
+    val isSaveEnabled = mutableStateOf(false)
 
     val logs = mutableStateListOf<String>()
 
@@ -18,7 +19,7 @@ object VM {
     val result = mutableStateOf("TODO-Result")
     val resultCopyTitle = mutableStateOf("Copy")
 
-    val saveTitle = mutableStateOf("Save")
+    val saveTitle = mutableStateOf("Loading...")
 
     val spent = mutableStateOf("")
     val spentPasteTitle = mutableStateOf("Paste")

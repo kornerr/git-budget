@@ -28,18 +28,24 @@ BudgContext:
         didClickPasteSpent: Bool
         didClickSave: Bool
         didLaunch: Bool
+        didPull: Bool
+        didPush: Bool
         historyItems: [String: HistItem]
         inputDate: String
         inputMorningBalance: String
         inputSpent: String
+        isSaveEnabled: Bool
         left: String
         morningBalance: String
         pastedMorningBalance: String
         pastedSpent: String
+        pull: Bool
+        push: Bool
         reportedDate: String
         reportedWeekday: Int
         reportedItem: HistItem
         result: String
+        saveTitle: String
         spent: String
         weekdayBeforeReported: Int
 

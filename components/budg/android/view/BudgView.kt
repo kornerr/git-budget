@@ -88,6 +88,7 @@ fun BudgView(
         }
         Spacer(Modifier.height(8.dp))
         FilledTonalButton(
+            enabled = vm.isSaveEnabled.value,
             onClick = { budgSet(F.didClickSave, true) },
         ) {
             Text(vm.saveTitle.value)
