@@ -29,9 +29,10 @@ fun histDictItemsToArray(ditems: Map<String, HistItem>): Array<HistItem> {
 fun histItemsToString(items: Array<HistItem>): String {
     var o = ""
     for (item in items) {
-        o += "\n$HIST_PREFIX_DATE= ${item.dt}"
-        o += "\n$HIST_PREFIX_SPENT= ${item.spent}"
-        o += "\n$HIST_PREFIX_LEFT= ${item.left}"
+        o += "\n$HIST_PREFIX_DATE${item.dt}"
+        o += "\n$HIST_PREFIX_SPENT${item.spent}"
+        o += "\n$HIST_PREFIX_LEFT${item.left}"
+        o += "\n"
     }
     /**/println("ИГР histITS o: '$o'")
     return o
