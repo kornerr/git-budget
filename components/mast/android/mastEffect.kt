@@ -24,6 +24,11 @@ fun mastBindComponents() {
         val c = cc as HistContext
         budgSet(F.historyItems, c.items)
     })
+
+    // Hist -> Git
+    histCtrl().registerFieldCallback(F.didWrite, { cc: KDContext ->
+        gitSet(F.commit, true)
+    })
 }
 
 fun mastFillLogs(

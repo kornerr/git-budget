@@ -37,14 +37,7 @@ fun gitClone(
 }
 
 fun gitCommit(dir: String) {
-
-
-
     val datetime = "${java.time.LocalDateTime.now()}"
-
-    // TMP: Move outside
-    File(dir + "/gb.log").appendText("\n$datetime")
-
 
     val client = Git
         .open(File(dir))
