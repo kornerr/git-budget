@@ -60,23 +60,6 @@ fun gitCommit(dir: String) {
     }
 }
 
-/*
-    // 3. Print `abc`
-    val contents = File(dir + "/abc").readText()
-    println("ИГР GitC.setup-03 contents: '$contents'")
-*/
-
-/*
-fun gitListFiles(dir: String) {
-    val files = File(dir).listFiles()
-    println("ИГР gitLF-01 dir/files: '$dir'")
-    for (item in files) {
-        println("ИГР > '$item'")
-    }
-    println("ИГР gitLF-02 dir: '$dir'")
-}
-*/
-
 fun gitLocateRootDir(ctx: Context) {
     val dir = ctx.getExternalFilesDir(null)?.absolutePath ?: "N/A"
     gitSet(F.rootDir, dir)

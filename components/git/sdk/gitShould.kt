@@ -36,6 +36,21 @@ fun gitShouldPull(c: GitContext): GitContext {
     return c
 }
 
+// Push changes
+//
+// Conditions:
+// 1. Did commit
+fun gitShouldPush(c: GitContext): GitContext {
+    /* 1 */ if (c.recentField == F.didCommit) {
+        c.push = true
+        c.recentField = F.push
+        return c
+    }
+
+    c.recentField = F.none
+    return c
+}
+
 // Set repository dir
 //
 // Conditions:

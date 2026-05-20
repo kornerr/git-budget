@@ -9,6 +9,7 @@ object GitProto {
         arrayOf(
             ::gitShouldClone,
             ::gitShouldPull,
+            ::gitShouldPush,
             ::gitShouldResetRepoDir,
         ).forEach { f ->
             ctrl.registerFunction { c -> f(c as GitContext) }
