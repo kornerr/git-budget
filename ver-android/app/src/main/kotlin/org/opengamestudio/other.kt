@@ -7,7 +7,7 @@ fun formatContextChange(
 ): String {
     val fullValue = "${c.field<String>(c.recentField)}"
     val shortValue = fullValue.take(100)
-    return "$prefix k/v: '${c.recentField}'/'$shortValue'"
+    return "$prefix k: '${c.recentField}' v: '$shortValue'"
 }
 
 // Print each key/value processed by a component into console
