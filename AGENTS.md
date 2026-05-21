@@ -1,15 +1,11 @@
 Git Budget is a Kotlin Multiplatform application.
 Uses **Kotlin Dialect** (KD) — a custom state-machine/reducer framework.
 
-# Approaches to file hierarchies
+# Component approach to file hierarchy
 
-There are two approaches:
-* Component approach: place original source code into `components/<componentName>` directory
-* Legacy approach: place original source code in ver-android, ver-ios, ver-mac-x64, ver-browser
+Component approach assumes you place original source code into `components/<componentName>` directory and then symlink to those files from ver-android, ver-ios, etc.
 
-## Component approach
-
-`components/` directory currently only contains `git/` directory which contains the following parts:
+As an example, here are `components/git` subdirectories:
 
 * `android/` directory: Kotlin code with Android platform specific dependencies like HTTP loading, WebSocket communication, file I/O, etc.
 * `sdk/` directory: Cross-platform Kotlin code that is used for android, browser, desktop, ios, cannot contain any Java related stuff or platform specific stuff
@@ -22,9 +18,9 @@ There are two approaches:
 * git/android/git.kt: contains bindings of events to effect functions
 * git/android/gitEffects.kt: contains effect functions that have platform specific code (in this case Android specific)
 
-## Legacy approach
+## Former legacy (no longer used) approach
 
-Most of the time source code lives in **`ver-android/app/src/main/kotlin/ru/iva/`**.
+Source code used to lived in **`ver-android/app/src/main/kotlin/ru/iva/`**.
 `sdk-ios/`, `sdk-mac-x64/`, and `sdk-windows-x64/` contain **symlinks** pointing back to `ver-android/`.
 **Edit files in `ver-android/` for legacy** — editing symlink targets will appear to work but won't show in `git status` for the canonical path.
 
@@ -38,7 +34,7 @@ the following command (make sure to run it from the root of the project):
 ```
 ./util/gen-kd
 ```
-So, GitContext, MasterContext, BudgetContext come from kd.yml. No need
+So, GitContext, MastContext, BudgContext come from kd.yml. No need
 to write them by hand.
 
 ## Architecture: Kotlin Dialect
