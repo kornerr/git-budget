@@ -7,7 +7,9 @@ package org.opengamestudio
  */
 fun budgShouldResetLeft(c: BudgContext): BudgContext {
     /* 1 */ if (c.recentField == F.didClickSave) {
-        c.left = budgBalanceLeft(c.morningBalance.toFloat(), c.spent.toFloat())
+        val mbalance = budgNumber(budgStringOnlyNumerical(c.morningBalance))
+        val spent = budgNumber(budgStringOnlyNumerical(c.spent))
+        c.left = budgBalanceLeft(mbalance, spent)
         c.recentField = F.left
         return c
     }
