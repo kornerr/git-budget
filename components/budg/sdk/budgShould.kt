@@ -59,10 +59,11 @@ fun budgShouldResetMorningBalance(c: BudgContext): BudgContext {
  */
 fun budgShouldResetReportedItem(c: BudgContext): BudgContext {
     /* 1 */ if (c.recentField == F.left) {
+        val spent = budgNumber(budgStringOnlyNumerical(c.spent))
         c.reportedItem = HistItem(
             c.reportedDate,
             c.left.toFloat(),
-            c.spent.toFloat()
+            spent
         )
         c.recentField = F.reportedItem
         return c
