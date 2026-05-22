@@ -41,7 +41,6 @@ BudgContext:
         pastedSpent: String
         pull: Bool
         push: Bool
-        todoremooooooooooooove: Bool
         reportedDate: String
         reportedWeekday: Int
         reportedItem: HistItem
