@@ -1,1 +1,0 @@
-../../../../../../../../ver-android/app/src/main/kotlin/org/opengamestudio/budget/budgetProto.kt

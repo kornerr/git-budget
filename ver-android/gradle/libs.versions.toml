@@ -4,6 +4,7 @@ agp = "8.10.0"
 composeBom = "2024.09.00"
 coreKtx = "1.10.1"
 coroutines = "1.8.1"
+jgit = "5.13.5.202508271544-r"
 kotlin = "2.2.0"
 lifecycleRuntimeKtx = "2.6.1"
 
@@ -17,6 +18,7 @@ androidx-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
 androidx-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
 androidx-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
 androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
+eclipse-jgit = { module = "org.eclipse.jgit:org.eclipse.jgit", version.ref = "jgit" }
 kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutines" }
 
 [plugins]

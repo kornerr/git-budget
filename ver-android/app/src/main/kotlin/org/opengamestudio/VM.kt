@@ -1,10 +1,16 @@
 package org.opengamestudio
+
 import android.content.Context
-import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.*
 
 object VM {
     var androidContext: Context? = null
+
+    val isBudgetTabSelected = mutableStateOf(false)
+    val isSettingsTabSelected = mutableStateOf(false)
+    val isSaveEnabled = mutableStateOf(false)
+
+    val logs = mutableStateListOf<String>()
 
     val morningBalance = mutableStateOf("")
     val morningBalancePasteTitle = mutableStateOf("Paste")
@@ -12,6 +18,8 @@ object VM {
 
     val result = mutableStateOf("TODO-Result")
     val resultCopyTitle = mutableStateOf("Copy")
+
+    val saveTitle = mutableStateOf("Loading...")
 
     val spent = mutableStateOf("")
     val spentPasteTitle = mutableStateOf("Paste")

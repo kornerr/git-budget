@@ -19,21 +19,93 @@ c++sdk: import kotlinx.cinterop.*
 kotlin: package org.opengamestudio
 swift: import gb
 
-BudgetContext:
+BudgContext:
     type: context
     fields:
+        dateBeforeReported: String
         didClickCopy: Bool
         didClickPasteMorningBalance: Bool
         didClickPasteSpent: Bool
+        didClickSave: Bool
         didLaunch: Bool
-        didSetup: Bool
+        didPull: Bool
+        didPush: Bool
+        historyItems: [String: HistItem]
         inputDate: String
         inputMorningBalance: String
         inputSpent: String
+        isSaveEnabled: Bool
+        left: String
         morningBalance: String
         pastedMorningBalance: String
         pastedSpent: String
+        pull: Bool
+        push: Bool
         reportedDate: String
         reportedWeekday: Int
+        reportedItem: HistItem
         result: String
+        saveTitle: String
         spent: String
+        weekdayBeforeReported: Int
+
+GitContext:
+    type: context
+    fields:
+        clone: Bool
+        cloneError: String
+        commit: Bool
+        commitError: String
+        didClone: Bool
+        didCommit: Bool
+        didLaunch: Bool
+        didPull: Bool
+        didPush: Bool
+        pull: Bool
+        pullError: String
+        push: Bool
+        pushError: String
+        repoDir: String
+        repoDirExists: Bool
+        repoURL: String
+        rootDir: String
+
+HistContext:
+    type: context
+    fields:
+        didClone: Bool
+        didLaunch: Bool
+        didPull: Bool
+        didRead: Bool
+        didWrite: Bool
+        fileLines: [String]
+        items: [String: HistItem]
+        loadedItems: [HistItem]
+        read: Bool
+        readError: String
+        repoDir: String
+        reportedItem: HistItem
+        saveItems: [String: HistItem]
+        write: Bool
+        writeError: String
+
+HistItem:
+    type: struct
+    fields:
+        dt: String
+        left: Float
+        spent: Float
+
+MastContext:
+    type: context
+    fields:
+        didClickBudgetTab: Bool
+        didClickSettingsTab: Bool
+        didLaunch: Bool
+        didSetup: Bool
+        isBudgetTabSelected: Bool
+        isSettingsTabSelected: Bool
+        logBudgetChange: String
+        logGitChange: String
+        logHistoryChange: String
+        logs: [String]

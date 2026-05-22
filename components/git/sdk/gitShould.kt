@@ -1,0 +1,67 @@
+package org.opengamestudio
+
+// Clone repository
+//
+// Conditions:
+// 1. Repository dir is absent
+fun gitShouldClone(c: GitContext): GitContext {
+    /* 1 */ if (
+        c.recentField == F.repoDirExists &&
+        !c.repoDirExists
+    ) {
+        c.clone = true
+        c.recentField = F.clone
+        return c
+    }
+
+    c.recentField = F.none
+    return c
+}
+
+// Pull repository
+//
+// Conditions:
+// 1. Repository dir is present
+fun gitShouldPull(c: GitContext): GitContext {
+    /* 1 */ if (
+        c.recentField == F.repoDirExists &&
+        c.repoDirExists
+    ) {
+        c.pull = true
+        c.recentField = F.pull
+        return c
+    }
+
+    c.recentField = F.none
+    return c
+}
+
+// Push changes
+//
+// Conditions:
+// 1. Did commit
+fun gitShouldPush(c: GitContext): GitContext {
+    /* 1 */ if (c.recentField == F.didCommit) {
+        c.push = true
+        c.recentField = F.push
+        return c
+    }
+
+    c.recentField = F.none
+    return c
+}
+
+// Set repository dir
+//
+// Conditions:
+// 1. Root dir has been set
+fun gitShouldResetRepoDir(c: GitContext): GitContext {
+    /* 1 */ if (c.recentField == F.rootDir) {
+        c.repoDir = c.rootDir + "/" + GIT_REPO_DIR
+        c.recentField = F.repoDir
+        return c
+    }
+
+    c.recentField = F.none
+    return c
+}
