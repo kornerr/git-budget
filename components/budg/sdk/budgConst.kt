@@ -1,7 +1,7 @@
 package org.opengamestudio
 
-val BUDG_INITIAL_SUM = 30000f
-val BUDG_RESTDAY_SUM = 15000f
+val BUDG_INITIAL_SUM = 20000f
+val BUDG_RESTDAY_SUM = 5000f
 val BUDG_RESULT_DATE_T = "%DATE%"
 val BUDG_RESULT_LEFT_T = "Осталось Р/д: %VALUE%"
 val BUDG_RESULT_OVERRUN_T = "Перерасход: %VALUE%"
@@ -14,4 +14,4 @@ val BUDG_WEEKDAY_THU = 4
 val BUDG_WEEKDAY_FRI = 5
 val BUDG_WEEKDAY_SAT = 6
 val BUDG_WEEKDAY_SUN = 7
-val BUDG_WORKDAY_SUM = 6000f
+val BUDG_WORKDAY_SUM = 4000f
