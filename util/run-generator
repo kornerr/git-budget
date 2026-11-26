@@ -1,0 +1,4 @@
+#!/bin/bash -e
+SDIR=$(cd "$(dirname "$0")" ; pwd -P)
+
+swift "$SDIR/../ext/generator-script.swift" "$@"

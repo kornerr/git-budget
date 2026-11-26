@@ -7,3 +7,4 @@ GitBudget.xcodeproj
 ignore.*
 local.properties
 .swiftpm
+/ver-mac/.build/

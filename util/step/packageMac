@@ -1,0 +1,18 @@
+#!/bin/bash -e
+
+TARGET=$1
+APP_NAME=$2
+
+STEP=$((STEP+1))
+echo -e "\n> > > > Step №$STEP. Make '$APP_NAME' macOS package for '$TARGET'"
+
+APP_MAC="$SDIR/../ver-mac/.build/$APP_NAME.app"
+rm -rf "$APP_MAC"
+
+APP_DAT="$APP_MAC/Contents"
+mkdir -p "$APP_DAT/MacOS"
+mkdir -p "$APP_DAT/Resources"
+cp "$SDIR/../ver-mac/.build/debug/$TARGET" "$APP_DAT/MacOS/$TARGET"
+cp "$SDIR/../ver-mac/Info.plist" "$APP_DAT/Info.plist"
+# Copy resources with symlink dereferencing
+cp -R -L "$SDIR/../ver-mac/res/"* "$APP_DAT/Resources/"

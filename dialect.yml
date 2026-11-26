@@ -1,0 +1,50 @@
+version: 4
+
+output:
+    ver-mac/src/dialect.swift:
+        type: swift
+
+HPContext:
+    type: context
+    fields:
+        count: Int
+        countText: String
+        didClickIncrement: Bool
+        didLaunch: Bool
+        didSetup: Bool
+
+HPComponent:
+    type: component
+    oneliners:
+        - countText: HPVM.shared!.countText = c.countText
+    shoulds:
+        count:
+            1. Upon hitting 7:
+                if:
+                    c.recentField == F.didClickIncrement &&
+                    c.count == 7
+                then:
+                    c.count += 10
+            2. Upon each button click:
+                if:
+                    c.recentField == F.didClickIncrement
+                then:
+                    c.count += 1
+        countText:
+            1. Upon each count change:
+                if:
+                    c.recentField == F.count
+                then:
+                    c.countText = "Count: '\(c.count)'"
+            2. Upon launch:
+                if:
+                    c.recentField == F.didLaunch
+                then:
+                    c.countText = "Press the button to count"
+        didLaunch:
+            1. Only once during the first setup:
+                if:
+                    c.recentField == F.didSetup &&
+                    c.didLaunch == false
+                then:
+                    c.didLaunch = true

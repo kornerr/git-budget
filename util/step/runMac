@@ -1,0 +1,8 @@
+#!/bin/bash -e
+
+TARGET=$1
+APP_NAME=$2
+STEP=$((STEP+1))
+echo -e "\n> > > > Step №$STEP. Run macOS app for '$TARGET'"
+
+"$SDIR/../ver-mac/.build/$APP_NAME.app/Contents/MacOS/$TARGET"

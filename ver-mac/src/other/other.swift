@@ -1,0 +1,1 @@
+../../../components/other/other.swift
