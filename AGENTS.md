@@ -1,51 +1,20 @@
-Git Budget is a Kotlin Multiplatform application.
-Uses **Kotlin Dialect** (KD) — a custom state-machine/reducer framework.
+# Git Budget development guide
 
-# Component approach to file hierarchy
+Git Budget is being rebuilt using the architecture of the sibling `../mj`
+repository. The code in `_v2-kd/` and the existing `README.md` are historical
+references for the previous implementation.
 
-Component approach assumes you place original source code into `components/<componentName>` directory and then symlink to those files from ver-android, ver-ios, etc.
+## Architecture
 
-As an example, here are `components/git` subdirectories:
+Use `../mj/hello/hello-platform/` as the baseline for native app structure, Dialect v4, and platform build and launch entry points. Read [mj's development guide](../mj/AGENTS.md), the [component ownership guide](../mj/docs/components-over-platforms.md), and the [hello-platform guide](../mj/docs/hello-platform.md) before scaffolding or porting a target. For cross-platform changes, also read the [mirroring guide](../mj/docs/mirror.md).
 
-* `android/` directory: Kotlin code with Android platform specific dependencies like HTTP loading, WebSocket communication, file I/O, etc.
-* `sdk/` directory: Cross-platform Kotlin code that is used for android, browser, desktop, ios, cannot contain any Java related stuff or platform specific stuff
+- Keep reusable handwritten source under `components/<component>/`. Put distinct implementations under their platform directories. Use tracked relative symlinks to include shared files in platform targets such as `ver-mac/` and `ver-android/`. Edit the canonical files and verify that the links resolve.
+- Keep the app's fields, transitions, and effects in its Dialect v4 `dialect.yml`. Each should branch changes one field. Regenerate the configured Swift and Kotlin outputs after schema changes. Compatible Swift targets link directly to the canonical macOS output.
+- Keep native entry points and delegates focused on composition and lifecycle. Views dispatch input through Dialect, and generated effects publish presentation state to the component's view model. Component code accesses its own VM instances and passes values between components through Dialect.
+- When mirroring a platform, inspect the closest working counterpart. Preserve names, argument meanings, call order, and event behavior. Keep toolkit-specific behavior in the platform implementation.
 
-### Git component structure (as an example for all components)
+## Code review
 
-* git/sdk/gitConst.kt: constants used in git* files
-* git/sdk/gitProto.kt: contains controller instance and registers shoulds (reducers) into the controller
-* git/sdk/gitShould.kt: contains shoulds (reducers) to transition component's state from A to B
-* git/android/git.kt: contains bindings of events to effect functions
-* git/android/gitEffects.kt: contains effect functions that have platform specific code (in this case Android specific)
-
-## Former legacy (no longer used) approach
-
-Source code used to lived in **`ver-android/app/src/main/kotlin/ru/iva/`**.
-`sdk-ios/`, `sdk-mac-x64/`, and `sdk-windows-x64/` contain **symlinks** pointing back to `ver-android/`.
-**Edit files in `ver-android/` for legacy** — editing symlink targets will appear to work but won't show in `git status` for the canonical path.
-
-Files staring with `ignore` are not tracked in git. `ignore` files should not be edited because they come from `kd.yml` after generation.
-
-## Code generation
-
-`kd.yml` defines data structs and contexts. Regenerate after changes with
-the following command (make sure to run it from the root of the project):
-
-```
-./util/gen-kd
-```
-So, GitContext, MastContext, BudgContext come from kd.yml. No need
-to write them by hand.
-
-## Architecture: Kotlin Dialect
-
-- **Contexts** (`*Context` data classes in `ignore.kd.kt`) hold all app state
-- **should-functions** (`*Should*` in `gitShould.kt`, etc.) are reducers: check `c.recentField` against `F.*` constants, return mutated context
-- **`F` object** (in `ignore.kd.kt`) contains string constants for all field names
-- `KDController` manages the event queue: `set(fieldName, value)` → processes all registered functions → fires callbacks
-
-## Conventions
-
-- Package: `org.opengamestudio`
-- File naming: `*Fun.kt` (SDK functions), `*Should.kt` (SDK reducers), `*Const.kt` (SDK constants), `*Proto.kt` (SDK component prototype)
-- `*Should.kt` functions: each handles one cross-cutting concern; uses `c.recentField == F.someField` pattern; ends with `c.recentField = F.none` for no-op
+Use [the code review guide](docs/review.md) as the review rulebook. Apply rules
+within their stated scope, honor documented exceptions, and cite rule IDs in
+findings.
