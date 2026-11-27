@@ -1,0 +1,15 @@
+name: hello-platform
+options:
+    bundleIdPrefix: org.opengamestudio
+targets:
+    hello-platform:
+        type: application
+        platform: iOS
+        deploymentTarget: "15.0"
+        sources:
+            - path: Assets.xcassets
+            - path: src
+        settings:
+            base:
+                INFOPLIST_FILE: Info.plist
+                PRODUCT_BUNDLE_IDENTIFIER: org.opengamestudio.hello-platform
