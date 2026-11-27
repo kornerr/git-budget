@@ -1,0 +1,9 @@
+#!/bin/bash -e
+
+TARGET=$1
+STEP=$((STEP+1))
+echo -e "\n> > > > Step №$STEP. Build '$TARGET' for Windows"
+
+cd "$SDIR/../ver-windows"
+export APP_RES_DIR="$SDIR/../ver-windows/res"
+swift build
