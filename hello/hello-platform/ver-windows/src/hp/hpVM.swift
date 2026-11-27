@@ -1,1 +1,1 @@
-../../../../../components/hp/windows/hpVM.swift
+../../../../../components/hp/hpVM.swift

@@ -1,4 +1,8 @@
-import Combine
+#if os(Linux) || os(Windows)
+    import SwiftCrossUI
+#else
+    import Combine
+#endif
 
 final class HPVM: ObservableObject {
     @Published var countText = ""
