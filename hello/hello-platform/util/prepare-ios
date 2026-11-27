@@ -1,0 +1,9 @@
+#!/bin/bash -e
+SDIR=$(cd "$(dirname "$0")" ; pwd -P)
+
+T=$SDIR/step
+TARGET=hello-platform
+
+STEP=0
+source "$T/generateDialect" "$TARGET"
+source "$T/prepareIOS" "$TARGET"

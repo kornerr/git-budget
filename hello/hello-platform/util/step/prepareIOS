@@ -1,0 +1,8 @@
+#!/bin/bash -e
+
+TARGET=$1
+STEP=$((STEP+1))
+echo -e "\n> > > > Step №$STEP. Generate Xcode project for '$TARGET' iOS"
+
+cd "$SDIR/../ver-ios"
+xcodegen

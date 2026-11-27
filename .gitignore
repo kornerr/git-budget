@@ -1,11 +1,11 @@
 build
+.build
 .DS_Store
-GitBudget.xcodeproj
-*glb
+*.glb
 .gradle
 .idea
 .kotlin
 ignore.*
 local.properties
 .swiftpm
-/hello/hello-platform/ver-mac/.build/
+*.xcodeproj
