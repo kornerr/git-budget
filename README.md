@@ -72,3 +72,6 @@ driven by [Dialect](https://github.com/OGStudio/dialect)
     Target: x86_64-unknown-windows-msvc
     Build config: +assertions
     ```
+
+[vs]: https://www.swift.org/install/windows/
+[w11-dev-mode]: docs/img/w11-dev-mode.jpg
