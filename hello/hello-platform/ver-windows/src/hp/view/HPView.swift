@@ -1,1 +1,1 @@
-../../../../../../components/hp/windows/view/HPView.swift
+../../../../../../components/hp/mac/view/HPView.swift

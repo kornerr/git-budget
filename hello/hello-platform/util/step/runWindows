@@ -5,4 +5,4 @@ STEP=$((STEP+1))
 echo -e "\n> > > > Step №$STEP. Run Windows app for '$TARGET'"
 
 cd "$SDIR/../ver-windows"
-"./.build/debug/$TARGET.exe"
+"./.build/release/$TARGET.exe"
