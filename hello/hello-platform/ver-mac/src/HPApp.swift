@@ -7,7 +7,7 @@ struct HPApp: App {
 
     var body: some Scene {
         WindowGroup {
-            HPView(appDelegate.hpVM)
+            HPView(appDelegate.impl.hpVM)
         }
             .defaultSize(width: 640, height: 480)
     }
