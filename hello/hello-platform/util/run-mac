@@ -1,0 +1,7 @@
+#!/bin/bash -e
+SDIR=$(cd "$(dirname "$0")" ; pwd -P)
+
+T=$SDIR/step
+
+STEP=0
+source "$T/runMac" hello-platform hello-platform
