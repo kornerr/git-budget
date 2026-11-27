@@ -4,4 +4,4 @@ TARGET=$1
 STEP=$((STEP+1))
 echo -e "\n> > > > Step №$STEP. Generate Dialect for '$TARGET'"
 
-"$SDIR/run-generator" --file="$SDIR/../dialect.yml"
+"$SDIR/../../../util/run-generator" --file="$SDIR/../dialect.yml"
