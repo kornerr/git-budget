@@ -5,8 +5,8 @@ Git Budget allows you to track your spendings and see if you're in the budget
 | Component | Android | iOS | Linux | macOS | Windows | Description | Image |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | cui | X | √ | ? | √ | √ | **C**ustom **UI** contains functions to make UI syntax look identical across platforms | N/A |
-| hp | ? | √ | ? | √ | ? | **H**ello **p**latform is a simple UI to validate platform support | ![iOS](docs/img/hello-platform_ios.jpg)|
-| other | ? | √ | ? | √ | ? | **other** contains generic functions like printing to stderr | N/A |
+| hp | ? | √ | ? | √ | √ | **H**ello **p**latform is a simple UI to validate platform support | ![iOS](docs/img/hello-platform_ios.jpg)|
+| other | ? | √ | ? | √ | √ | **other** contains generic functions like printing to stderr | N/A |
 
 ## Build prerequisites
 
