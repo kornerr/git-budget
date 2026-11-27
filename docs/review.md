@@ -1,6 +1,7 @@
 # Code review guide
 
-This guide records 147 rules and decisions from the sibling `mj` project.
+This guide records 147 rules and decisions from the sibling `mj` project and
+their application in Git Budget.
 Review changed code against the applicable rules and cite the rule ID in each
 finding. Use the scope and exception notes to decide whether a rule applies to
 the app, platform, or file under review.
@@ -32,8 +33,9 @@ For platform changes, record source comparisons, build results, and runtime
 observations separately. See R130–R134 for the platform review workflow.
 
 Examples preserve context from the audit. Git diffs and snapshots refer to
-revisions in `mj`. Representative, illustrative, reconstructed, and workflow
-examples demonstrate the intended change or verification.
+revisions in `mj` unless identified as Git Budget evidence. Representative,
+illustrative, reconstructed, and workflow examples demonstrate the intended
+change or verification.
 
 ## Rule index
 
@@ -46,6 +48,7 @@ examples demonstrate the intended change or verification.
 - [App-specific gameplay and user experience](#app-specific-gameplay-and-user-experience) (R108–R116)
 - [Build, dependency and packaging conventions](#build-dependency-and-packaging-conventions) (R117–R129)
 - [Review requirements and pre-import decisions](#review-requirements-and-pre-import-decisions) (R130–R147)
+- [Git Budget Windows verification record](#git-budget-windows-verification-record)
 
 ## Formatting and declaration order
 
@@ -1762,6 +1765,13 @@ Share Apple setup through HCMAppImpl where possible, keep native hooks in delega
 
 A native context or lifecycle override can remain platform-specific.
 
+For Git Budget's `hello-platform`, link Windows directly to the shared
+`HPAppImpl.swift` and generated `dialect.swift` in the macOS target. The
+Windows delegate retains the implementation and calls `impl.setup()` from
+the app's `onAppear` path before setting the native window icon. Check that
+`HPAppImpl` still creates the component and view model before setup
+dispatches the first Dialect event. See R046 and R122.
+
 **Example** (Git diff `ad7b59f` · `hello/hello-color-memory/ver-ios/src/HCMAppDelegate.swift`)
 
 **Before**
@@ -1791,7 +1801,7 @@ final class HCMAppDelegate: NSObject, UIApplicationDelegate {
         _ application: UIApplication,
 ```
 
-**Evidence** `b4728c1` `ad7b59f` `7ef30e7` `b09602f` `e84c142`
+**Evidence** `b4728c1` `ad7b59f` `7ef30e7` `b09602f` `e84c142` · Git Budget `0bde833`
 
 ### R053 Avoid unrelated app rewrites
 
@@ -2688,11 +2698,20 @@ No-op suitability requires review. Examples include accessibilityHidden and cont
 
 **Scoped · Config**
 
-In shared HCM UI use @CUIObservedObject with a compatible implementation for each toolkit. Apple uses Combine/ObservedObject and SwiftCrossUI uses its appropriate State.
+Use `@CUIObservedObject` in the shared HCM and HP views. Apple uses
+`ObservedObject` and SwiftCrossUI uses `State`.
 
 **Review check and exceptions**
 
 Choose the real observation wrapper per toolkit. Do not make all models identical by deleting required observation.
+
+For `hello-platform`, check that macOS, iOS, and Windows link directly to
+the canonical `components/hp/mac/view/HPView.swift` and
+`components/hp/hpVM.swift`. Keep `ObservableObject`, the `@Published`
+`countText`, and the weak `HPVM.shared` in one class body. Select Combine
+or SwiftCrossUI at import time, and keep the observation type aliases in
+CUI. Treat a verified window launch and a verified counter update as
+separate results.
 
 **Example** (Representative Swift excerpts · observation parity)
 
@@ -2713,7 +2732,7 @@ Choose the real observation wrapper per toolkit. Do not make all models identica
 // Platform type aliases live in CUI
 ```
 
-**Evidence** `7b7ad04` `f8f753f` `afcb3c7` · Chat · Combine and State
+**Evidence** `7b7ad04` `f8f753f` `afcb3c7` · Chat · Combine and State · Git Budget `c0a73df` `f4638c5`
 
 ### R080 Desktop size parity
 
@@ -4041,7 +4060,17 @@ Keep application launch separate from building. Launch existing products, with t
 
 Do not take absence of exec as general Bash style. This is the established desktop script pattern.
 
-**Example** (Reconstructed from chat · Windows run step)
+For Git Budget's `hello-platform`, build macOS and Windows with
+`swift build --configuration release`. Check that macOS packaging reads
+the release binary and that the Windows launcher opens the release
+executable. The Windows build runs `llvm-strip --strip-debug` after
+linking. Inspect the final PE for remaining DWARF sections, DLL imports,
+and the icon resource, then check that the stripped executable opens on
+Windows. When reviewing a change to size, measure the executable and
+the full distribution payload separately. Use the counting method in
+the [Windows verification record](#git-budget-windows-verification-record).
+
+**Example** (Git Budget · Windows run step)
 
 **Before**
 
@@ -4054,10 +4083,10 @@ exec "$APP"
 
 ```text
 cd "$SDIR/../ver-windows"
-"./.build/debug/$TARGET.exe"
+"./.build/release/$TARGET.exe"
 ```
 
-**Evidence** `6a49531` · Chat · run-windows, cygpath and exec corrections
+**Evidence** `6a49531` · Chat · run-windows, cygpath and exec corrections · Git Budget `c0a73df`
 
 ### R119 Linux packaging stage
 
@@ -4241,6 +4270,10 @@ Pin the WinUI version with exact SwiftPM version syntax. A numeric release tag i
 
 Check that the target's required product list and package match the version. Do not autofix dependency ranges elsewhere.
 
+Git Budget's Windows `hello-platform` pins SwiftCrossUI exactly and
+uses its `SwiftCrossUI` and `WinUIBackend` products. Record the resolved
+transitive SwiftWinUI version when comparing builds.
+
 **Example** (Git diff `e711634` · `hello/hello-raylib/ver-windows/Package.swift`)
 
 **Before**
@@ -4259,7 +4292,7 @@ Check that the target's required product list and package match the version. Do 
 ],
 ```
 
-**Evidence** `11516d9` `1212d1b` `e711634` `db8c289`
+**Evidence** `11516d9` `1212d1b` `e711634` `db8c289` · Git Budget `0bde833`
 
 ### R126 Windows ANGLE build staging
 
@@ -4413,6 +4446,12 @@ Verify generated output, actual symlinks, C and Swift importer builds and native
 
 Skip native builds/generation when the user explicitly requests source only. Do not report successful runtime from a manifest parse or screenshot.
 
+For Windows, use a native target of the intended architecture. SSH can
+run the build and inspect the executable. Verify a WinUI launch in the
+signed-in Windows desktop session and record any separately exercised
+behavior. If a VM drops SSH during compilation, check the host's storage
+and hypervisor log before attributing the interruption to the build.
+
 **Example** (Workflow · separate verification evidence)
 
 **Before**
@@ -4430,7 +4469,7 @@ Native click observed in the app window
 stderr confirms selection, completion and restart
 ```
 
-**Evidence** `1212d1b` `37b9871` `afcb3c7` · Chat · use app windows only
+**Evidence** `1212d1b` `37b9871` `afcb3c7` · Chat · use app windows only · Git Budget Windows verification, 2026-11-27
 
 ### R132 Incremental stubs
 
@@ -4916,3 +4955,83 @@ VStack(spacing: 16) {
 ```
 
 **Evidence** `4d683a8` `8c2ebb0` `a0223e1` `2d827fa` `f8005b7`
+
+## Git Budget Windows verification record
+
+On 2026-11-27, the native Windows x64 VM built `hello-platform` with Swift
+6.4.2, SwiftCrossUI 0.10.0, and SwiftWinUI 0.2.2. The comparison used the
+shared HPView source and preceded the HPVM consolidation. All figures are
+uncompressed file sizes in MiB.
+
+| Measure | Debug | Release | Stripped release |
+| --- | ---: | ---: | ---: |
+| `hello-platform.exe` | 291.59 | 141.67 | 75.50 |
+| Redistributable app files | 348.36 | 198.22 | 132.05 |
+
+Stripping saved 66.17 MiB. PE inspection confirmed that the stripped x64
+executable retained its DLL imports and icon group 101 and had no DWARF
+sections.
+
+### Counting distribution files
+
+Measure the same source and dependencies for each build configuration.
+Report executable bytes separately and sum the executable, app resource
+bundles, and each required DLL once for the payload. Follow the PE imports
+recursively, including delay-load imports, and account for files loaded
+through a bootstrapper or bundle. Leave compiler plug-ins, build caches,
+object and import libraries, and separately installed prerequisites out of
+the app total. State which prerequisites are expected on the destination.
+
+The stripped release measurement counted these files. The Swift DLLs came
+from the installed x64 Swift runtime. The total describes a file inventory
+that can be staged for distribution.
+
+```text
+hello-platform.exe
+swift-winui_CWinAppSDK.bundle/Info.plist
+swift-winui_CWinAppSDK.bundle/Microsoft.WindowsAppRuntime.Bootstrap.dll
+_FoundationICU.dll
+BlocksRuntime.dll
+dispatch.dll
+Foundation.dll
+FoundationEssentials.dll
+FoundationInternationalization.dll
+swift_Concurrency.dll
+swift_RegexParser.dll
+swift_StringProcessing.dll
+swiftCore.dll
+swiftCRT.dll
+swiftDispatch.dll
+swiftObservation.dll
+swiftSynchronization.dll
+swiftWinSDK.dll
+```
+
+The Windows App Runtime and Microsoft Visual C++ Redistributable are
+separate prerequisites. The debug payload also required
+`swiftSwiftOnoneSupport.dll`. For a later build, derive the inventory from
+its actual binaries.
+
+### Build and desktop evidence
+
+The VM was reached through the configured `w11x86` SSH alias and built
+through Git Bash using `util/build-windows`. During access setup, the guest
+reported `sshd` running on TCP 22, Ethernet on the Public profile, and the
+inbound OpenSSH rule enabled for Private. Check service status, port
+forwarding, the active firewall profile, and key authentication separately
+when the build host is unreachable.
+
+The VM lost SSH during the first release build. VirtualBox logged
+`VERR_DISK_FULL` on the Mac host volume backing its virtual disk. After
+space was freed and the VM restarted, the release build completed from the
+existing checkout and the debug baseline was still available.
+
+Launching WinUI from noninteractive SSH failed during runtime
+initialization. In the signed-in Windows desktop session, the stripped
+release opened the **Hello platform** window. After the HPVM consolidation,
+the macOS and Windows release builds and the iOS Simulator build passed.
+The Windows app opened again. The automated check did not confirm that
+pressing **Increment** updated the label.
+
+**Evidence** Git Budget `0bde833` `c0a73df` `f4638c5` · Windows x64 build,
+PE inspection, and desktop checks, 2026-11-27.

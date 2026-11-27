@@ -1,7 +1,11 @@
-import SwiftUI
+#if os(Linux) || os(Windows)
+    import SwiftCrossUI
+#else
+    import SwiftUI
+#endif
 
 struct HPView: View {
-    @ObservedObject var vm: HPVM
+    @CUIObservedObject var vm: HPVM
 
     init(_ vm: HPVM) {
         self.vm = vm

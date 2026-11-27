@@ -2,7 +2,7 @@
 
 TARGET=$1
 STEP=$((STEP+1))
-echo -e "\n> > > > Step №$STEP. Build '$TARGET' for macOS"
+echo -e "\n> > > > Step №$STEP. Build '$TARGET' release for macOS"
 
 cd "$SDIR/../ver-mac"
-swift build
+swift build --configuration release

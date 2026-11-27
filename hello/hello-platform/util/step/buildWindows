@@ -1,0 +1,10 @@
+#!/bin/bash -e
+
+TARGET=$1
+STEP=$((STEP+1))
+echo -e "\n> > > > Step №$STEP. Build '$TARGET' release for Windows"
+
+cd "$SDIR/../ver-windows"
+export APP_RES_DIR="$SDIR/../ver-windows/res"
+swift build --configuration release
+llvm-strip --strip-debug ".build/release/$TARGET.exe"
