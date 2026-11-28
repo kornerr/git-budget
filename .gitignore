@@ -4,6 +4,7 @@ build
 .DS_Store
 *.glb
 .gradle
+*.html
 .idea
 .kotlin
 ignore.*
