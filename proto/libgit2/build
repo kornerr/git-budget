@@ -1,0 +1,9 @@
+#!/bin/bash
+set -euo pipefail
+
+SDIR=$(cd "$(dirname "$0")" && pwd -P)
+mkdir -p "$SDIR/.build"
+
+cc -std=c99 -O2 -Wall -Wextra $(pkg-config --cflags libgit2) \
+    "$SDIR/main.c" -o "$SDIR/.build/log-sync" \
+    $(pkg-config --libs libgit2) -framework CoreFoundation -framework Security

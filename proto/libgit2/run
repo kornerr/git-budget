@@ -1,0 +1,19 @@
+#!/bin/bash
+set -euo pipefail
+
+SDIR=$(cd "$(dirname "$0")" && pwd -P)
+if [[ ! -x "$SDIR/.build/log-sync" ]]; then
+    printf '%s\n' "Build the prototype first with $SDIR/build." >&2
+    exit 1
+fi
+
+if [[ -z ${GITEA_TOKEN:-} ]]; then
+    printf 'Gitea token for testuser: ' >/dev/tty
+    IFS= read -rs GITEA_TOKEN </dev/tty
+    printf '\n' >/dev/tty
+fi
+export GITEA_TOKEN
+
+work=$(mktemp -d "$SDIR/.build/clone.XXXXXXXX")
+trap 'rm -rf -- "$work"' EXIT
+"$SDIR/.build/log-sync" "$work" "$HOME/m/p/gitea/tls/gitea-test-ca.cer"
