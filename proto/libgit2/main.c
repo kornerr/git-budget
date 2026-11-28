@@ -1,17 +1,22 @@
 #define _DARWIN_C_SOURCE
 
+// Prototype dependencies
 #include <CoreFoundation/CoreFoundation.h>
 #include <Security/Security.h>
-#include <fcntl.h>
 #include <git2.h>
+#include <uuid/uuid.h>
+
+// Portable C
 #include <limits.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <sys/stat.h>
 #include <time.h>
+
+// POSIX
+#include <fcntl.h>
+#include <sys/stat.h>
 #include <unistd.h>
-#include <uuid/uuid.h>
 
 #define MAIN_REF "refs/heads/main"
 
