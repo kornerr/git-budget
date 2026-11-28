@@ -3,7 +3,7 @@ set -euo pipefail
 
 SDIR=$(cd "$(dirname "$0")" && pwd -P)
 if [[ ! -x "$SDIR/.build/log-sync" ]]; then
-    printf '%s\n' "Build the prototype first with $SDIR/build." >&2
+    printf '%s\n' "Build the prototype first with $SDIR/build-libgit2." >&2
     exit 1
 fi
 

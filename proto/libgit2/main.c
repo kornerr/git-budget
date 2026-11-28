@@ -238,7 +238,7 @@ int main(int argc, char **argv)
     }
     const char *token = getenv("GITEA_TOKEN");
     if (!token || !*token) {
-        fprintf(stderr, "Set GITEA_TOKEN or start the program with the run script.\n");
+        fprintf(stderr, "Set GITEA_TOKEN or start the program with run-libgit2.\n");
         return EXIT_FAILURE;
     }
 
