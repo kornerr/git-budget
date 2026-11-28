@@ -1,5 +1,3 @@
-#define _DARWIN_C_SOURCE
-
 // Prototype dependencies
 #include <CoreFoundation/CoreFoundation.h>
 #include <Security/Security.h>
